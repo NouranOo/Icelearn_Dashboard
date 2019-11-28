@@ -46,6 +46,9 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body">
+      
+          <div class="col-md-10" >
+          <div class="row">
           <div class="col-md-5" >
             <ul>
               <li class="wordLi">{{trans('student::student.id')}}:&nbsp; <strong>{{$student->id}}</strong> <br></li>
@@ -60,6 +63,7 @@
               <li class="wordLi">{{"محل الإقامة"}}:&nbsp; <strong>{{$student->address}}</strong> <br></li>
               <li class="wordLi">{{"رقم الهاتف الإرضى"}}:&nbsp; <strong>{{$student->telephoneFix}}</strong> <br></li>
               <li class="wordLi">{{"الرمز الشريطي"}}:&nbsp; <strong>{{$student->barCode}}</strong> <br></li>
+            
               <!-- <li class="wordLi">{{trans('student::student.groups')}}:
                 @foreach($student->groups as $item)
                 <strong>
@@ -70,6 +74,17 @@
               </li> -->
             </ul>
           </div>
+          </div>
+          </div>
+          <div style="width:145px;height:145px;"class="col-md-3"> <li class="wordLi">{{"الصورة"}}:&nbsp;
+                @if ($student->photo)
+                <img src="{{asset('public/images/student/' . $student->photo)}}" style="margin-top: 5px;width:100%;height:100%;" height="70" width="100">
+                @else
+                    <br>
+                    <pre><strong>"No Photo Uploaded"</strong></pre>
+                @endif
+
+              </li></div>
           <!-- @if($student->guardian)
               <div class="col-md-5 pull-right">
                 <h3><strong>{{trans('student::student.parent')}}</strong></h3>

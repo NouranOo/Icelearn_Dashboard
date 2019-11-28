@@ -43,7 +43,7 @@
                     <label class="control-label col-sm-2" for="title">{{trans('student::student.name')}}:</label>
                     <div class="col-sm-8">
                         <input value="{{$student->name}}"  type="text" autocomplete="off" class="form-control" placeholder="{{trans('student::student.newtitle')}}"
-                                name="name" required>
+                                name="name" >
                     </div>
                 </div>
 
@@ -67,7 +67,7 @@
                     <label class="control-label col-sm-2" for="title">الرقم القومى :</label>
                     <div class="col-sm-8">
                         <input value="{{$student->NID}}" type="text" autocomplete="off" data-validation="number" class="form-control" placeholder="{{trans('student::student.NID')}}"
-                               name="NID" required>
+                               name="NID" id="nid" value="{{old('NID')}}"  onkeyup="myFunction()">
                     </div>
                 </div>
 
@@ -76,7 +76,7 @@
                     <label class="control-label col-sm-2" for="title">{{trans('student::student.birth_date')}}:</label>
                     <div class="col-sm-8">
                         <input value="{{$student->birthDate}}" type="date" autocomplete="off" class="form-control" placeholder="{{trans('student::student.birth_date')}}" name="birthDate"
-                               required>
+                               >
                     </div>
                 </div>
 
@@ -85,7 +85,7 @@
                     <label class="control-label col-sm-2" for="title">{{trans('student::student.age')}}:</label>
                     <div class="col-sm-8">
                     <input value="{{$student->age}}" type="number" autocomplete="off" class="form-control" placeholder="{{trans('student::student.age')}}" name="age"
-                               required>
+                               >
                     </div>
                 </div>
 
@@ -95,7 +95,7 @@
                     <label class="control-label col-sm-2" for="title">{{trans('student::student.phone')}}:</label>
                     <div class="col-sm-8">
                         <input value="{{$student->phone}}" type="text" autocomplete="off" data-validation="number" class="form-control" placeholder="{{trans('student::student.phone')}}"
-                               name="phone" required>
+                               name="phone" >
                     </div>
                 </div>
 
@@ -103,32 +103,32 @@
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="title">الوظيفه الحالية:</label>
                     <div class="col-sm-8">
-                        <input value="{{$student->currentJob}}"  type="text" autocomplete="off" class="form-control" placeholder="{{trans('student::student.currentJob')}}"
-                                name="currentJob" required>
+                        <input value="{{$student->currentJob}}"  type="text" autocomplete="off" class="form-control" placeholder="الوظيفه الحالية"
+                                name="currentJob" >
                     </div>
                 </div>
                 {{-- mail --}}
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="title">البريد الالكترونى:</label>
                     <div class="col-sm-8">
-                        <input value="{{$student->mail}}"  type="text" autocomplete="off" class="form-control" placeholder="{{trans('student::student.mail')}}"
-                                name="mail" required>
+                        <input value="{{$student->mail}}"  type="text" autocomplete="off" class="form-control" placeholder="البريد الإلكترونى"
+                                name="mail"    >
                     </div>
                 </div>
                 {{-- address --}}
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="title">العنوان:</label>
                     <div class="col-sm-8">
-                        <input value="{{$student->address}}"  type="text" autocomplete="off" class="form-control" placeholder="{{trans('student::student.address')}}"
-                                name="address" required>
+                        <input value="{{$student->address}}"  type="text" autocomplete="off" class="form-control" placeholder="العنوان"
+                                name="address" >
                     </div>
                 </div>
                 {{-- telephoneFix --}}
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="title">التليفون الارضى:</label>
                     <div class="col-sm-8">
-                        <input value="{{$student->telephoneFix}}"  type="text" autocomplete="off" class="form-control" placeholder="{{trans('student::student.telephoneFix')}}"
-                                name="telephoneFix" required>
+                        <input value="{{$student->telephoneFix}}"  type="text" autocomplete="off" class="form-control" placeholder="التليفون الأرضى"
+                                name="telephoneFix" >
                     </div>
                 </div>
                 {{-- barCode --}}
@@ -136,9 +136,24 @@
                     <label class="control-label col-sm-2" for="title">الرمز الشريطي:</label>
                     <div class="col-sm-8">
                         <input value="{{$student->barCode}}"  type="text" autocomplete="off" class="form-control" placeholder="{{trans('student::student.barCode')}}"
-                                name="barCode" required>
+                                name="barCode" id="barcode">
                     </div>
                 </div>
+                <div class="form-group">
+                    {{-- Upload photo --}}
+                    <label class="control-label col-sm-2" for="img">صورة الطالب</label>
+                    <div class="col-sm-8">
+                        <input type="file" autocomplete="off" class="" name="photo">
+                        @if ($student->photo)
+                        <img src="{{asset('public/images/student/' . $student->photo)}}" style="margin-top: 5px;" height="70" width="100">
+                      
+                        @else
+                            <br>
+                            <strong>"No Photo Uploaded"</strong>
+                        @endif
+                    </div>
+                </div>
+
 
          
                 
@@ -218,5 +233,13 @@
     // }
   });
 
+</script>
+
+<script>
+function myFunction() {
+  var x = document.getElementById("nid");
+  var y = document.getElementById("barcode");
+  y.value = x.value;
+}
 </script>
 @endsection

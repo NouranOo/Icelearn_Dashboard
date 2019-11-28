@@ -53,9 +53,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($students as $item)
+                            @foreach ($students as $index=>$item)
                                 <tr>
-                                    <td> {{$item->id}} </td>
+                                    <td> {{$index+1}} </td>
                                   
                                     <td> {{$item->name}} </td>
                                     <td> {{$item->gender}} </td>

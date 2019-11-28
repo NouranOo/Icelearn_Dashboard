@@ -43,15 +43,15 @@
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="title">{{trans('student::student.name')}}:</label>
                     <div class="col-sm-8">
-                        <input  type="text" autocomplete="off" class="form-control" placeholder="{{trans('student::student.newtitle')}}"
-                               name="name" value="{{old('name')}}" required>
+                        <input  type="text" autocomplete="off" class="form-control" placeholder="اسم الطالب"
+                               name="name" value="{{old('name')}}" >
                     </div>
                 </div>
                 {{-- Gender --}}
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="title">{{trans('student::student.gender')}}:</label>
                     <div class="col-sm-8">
-                        <select class="form-control" name="gender">
+                        <select class="form-control" name="gender" value="{{old('gender')}}" >
                             <option value="male">ذكر</option>
                             <option value="female"><pre>أنثى</pre></option>
                         </select>
@@ -62,15 +62,15 @@
                     <label class="control-label col-sm-2" for="title">الرقم القومى:</label>
                     <div class="col-sm-8">
                         <input type="text" autocomplete="off" data-validation="number" class="form-control" placeholder="{{trans('student::student.NID')}}"
-                               name="NID" >
+                               name="NID" id="nid" value="{{old('NID')}}"  onkeyup="myFunction()">
                     </div>
                 </div>
                 {{-- Birth --}}
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="title">{{trans('student::student.birth_date')}}:</label>
                     <div class="col-sm-8">
-                        <input type="date" autocomplete="off" class="form-control" placeholder="{{trans('student::student.birth_date')}}" name="birthDate"
-                            required>
+                        <input type="date" autocomplete="off" class="form-control" value="{{old('birthDate')}}" placeholder="{{trans('student::student.birth_date')}}" name="birthDate"
+                            >
                     </div>
                 </div>
 
@@ -79,7 +79,7 @@
                     <label class="control-label col-sm-2" for="title">السن فى الوقت الحالى:</label>
                     <div class="col-sm-8">
                         <input type="text" autocomplete="off" class="form-control" placeholder="السن" name="age"
-                               required>
+                        value="{{old('age')}}"   >
                     </div>
                 </div>
                 {{-- Phone --}}
@@ -87,7 +87,7 @@
                     <label class="control-label col-sm-2" for="title">رقم المحمول(طالب):</label>
                     <div class="col-sm-8">
                         <input type="text" autocomplete="off" data-validation="number" class="form-control" placeholder="{{trans('student::student.phone')}}"
-                            name="phone" required>
+                            name="phone"  value="{{old('phone')}}">
                     </div>
                 </div>
                 {{-- current job --}}
@@ -95,7 +95,7 @@
                     <label class="control-label col-sm-2" for="title">الوظيفة الحالية:</label>
                     <div class="col-sm-8">
                         <input type="text" autocomplete="off" class="form-control" placeholder="الوظيفه الحاليه" name="currentJob"
-                               >
+                        value="{{old('currentJob')}}"  >
                     </div>
                 </div>
 
@@ -104,7 +104,7 @@
 
                     <label class="control-label col-sm-2" for="title">البريد الإلكترونى:</label>
                     <div class="col-sm-8">
-                        <input type="text" autocomplete="off" class="form-control" name="mail" required placeholder="البريد الإلكترونى">
+                        <input type="mail" autocomplete="off" class="form-control" name="mail" value="{{old('mail')}}"  placeholder="البريد الإلكترونى"   >
                     </div>
                 </div>
                 
@@ -113,7 +113,7 @@
 
                     <label class="control-label col-sm-2" for="title">محل الإقامة</label>
                     <div class="col-sm-8">
-                        <input type="text" autocomplete="off" class="form-control" name="address" required placeholder="محل الإقامة">
+                        <input type="text" autocomplete="off" class="form-control" name="address" value="{{old('address')}}"   placeholder="محل الإقامة">
                     </div>
                 </div>
                 {{-- telephone fix--}}
@@ -121,7 +121,7 @@
 
                     <label class="control-label col-sm-2" for="title">رقم الهاتف الإرضى:</label>
                     <div class="col-sm-8">
-                        <input type="text" autocomplete="off" class="form-control" name="telephoneFix"  placeholder="الهاتف الارضى">
+                        <input type="text" autocomplete="off" class="form-control" name="telephoneFix" value="{{old('telephoneFix')}}"  placeholder="الهاتف الارضى">
                     </div>
                 </div>
                 {{-- Barcode--}}
@@ -129,10 +129,16 @@
 
                     <label class="control-label col-sm-2" for="title">الرمز الشريطي:</label>
                     <div class="col-sm-8">
-                        <input type="text" autocomplete="off" class="form-control" name="barCode"  placeholder="barcode" >
+                        <input type="text" autocomplete="off" class="form-control" name="barCode" value="{{old('barCode')}}" placeholder="barcode" id="barcode" >
                     </div>
                 </div>
-
+                {{-- Upload photo --}}
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="img">صورة الطالب:</label>
+                    <div class="col-sm-8">
+                        <input type="file" autocomplete="off" name="photo" value="{{old('photo')}}">
+                    </div>
+                </div>
                 <!-- {{-- Type --}}
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="title">{{trans('student::student.type')}}:</label>
@@ -166,6 +172,100 @@
                         @endforeach
                         <!-- <input  type="text" autocomplete="off" class="form-control" placeholder="{{trans('student::student.schoolName')}}"
                                 name="schoolName" required> -->
+                    </div>
+                </div>
+                <hr>
+                <div class="box-body">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">نتائج اختبار تحديد المستوى (المقابلة الشخصية)</h3>
+                    </div>
+                    <br>
+                {{-- Levels Result--}}
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="title">المستوى المقترح:</label>
+                    <div class="col-sm-8">
+                        <input  type="text" autocomplete="off" class="form-control" placeholder="المستوى المقترح"
+                                name="suggestedLevel" value="{{old('suggestedLevel')}}" >
+                    </div>
+                </div>
+                <!-- <div class="form-group">
+                    <label class="control-label col-sm-2" for="title"> المدرب:</label>
+                    <div class="col-sm-8">
+                        <input  type="text" autocomplete="off" class="form-control" placeholder="المدرب"
+                              name="suggestedCoach" required>
+                    </div>
+                </div> -->
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="title"> أيام:</label>
+                    <div class="col-sm-8">
+                        <input  type="text" autocomplete="off" class="form-control" placeholder="أيام"
+                              name="suggestedDay" value="{{old('suggestedDay')}}" >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="title"> من ساعة:</label>
+                    <div class="col-sm-8">
+                        <input  type="text" autocomplete="off" class="form-control" placeholder="من ساعة"
+                              name="suggestedFromHour" value="{{old('suggestedFromHour')}}" >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="title"> إلى ساعة:</label>
+                    <div class="col-sm-8">
+                        <input  type="text" autocomplete="off" class="form-control" placeholder="إلى ساعة"
+                              name="suggestedToHour" value="{{old('suggestedToHour')}}"  >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="title"> التاريخ:</label>
+                    <div class="col-sm-8">
+                        <input  type="text" autocomplete="off" class="form-control" placeholder="التاريخ"
+                              name="suggestedDate" value="{{old('suggestedDate')}}" >
+                    </div>
+                </div>
+
+                <hr>
+                    <!-- Finally Levels -->
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="title">المستوى النهائي:</label>
+                    <div class="col-sm-8">
+                        <input  type="text" autocomplete="off" class="form-control" placeholder="المستوى النهائي"
+                                name="finallyLevel"  value="{{old('finallyLevel')}}">
+                    </div>
+                </div>
+                <!-- <div class="form-group">
+                    <label class="control-label col-sm-2" for="title"> المدرب:</label>
+                    <div class="col-sm-8">
+                        <input  type="text" autocomplete="off" class="form-control" placeholder="المدرب"
+                              name="finallyCoach" >
+                    </div>
+                </div> -->
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="title"> أيام:</label>
+                    <div class="col-sm-8">
+                        <input  type="text" autocomplete="off" class="form-control" placeholder="أيام"
+                              name="finallyDay" value="{{old('finallyDay')}}" >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="title"> من ساعة:</label>
+                    <div class="col-sm-8">
+                        <input  type="text" autocomplete="off" class="form-control" placeholder="من ساعة"
+                              name="finallyFromHour"  value="{{old('finallyFromHour')}}" >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="title"> إلى ساعة:</label>
+                    <div class="col-sm-8">
+                        <input  type="text" autocomplete="off" class="form-control" placeholder="إلى ساعة"
+                              name="finallyToHour" value="{{old('finallyToHour')}}" >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="title"> التاريخ:</label>
+                    <div class="col-sm-8">
+                        <input  type="text" autocomplete="off" class="form-control" placeholder="التاريخ"
+                              name="finallyDate" value="{{old('finallyDate')}}" >
                     </div>
                 </div>
 
@@ -255,10 +355,10 @@
                 <label class="control-label col-sm-2" for="title">{{trans('student::student.courseGroup')}}:</label>
                 <div class="col-sm-8">
                     <select class="select2 form-control" id="group_id" name="group_id" >
-                        @foreach($groups as $group)
+                      
 
-                            <option value="{{ $group->id }}"> <pre>  {{ $group->title }} | {{$group->course->title}} </pre>  </option>
-                        @endforeach
+                            <option value=""> <pre> </pre>  </option>
+                     
                     </select>
                 </div>
             </div> -->
@@ -357,4 +457,13 @@
         });
     });
 </script>
+
+<script>
+function myFunction() {
+  var x = document.getElementById("nid");
+  var y = document.getElementById("barcode");
+  y.value = x.value;
+}
+</script>
+
 @endsection

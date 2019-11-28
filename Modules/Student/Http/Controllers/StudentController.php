@@ -53,11 +53,11 @@ class StudentController extends Controller
      * @return Response
      */
     public function create()
-    {
-        $groups = $this->groupRepo->findAll();
+    { 
+        // $groups = $this->groupRepo->findAll();
         $courses = $this->courseRepo->findAll();
         // dd($courses);
-        return view('student::student.create',compact(['groups','courses']));
+        return view('student::student.create',compact(['courses']));
     }
 
     /**
@@ -67,8 +67,25 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-
-        $student = $this->studentRepository->save($request);
+        $request->validate([
+            'name'=>'required',
+            'gender'=>'required',
+            'NID'=>'required|digits:14|unique:students',
+            'phone'=>'required|digits:11',
+            'barCode'=>'required|digits:14|unique:students',
+            'course'=>'required',
+            'photo' => 'mimes:jpeg,jpg,png | max:1000',
+             
+            
+        ]);
+        $studentData = $request->except('_token', 'photo','course');
+        if($request->hasFile('photo')){
+            $image = $request->file('photo');
+            $imageName = $this->upload($image, 'student');
+            $studentData['photo'] = $imageName;
+        }   
+        
+        $student = $this->studentRepository->save($studentData,$request->course);
 
         return redirect('/admin-panel/student')->with('success', 'success');
 
@@ -92,9 +109,9 @@ class StudentController extends Controller
     public function edit($id)
     {
         $student = $this->studentRepository->find($id);
-        $groups = $this->groupRepo->findAll();
+        // $groups = $this->groupRepo->findAll();
 
-        return view('student::student.Edit',compact('student','groups'));
+        return view('student::student.Edit',compact('student'));
     }
 
     /**
@@ -104,8 +121,26 @@ class StudentController extends Controller
      */
     public function update(Request $request,$id)
     {
+        $request->validate([
+            'name'=>'required',
+            'gender'=>'required',
+            'NID'=>'required|digits:14', 'unique::students->ignore($id)',
+            'phone'=>'required|digits:11',
+            'barCode'=>'required|digits:14','unique::students->ignore($id)',
+            'photo' => 'mimes:jpeg,jpg,png | max:1000',
+             
+            
+        ]);
+        
+        $studentData = $request->except('_token', 'photo');
+        if($request->hasFile('photo')){
+            $image = $request->file('photo');
+            $imageName = $this->upload($image, 'student');
+            $studentData['photo'] = $imageName;
+        }   
+        
+        $student = $this->studentRepository->update($studentData,$id);
 
-        $student = $this->studentRepository->update($request,$id);
 
         return redirect('/admin-panel/student')->with('updated', 'updated');
 

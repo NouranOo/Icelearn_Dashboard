@@ -26,16 +26,16 @@ class StudentRepository /*implements the interface*/
     # Index
     public function findAll()
     {
-        $students = Student::all();
+        $students = Student::orderBy('created_at','desc')->get();
 
         return $students;
     }
 
     # Insert
-    public function save($request)
+    public function save($data,$course)
     {
-        // dd();
-        $cousrsIds= $request->course;
+         
+        $cousrsIds= $course;
         // dd($cousrsIds);
         # Save Guardian
         // $guardianData = $request->except('_token','name','nationality','phone','birthDate','age','gender','type','group_id','NID'
@@ -45,12 +45,11 @@ class StudentRepository /*implements the interface*/
 
         # Save Student
         // $age = \Carbon\Carbon::parse($request->birthDate)->diff(\Carbon\Carbon::now())->format('%y');
-        $studentData = $request->except('_token');
         // $studentData['age']=$age;
-        $studentData['created_by'] = auth()->user()->id;
+        $data['created_by'] = auth()->user()->id;
         // $studentData['guardian_id'] = $guardian->id;
-        $student = Student::create($studentData);
-
+        $student = Student::create($data);
+        // dd($student);
         # courses save 
         foreach($cousrsIds as $id){
             $studentCourse = new CourseStudent();
@@ -71,7 +70,7 @@ class StudentRepository /*implements the interface*/
     }
 
     # Edit
-    public function update($request,$id)
+    public function update($data,$id)
     {
         $student = Student::findorfail($id);
         # Update Guardian
@@ -83,11 +82,12 @@ class StudentRepository /*implements the interface*/
 
         # Update Student
         // $age = \Carbon\Carbon::parse($request->birthDate)->diff(\Carbon\Carbon::now())->format('%y');
-        $studentData = $request->except('_token','_method');
+ 
         // $studentData['age']=$age;
-        $studentData['created_by'] = auth()->user()->id;
+        $data['created_by'] = auth()->user()->id;
         // $studentData['guardian_id'] = $guardian->id;
-        $student -> update($studentData );
+        $student->update($data );
+        // dd($student);
 
         # Update Student -> Group
 
