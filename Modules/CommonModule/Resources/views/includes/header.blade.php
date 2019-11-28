@@ -20,7 +20,7 @@
 
             {{-- Choose Language --}}
 
-            <ul class="nav navbar-nav">
+            <!-- <ul class="nav navbar-nav">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <span class="hidden-xs">{{__('main.language')}}</span>
@@ -31,20 +31,21 @@
                         @endforeach
                     </ul>
                 </li>
-            </ul>
+            </ul> -->
 
             <ul class="nav navbar-nav">
 
                 <!-- User Account: style can be found in dropdown.less -->
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="{{ asset('assets/admin/dist/img/user2-160x160.jpg')}}" class="user-image" alt="User Image">
-                        <span class="hidden-xs">{{ Auth::guard('admin')->user()->name }}</span>
+                        <img src="{{ asset('assets/admin/dist/img/pp.jpg')}}"  class="user-image" alt="User Image">
+                        <!-- <span class="hidden-xs">{{ Auth::guard('admin')->user()->name }}</span> -->
+                        <span class="hidden-xs">U GROW</span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
                         <li class="user-header">
-                            <img src="{{ asset('assets/admin/dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
+                            <img src="{{ asset('assets/admin/dist/img/pp.jpg')}}" class="img-circle" alt="User Image">
 
                             <p>
                                 {{ Auth::guard('admin')->user()->name }}

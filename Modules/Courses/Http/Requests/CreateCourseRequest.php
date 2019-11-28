@@ -13,14 +13,14 @@ class CreateCourseRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'start_date' => 'date',
-            'track_id' => 'required|exists:tracks,id',
-            'level_id' => 'required|exists:levels,id',
-            'category_id' => 'array',
-            'instructor_id' => 'array',
-            'classes_number' => 'numeric',
-        ];
+        // return [
+        //     'start_date' => 'date',
+        //     'track_id' => 'required|exists:tracks,id',
+        //     'level_id' => 'required|exists:levels,id',
+        //     'category_id' => 'array',
+        //     'instructor_id' => 'array',
+        //     'classes_number' => 'numeric',
+        // ];
     }
 
     /**

@@ -45,8 +45,8 @@
                             </tr>
                             </thead>
                             <tbody>
-                        
-                            @foreach ($levels as $index=>$item)
+                     
+                            @foreach ($course->levels as $index=>$item)
                                 <tr>
                                
                                     <td> {{$index+1}} </td>

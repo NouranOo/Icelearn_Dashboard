@@ -51,13 +51,25 @@
                 </div>
 
 
-                <div class="form-group">
+                <!-- <div class="form-group">
                     {{-- Guardian Category --}}
                     <label class="control-label col-sm-2" for="title">Track:</label>
                     <div class="col-sm-8">
                         <select class="form-control" name="track_id">
                                 @foreach($tracks as $track)
                                     <option value="{{ $track->id }}"> &nbsp;&nbsp;{{ $track->title }}</option>
+                                @endforeach
+                            </select>
+                    </div>
+                </div> -->
+
+                <div class="form-group">
+                    {{-- Guardian Category --}}
+                    <label class="control-label col-sm-2" for="title">الكورس:</label>
+                    <div class="col-sm-8">
+                        <select class="form-control" name="course_id">
+                                @foreach($courses as $course)
+                                    <option value="{{ $course->id }}"> &nbsp;&nbsp;{{ $course->title }}</option>
                                 @endforeach
                             </select>
                     </div>

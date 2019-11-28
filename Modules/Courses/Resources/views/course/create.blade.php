@@ -44,7 +44,7 @@
                                data-validation-error-msg="{{__('FormValidate.title')}}">
                     </div>
                 </div>
-
+<!-- 
                 <div class="form-group">
                     {{-- Track --}}
                     <label class="control-label col-sm-2" for="title">{{trans('courses::course.track')}}:</label>
@@ -103,7 +103,7 @@
                     </div>
                 </div>
 
-                {{-- ---------------------------------------------------------------- --}}
+                {{-- ---------------------------------------------------------------- --}} -->
 
                 <div class="form-group">
                     {{-- Instructor --}}
@@ -116,7 +116,7 @@
                         </select>
                     </div>
                 </div>
-
+<!-- 
                 {{--<div class="form-group">--}}
                     {{-- Type --}}
                     {{--<label class="control-label col-sm-2" for="title">{{trans('courses::course.type')}}:</label>--}}
@@ -127,15 +127,23 @@
                             {{--<option value="toefl"> <pre>&nbsp;&nbsp;&nbsp;</pre>Toefl</option>--}}
                         {{--</select>--}}
                     {{--</div>--}}
-                {{--</div>--}}
+                {{--</div>--}} -->
 
                 <div class="form-group">
+                    {{-- Number of levels --}}
+                    <label class="control-label col-sm-2" for="title">عدد المستويات:</label>
+                    <div class="col-sm-8">
+                        <input type="text" autocomplete="off" class="form-control" placeholder="عدد المستويات" name="levels_number">
+                    </div>
+                </div>
+
+                <!-- <div class="form-group">
                     {{-- Number of classes --}}
                     <label class="control-label col-sm-2" for="title">{{trans('courses::course.classnumbers')}}:</label>
                     <div class="col-sm-8">
                         <input type="text" autocomplete="off" class="form-control" placeholder="{{trans('courses::course.classnumbers')}}" name="classes_number">
                     </div>
-                </div>
+                </div> -->
 
                 <div class="form-group">
                     {{-- book fees --}}

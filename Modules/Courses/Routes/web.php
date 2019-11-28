@@ -78,6 +78,9 @@ Route::group(['prefix' => 'admin-panel', 'middleware' => ['auth:admin']], functi
     Route::group(['middleware' => ['role:superadmin']], function () {
         Route::delete('/courses/delete/{id}', 'CoursesController@destroy');
     });
+    Route::group(['middleware' => ['role:superadmin']], function () {
+        Route::get('/courses/viewlevels/{id}', 'CoursesController@viewlevels')->name('viewlevels');
+    });
 
     /**
      *  Tracks

@@ -5,10 +5,10 @@
         <!-- Sidebar user panel -->
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="{{ asset('assets/admin/dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
+                <img src="{{ asset('assets/admin/dist/img/pp.jpg') }}" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-                <p>{{ auth()->user()->name }}</p>
+                <p>U GROW</p>
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
         </div>
@@ -20,31 +20,31 @@
             <li class="header">{{__('commonmodule::sidebar.mainnav')}}</li>
 
             <!-- Common Module -->
-            <li>
+            <!-- <li>
                 <a href="{{url('/admin-panel')}}">
                     <i class="fa fa-home"></i> <span>{{__('commonmodule::sidebar.home')}} </span>
                     <span class="pull-right-container">
                 </span>
                 </a>
-            </li>
+            </li> -->
 
 
             <li>
                 <a href="{{url('admin-panel/student/')}}">
                     <i class="fa fa-user-circle"
-                       aria-hidden="true"></i><span>{{trans('commonmodule::sidebar.newStudent')}} </span>
+                       aria-hidden="true"></i><span>الطلاب </span>
                     <span class="pull-right-container">
                 </span>
                 </a>
             </li>
 
-            <li>
+            <!-- <li>
                 <a href="{{url('admin-panel/reservation/')}}">
                     <i class="fa fa-user-circle"
                        aria-hidden="true"></i><span>{{trans('commonmodule::sidebar.reservation')}} </span>
                     <span class="pull-right-container"></span>
                 </a>
-            </li>
+            </li> -->
 
             <li>
                 <a href="{{url('instructors/instructors')}}">
@@ -80,7 +80,7 @@
                 </ul>
             </li>
 
-            <li class="treeview">
+            <!-- <li class="treeview">
                 <a href="#">
                     <i class="fa fa-folder" aria-hidden="true"></i>
                     <span>{{__('commonmodule::sidebar.setting')}}</span>
@@ -88,25 +88,25 @@
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
                 </a>
-                <ul class="treeview-menu">
-                    <li>
+                <ul class="treeview-menu"> -->
+                    <!-- <li>
                         <a href="{{url('admin-panel/tracks/')}}">
                             <i class="fa fa-circle-o"></i><span>{{__('sidebar.track')}} </span>
                             <span class="pull-right-container"></span>
                         </a>
-                    </li>
+                    </li> -->
                     <li><a href="{{url('admin-panel/levels/')}}">
                             <i class="fa fa-circle-o"></i><span>{{__('sidebar.level')}} </span>
                             <span class="pull-right-container"></span>
                         </a>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a href="{{url('admin-panel/categories')}}">
                             <i class="fa fa-circle-o"></i> {{__('commonmodule::sidebar.coursecateg')}}
                         </a>
-                    </li>
-                </ul>
-            </li>
+                    </li> -->
+                <!-- </ul> -->
+            <!-- </li> -->
 
             @role('superadmin')
             <li>
@@ -119,13 +119,13 @@
             @endrole
 
             @role('superadmin')
-            <li>
+            <!-- <li>
                 <a href="{{ url('/admin-panel/commonmodule/activate-lang') }}">
                     <i class="fa fa-language" aria-hidden="true"></i><span>{{__('commonmodule::sidebar.langs')}} </span>
                     <span class="pull-right-container">
                 </span>
                 </a>
-            </li>
+            </li> -->
             @endrole
         </ul>
     </section>

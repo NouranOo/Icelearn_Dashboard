@@ -4,14 +4,17 @@ namespace Modules\Courses\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 use Dimsav\Translatable\Translatable;
+use Modules\Courses\Entities\Course;
+
 
 class Level extends Model
 {
 
     protected $guarded = [];
 
-    public function track()
+   
+    public function course()
     {
-        return $this->belongsTo(Track::class,'track_id', 'id');
+        return $this->belongsTo(Course::class);
     }
 }

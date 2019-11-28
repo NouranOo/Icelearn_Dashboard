@@ -39,8 +39,9 @@
                             <tr>
                                 <th>{{trans('courses::course.id')}}</th>
                                 <th>{{trans('courses::course.title')}}</th>
-                                <th>{{trans('courses::course.book_fees')}}</th>
-                                <th>{{trans('courses::course.month_fees')}}</th>
+                                <th>عدد المستويات</th>
+                                <th>مصاريف الكتب</th>
+                                <th>التكاليف الشهريه</th>
                                 <th>{{trans('courses::course.op')}}</th>
                             </tr>
                             </thead>
@@ -49,6 +50,7 @@
                                 <tr>
                                     <td> {{$item->id}} </td>
                                     <td> {{$item->title}} </td>
+                                    <td> {{$item->levels_number}} </td>
                                     <td> {{$item->book_fees}} </td>
                                     <td> {{$item->month_fees}} </td>
                                     <td> {{-- view --}}
@@ -73,6 +75,7 @@
                                             </button>
                                         </form>
                                         @endrole
+                                        <a href="{{route('viewlevels',$item->id)}}"><button class="btn btn-primary">المستويات</button></a>
                                     </td>
                                 </tr>
                             @endforeach

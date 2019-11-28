@@ -7,16 +7,19 @@ use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Modules\Courses\Repository\LevelRepository;
 use Modules\Courses\Repository\TrackRepository;
+use Modules\Courses\Repository\CourseRepository;
 
 class LevelController extends Controller
 {
 
   private $levelRepo;
+  private $courseRepo;
 
-  public function __construct(LevelRepository $levelRepo,trackRepository $trackRepo)
+  public function __construct(LevelRepository $levelRepo,trackRepository $trackRepo, CourseRepository $courseRepo)
   {
       $this->levelRepo = $levelRepo;
       $this->trackRepo = $trackRepo;
+      $this->courseRepo = $courseRepo;
   }
     /**
      * Display a listing of the resource.
@@ -25,6 +28,7 @@ class LevelController extends Controller
     public function index()
     {
       $levels = $this->levelRepo->findAll();
+    
         return view('courses::level.index')->with('levels',$levels);
     }
 
@@ -35,7 +39,9 @@ class LevelController extends Controller
     public function create()
     {
       $tracks=$this->trackRepo->findAll();
-        return view('courses::level.create')->with('tracks',$tracks);
+      $courses = $this->courseRepo->findAll();
+
+        return view('courses::level.create',compact('tracks','courses'));
     }
 
     /**
@@ -46,7 +52,7 @@ class LevelController extends Controller
     public function store(Request $request)
     {
       $levelData = $request->except('_token','_wysihtml5_mode');
-      $levelData['created_by'] = auth()->user()->id;
+     
 
 
       $level = $this->levelRepo->save($levelData);
@@ -71,8 +77,8 @@ class LevelController extends Controller
     public function edit($id)
     {
       $level = $this->levelRepo->find($id);
-      $tracks=$this->trackRepo->findAll();
-        return view('courses::level.Edit',compact('level','tracks'));
+      $courses = $this->courseRepo->findAll();
+        return view('courses::level.Edit',compact('level','courses'));
     }
 
     /**

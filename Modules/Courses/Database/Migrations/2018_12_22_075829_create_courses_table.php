@@ -18,15 +18,19 @@ class CreateCoursesTable extends Migration
             $table->string('title');
             $table->double('book_fees', 8, 2);
             $table->double('month_fees', 8, 2);
-            $table->integer('classes_number');
-            $table->integer('track_id')->unsigned()->nullable();
-            $table->foreign('track_id')->references('id')->on('tracks')->onDelete('set null');
+            $table->integer('levels_number');
 
-            $table->integer('level_id')->unsigned()->nullable();
-            $table->foreign('level_id')->references('id')->on('levels')->onDelete('set null');
+            // $table->integer('instructor_id')->unsigned()->nullable();
+            // $table->foreign('instructor_id')->references('id')->on('instructors')->onDelete('set null');
+            
+            // $table->integer('track_id')->unsigned()->nullable();
+            // $table->foreign('track_id')->references('id')->on('tracks')->onDelete('set null');
 
-            $table->integer('created_by')->unsigned()->nullable();
-            $table->foreign('created_by')->references('id')->on('admins')->onDelete('set null');
+            // $table->integer('level_id')->unsigned()->nullable();
+            // $table->foreign('level_id')->references('id')->on('levels')->onDelete('set null');
+
+            // $table->integer('created_by')->unsigned()->nullable();
+            // $table->foreign('created_by')->references('id')->on('admins')->onDelete('set null');
 
             $table->timestamps();
         });

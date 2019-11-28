@@ -65,13 +65,17 @@ class CoursesController extends Controller
      * @param  Request $request
      * @return Response
      */
-    public function store(CreateCourseRequest $request)
+    public function store(Request $request)
     {
-        $courseData = $request->except('_token','category_id','instructor_id');
+        $request->validate([
+            'title'=>'required'
 
-        $courseData['created_by'] = auth()->user()->id;
+        ]);
+        $courseData = $request->except('_token','instructor_id');
+
+        // $courseData['created_by'] = auth()->user()->id;
         $course = $this->courseRepo->save($courseData);
-        $course->categories()->sync($request['category_id']);
+        // $course->categories()->sync($request['category_id']);
         $course->instructors()->sync($request['instructor_id']);
 
         return redirect('admin-panel/courses')->with('success', 'success');
@@ -94,18 +98,18 @@ class CoursesController extends Controller
     public function edit($id)
     {
         $course = $this->courseRepo->find($id);
-        $tracks = $this->trackRepo->findAll();
-        $levels = $this->levelRepo->findAll();
-        $categories = $this->catRepo->findParents();
+        // $tracks = $this->trackRepo->findAll();
+        // $levels = $this->levelRepo->findAll();
+        // $categories = $this->catRepo->findParents();
         $instructors = $this->instructRepo->findAll();
 
 
 
-        foreach ($course->categories as $value) {
-            $selected_categ_ids[] = $value->id;
-        }
+        // foreach ($course->categories as $value) {
+        //     $selected_categ_ids[] = $value->id;
+        // }
 
-        return view('courses::course.Edit',compact('course','tracks','levels','categories','instructors', 'selected_categ_ids'));
+        return view('courses::course.Edit',compact('course','instructors'));
     }
 
     /**
@@ -132,5 +136,13 @@ class CoursesController extends Controller
         $this->courseRepo->delete($id);
 
         return redirect('admin-panel/courses')->with('deleted', 'deleted');
+    }
+
+
+    public function viewlevels($id)
+    {
+        $course = $this->courseRepo->find($id);
+        return view('courses::course.course_levels',compact('course'));
+
     }
 }

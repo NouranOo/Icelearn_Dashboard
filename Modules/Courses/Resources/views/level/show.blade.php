@@ -20,7 +20,7 @@
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">{{trans('courses::level.show')}} <strong>{{$level->title}}&nbsp;:</strong>
+                        <h3 class="box-title">{{trans('courses::level.show')}}&nbsp;: <strong>{{$level->title}}</strong>
                         </h3>
 
                         <a href="{{url('/admin-panel/levels')}}" style="margin-right: 5px;" type="button"
@@ -48,6 +48,9 @@
                                     <br></li>
                                 <li class="wordLi">{{trans('courses::level.title')}}:&nbsp;
                                     <strong>{{$level->title}}</strong> <br></li>
+
+                                    <li class="wordLi">الكورس:&nbsp;
+                                    <strong>{{$level->course->title}}</strong> <br></li>
                             </ul>
                         </div>
 

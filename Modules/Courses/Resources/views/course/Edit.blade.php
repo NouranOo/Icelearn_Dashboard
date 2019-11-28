@@ -1,5 +1,5 @@
 @extends('commonmodule::layouts.master')
-@section('title') {{trans('courses::course.title')}}
+@section('title') تعديل الدوره
 @endsection
 
 @section('css')
@@ -45,67 +45,8 @@
                     </div>
                 </div>
 
-                <div class="form-group">
-                    {{-- Track --}}
-                    <label class="control-label col-sm-2" for="title">{{trans('courses::course.track')}}:</label>
-                    <div class="col-sm-8">
-                        <select class="form-control" name="track_id">
-                            @foreach($tracks as $track)
-                                <option value="{{ $track->id }}"
-                                @if($track->id == $course->track_id)
-                                        selected
-                                    @endif
-                                > <pre>&nbsp;&nbsp;&nbsp;</pre>{{ $track->title }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-
-                {{-- Level --}}
-                <div class="form-group">
-                    <label class="control-label col-sm-2" for="title">{{trans('courses::course.level')}}:</label>
-                    <div class="col-sm-8">
-                        <select class="form-control" name="level_id">
-            @foreach($levels as $level)
-              <option value="{{ $level->id }}"
-              @if($level->id == $course->level_id)
-                      selected
-                  @endif
-              > <pre>&nbsp;&nbsp;&nbsp;</pre>{{ $level->title }}</option>
-            @endforeach
-            </select>
-                    </div>
-
-                </div>
-
-                {{-- Category --}}
-                <div class="form-group">
-                    <label class="control-label col-sm-2">{{ __('courses::course.category')}} : </label>
-                    <div class="col-sm-4">
-
-                        <ul data-role="treeview-metro">
-                            @if($categories->count()>0)
-                            @foreach($categories as $cat)
-                            <li>
-                                <input type="checkbox" data-role="checkbox" value="{{ $cat->id  }}" name="category_id[]" data-caption="{{ $cat->title  }}"
-                                    title="" @if(in_array($cat->id, $selected_categ_ids)) checked
-                                @endif> @if(count($cat->child)>0)
-                                <ul>
-                                    @foreach($cat->child as $child)
-                                    <li>
-                                        <input type="checkbox" data-role="checkbox" value="{{ $child->id  }}" name="car_categ[]" data-caption="{{ $child->title  }}"
-                                            title="" @if(in_array($child->id, $selected_categ_ids))
-                                        checked @endif>
-                                    </li>
-                                    @endforeach
-                                </ul>
-                                @endif
-                            </li>
-                            @endforeach
-                                @endif
-                        </ul>
-                    </div>
-                </div>
+              
+         
 
                 {{-- Instructor --}}
                 <div class="form-group">
@@ -130,9 +71,9 @@
 
                 <div class="form-group">
                     {{-- Number of classes --}}
-                    <label class="control-label col-sm-2" for="title">{{trans('courses::course.classnumbers')}}:</label>
+                    <label class="control-label col-sm-2" for="title">عدد المستويات:</label>
                     <div class="col-sm-8">
-                        <input type="text" autocomplete="off" value="{{$course->classes_number}}" class="form-control" placeholder="{{trans('courses::course.classnumbers')}}"
+                        <input type="text" autocomplete="off" value="{{$course->levels_number}}" class="form-control" placeholder="{{trans('courses::course.classnumbers')}}"
                             name="classes_number">
                     </div>
                 </div>

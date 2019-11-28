@@ -11,8 +11,5 @@ class Track extends Model
     protected $guarded = [];
     public $translationModel = TrackTranslation::class;
 
-    public function levels()
-    {
-        return $this->hasMany(Level::class, 'track_id', 'id');
-    }
+  
 }

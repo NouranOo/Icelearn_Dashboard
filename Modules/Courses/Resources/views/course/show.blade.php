@@ -37,8 +37,8 @@
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">{{trans('courses::course.course')}} <strong>{{$course->title}}
-                                &nbsp;:</strong></h3>
+                        <h3 class="box-title">{{trans('courses::course.course')}}&nbsp;: <strong>{{$course->title}}
+                                </strong></h3>
                         @role('admin|superadmin')
                         <a title="Edit" href="{{url('admin-panel/courses/' . $course->id . '/edit')}}" type="button"
                            class="btn btn-primary pull-right"><i class="fa fa-pencil"
@@ -52,7 +52,7 @@
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
-                        <div class="col-md-7">
+                        <!-- <div class="col-md-7">
                             <div class="box-body">
                                 <ul>
                                     <li class="wordLi">{{trans('courses::course.mt')}}:&nbsp;
@@ -63,17 +63,17 @@
                                         <strong>{{$course->meta_keywords}}</strong> <br></li>
                                 </ul>
                             </div>
-                        </div>
-                        <div class="col-md-5 pull-right">
+                        </div> -->
+                        <div class="col-md-12 pull-right">
                             <ul>
                                 <li class="wordLi">{{trans('courses::course.id')}}:&nbsp;
                                     <strong>{{$course->id}}</strong> <br></li>
                                 <li class="wordLi">{{trans('courses::course.title')}}:&nbsp;
                                     <strong>{{$course->title}}</strong> <br></li>
-                                <li class="wordLi">{{trans('courses::course.start_date')}}:&nbsp;
-                                    <strong>{{$course->start_date}}</strong> <br></li>
-                                <li class="wordLi">{{trans('courses::course.classnumbers')}}:&nbsp;
-                                    <strong>{{$course->classes_number}}</strong> <br></li>
+                                <!-- <li class="wordLi">{{trans('courses::course.start_date')}}:&nbsp;
+                                    <strong>{{$course->start_date}}</strong> <br></li> -->
+                                <li class="wordLi">عدد المستويات:&nbsp;
+                                    <strong>{{$course->levels_number}}</strong> <br></li>
                                 <li class="wordLi">{{trans('courses::course.bookfees')}}:&nbsp;
                                     <strong>{{$course->book_fees}}</strong> <br></li>
                                 <li class="wordLi">{{trans('courses::course.monthfees')}}:&nbsp;

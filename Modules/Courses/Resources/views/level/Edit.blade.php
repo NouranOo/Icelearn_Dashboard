@@ -1,5 +1,5 @@
 @extends('commonmodule::layouts.master')
-@section('title') {{trans('courses::level.title')}}
+@section('title') تعديل بيانات المستوي
 @endsection
 
 @section('css')
@@ -10,7 +10,7 @@
 @section('content-header')
 <section class="content-header">
     <h1>
-        {{trans('courses::level.title')}}
+        تعديل بيانات المستوي
     </h1>
 
 </section>
@@ -49,22 +49,24 @@
                     </div>
                 </div>
 
+              
                 <div class="form-group">
                     {{-- Guardian Category --}}
-                    <label class="control-label col-sm-2" for="title">Track:</label>
+                    <label class="control-label col-sm-2" for="title">الكورس:</label>
                     <div class="col-sm-8">
-                        <select class="form-control" name="track_id">
-                                @foreach($tracks as $track)
-                                    <option value="{{ $track->id }}"
+                        <select class="form-control" name="course_id">
+                               
 
-                                            @if ($track->id == $level->track_id)
+                                @foreach($courses as $course)
+                                    <option value="{{ $course->id }}"
+
+                                            @if ($course->id == $level->course_id)
                                             selected
                                             @endif
-                                    > {{ $track->title }}</option>
+                                    > {{ $course->title }}</option>
                                 @endforeach
                             </select>
                     </div>
-
                 </div>
 
 
