@@ -11,7 +11,8 @@ use Modules\Courses\Entities\Course;
 use Modules\Courses\Entities\CourseStudent;
 use Modules\Student\Entities\Guardian;
 use Modules\Student\Entities\Student;
-
+use Modules\Courses\Entities\Level;
+use Modules\Student\Entities\studentLevels;
 
 class StudentRepository /*implements the interface*/
 {
@@ -27,15 +28,64 @@ class StudentRepository /*implements the interface*/
     public function findAll()
     {
         $students = Student::orderBy('created_at','desc')->get();
-
+        // $students = Student::with('courses')->get();
+        // dd($students);
         return $students;
     }
 
     # Insert
-    public function save($data,$course)
+    public function save($data,$course_id,$suggestedLevel,$finallyLevel)
     {
          
-        $cousrsIds= $course;
+        $data['created_by'] = auth()->user()->id;
+        $student = Student::create($data);
+        // $studentCourse = CourseStudent::create( $course_id);
+        $studentCourse = new CourseStudent();
+        $studentCourse->student_id = $student->id;
+        $studentCourse->course_id = $course_id;
+        $studentCourse->save();
+        // $studentLevels = studentLevels::create(['student_id'=>$student->id,
+        //                                         'level_id' =>$levelId
+        //                                         ]);
+        $studentLevels = new studentLevels();
+        $studentLevels->student_id = $student->id;
+        $studentLevels->suggestedLevel = $suggestedLevel;
+        $studentLevels->finallyLevel = $finallyLevel;
+
+        if(!empty($data->suggestedCoach)){
+
+            $studentLevels->suggestedCoach = $data->suggestedCoach;
+        }
+        if(!empty($data->suggestedDay)){
+            $studentLevels->suggestedDay = $data->suggestedDay;
+        }
+        if(!empty($data->suggestedFromHour)){
+            $studentLevels->suggestedFromHour = $data->suggestedFromHour;
+        }
+        if(!empty($data->suggestedToHour)){
+            $studentLevels->suggestedToHour = $data->suggestedToHour;
+        }
+        if(!empty($data->suggestedDate)){
+            $studentLevels->suggestedDate = $data->suggestedDate;
+        }
+        if(!empty($data->finallyCoach)){
+            $studentLevels->finallyCoach = $data->finallyCoach;
+        }
+        if(!empty($data->finallyDay)){
+            $studentLevels->finallyDay = $data->finallyDay;
+        }
+        if(!empty($data->finallyFromHour)){
+            $studentLevels->finallyFromHour = $data->finallyFromHour;
+        }
+        if(!empty($data->finallyToHour)){
+            $studentLevels->finallyToHour = $data->finallyToHour;
+        }
+        if(!empty($data->finallyDate)){
+            $studentLevels->finallyDate = $data->finallyDate;
+        }
+        $studentLevels->save();
+
+        // $cousrsIds= $course;
         // dd($cousrsIds);
         # Save Guardian
         // $guardianData = $request->except('_token','name','nationality','phone','birthDate','age','gender','type','group_id','NID'
@@ -46,27 +96,34 @@ class StudentRepository /*implements the interface*/
         # Save Student
         // $age = \Carbon\Carbon::parse($request->birthDate)->diff(\Carbon\Carbon::now())->format('%y');
         // $studentData['age']=$age;
-        $data['created_by'] = auth()->user()->id;
         // $studentData['guardian_id'] = $guardian->id;
-        $student = Student::create($data);
         // dd($student);
         # courses save 
-        foreach($cousrsIds as $id){
-            $studentCourse = new CourseStudent();
-            $studentCourse->student_id = $student->id;
-            $studentCourse->course_id = $id;
-            $studentCourse->save();
+        // foreach($cousrsIds as $id){
+        //     $studentCourse = new CourseStudent();
+        //     $studentCourse->student_id = $student->id;
+        //     $studentCourse->course_id = $id;
+        //     $studentCourse->save();
 
-            // $courses = Course::find($id);
-            // $studentCourse['student_id'] = $student->id;
-            // $courses->students()->attach($studentCourse);
-        }
+        // }
         
         # Save Student -> Group
         // $group = Group::find($request['group_id']);
         // $studentGroup['student_id']= $student->id;
         // $group->students()->attach($studentGroup);
 
+    }
+    public function getlevelsofcourse($courses)
+    {
+       
+       
+    
+        foreach($courses as $course){
+            $levels[] = Level::where('course_id',$course)->get();
+        }
+        // dd($title);
+        // dd($levels);
+        return $levels;
     }
 
     # Edit

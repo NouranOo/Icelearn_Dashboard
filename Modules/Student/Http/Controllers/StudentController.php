@@ -11,6 +11,7 @@ use Modules\Courses\Repository\GroupRepository;
 use Modules\Student\Http\Requests\StudentRequest;
 use Modules\Student\Repository\ParentRepository;
 use Modules\Student\Repository\StudentRepository;
+use Modules\Courses\Entities\Level;
 
 class StudentController extends Controller
 {
@@ -44,7 +45,7 @@ class StudentController extends Controller
     public function index()
     {
         $students = $this->studentRepository->findAll();
-
+        
         return view('student::student.index',compact('students'));
     }
 
@@ -56,8 +57,10 @@ class StudentController extends Controller
     { 
         // $groups = $this->groupRepo->findAll();
         $courses = $this->courseRepo->findAll();
+        $levels = Level::all();
+        
         // dd($courses);
-        return view('student::student.create',compact(['courses']));
+        return view('student::student.create',compact(['courses','levels']));
     }
 
     /**
@@ -67,13 +70,14 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
         $request->validate([
             'name'=>'required',
             'gender'=>'required',
             'NID'=>'required|digits:14|unique:students',
             'phone'=>'required|digits:11',
             'barCode'=>'required|digits:14|unique:students',
-            'course'=>'required',
+            // 'course'=>'required',
             'photo' => 'mimes:jpeg,jpg,png | max:1000',
              
             
@@ -84,10 +88,22 @@ class StudentController extends Controller
             $imageName = $this->upload($image, 'student');
             $studentData['photo'] = $imageName;
         }   
+        $course_id = $request->course;
+        $suggestedLevel = $request->suggestedLevel;
+        $finallyLevel = $request->finallyLevel;
         
-        $student = $this->studentRepository->save($studentData,$request->course);
+        $student = $this->studentRepository->save($studentData,$course_id ,$suggestedLevel,$finallyLevel);
 
         return redirect('/admin-panel/student')->with('success', 'success');
+
+    }
+    public function getlevelsofcoursess(Request $request){
+        
+        $ar=$request->courses;
+    
+        // dd($ar);
+
+        $student = $this->studentRepository->getlevelsofcourse($ar);
 
     }
 

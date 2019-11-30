@@ -27,22 +27,22 @@ class CreateStudentsTable extends Migration
             $table->string('address')->nullable();
             $table->integer('telephoneFix')->nullable();
             $table->string('barCode')->nullable();
-            $table->string('suggestedLevel')->nullable();
-            $table->string('suggestedCoach')->nullable();
-            $table->string('suggestedDay')->nullable();
-            $table->string('suggestedFromHour')->nullable();
-            $table->string('suggestedToHour')->nullable();
-            $table->string('suggestedDate')->nullable();
-            $table->string('finallyLevel')->nullable();
-            $table->string('finallyCoach')->nullable();
-            $table->string('finallyDay')->nullable();
-            $table->string('finallyFromHour')->nullable();
-            $table->string('finallyToHour')->nullable();
-            $table->string('finallyDate')->nullable();
+            // $table->string('suggestedLevel')->nullable();
+            // $table->string('suggestedCoach')->nullable();
+            // $table->string('suggestedDay')->nullable();
+            // $table->string('suggestedFromHour')->nullable();
+            // $table->string('suggestedToHour')->nullable();
+            // $table->string('suggestedDate')->nullable();
+            // $table->string('finallyLevel')->nullable();
+            // $table->string('finallyCoach')->nullable();
+            // $table->string('finallyDay')->nullable();
+            // $table->string('finallyFromHour')->nullable();
+            // $table->string('finallyToHour')->nullable();
+            // $table->string('finallyDate')->nullable();
             $table->string('photo')->nullable();
 
             ######
-            $table->integer('NID')->nullable();
+            $table->string('NID')->nullable();
             $table->string('schoolName')->nullable();
             $table->string('schoolAdd')->nullable();
             $table->string('schoolType')->nullable();

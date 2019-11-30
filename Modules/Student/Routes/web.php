@@ -16,6 +16,7 @@ Route::group(['prefix' => 'admin-panel', 'middleware' => ['auth:admin']], functi
 
     Route::group(['middleware' => ['role:superadmin|admin|writer']], function () {
         Route::resource('/student', 'StudentController')->only(['create', 'store', 'index', 'show']);
+        Route::post('getlevelsofcourse','StudentController@getlevelsofcoursess');
     });
 
     Route::group(['middleware' => ['role:superadmin|admin']], function () {
