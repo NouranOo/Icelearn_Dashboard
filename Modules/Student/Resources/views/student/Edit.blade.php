@@ -154,7 +154,35 @@
                     </div>
                 </div>
 
+                {{-- Course Name --}}
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="title">اسم الكورس:</label>
+                        <div class="col-sm-8">
+                            <select   name="course"class="form-control">
+                            @foreach($student->courses as $course)
+                                <option value="{{$course->id}}" >{{$course->title}}</option>
+                            @endforeach
+                                
+                            </select>
+                   
+                        </div>
+                    </div>
+                    {{-- Levels Result--}}
 
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="title">المستوى المقترح:</label>
+                                <div class="col-sm-8">
+                                    <select name="suggestedLevel" class="form-control">
+                                    @foreach($student->levels as $level)
+                                        
+                                            <option  value="{{$level->id}}">{{$level->title}}</option>
+                                        
+                                    @endforeach
+                                        
+                                    </select>
+                               
+                                </div>
+                            </div>
          
                 
 

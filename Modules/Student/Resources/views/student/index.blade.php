@@ -77,6 +77,7 @@
                                         {{-- Edit --}}
                                         @role('admin|superadmin')
                                         <a title="Edit" href="{{url('/admin-panel/student/' . $item->id . '/edit')}}" type="button" class="btn btn-primary"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                        <a title="Addcourse" href="{{url('/admin-panel/student/addcourse/' . $item->id )}}" type="button" class="btn btn-primary"><i class="fa fa-pencil" aria-hidden="true">AddCourse</i></a>
                                         @endrole
 
                                         {{-- Delete --}}

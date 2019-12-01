@@ -63,15 +63,23 @@
               <li class="wordLi">{{"محل الإقامة"}}:&nbsp; <strong>{{$student->address}}</strong> <br></li>
               <li class="wordLi">{{"رقم الهاتف الإرضى"}}:&nbsp; <strong>{{$student->telephoneFix}}</strong> <br></li>
               <li class="wordLi">{{"الرمز الشريطي"}}:&nbsp; <strong>{{$student->barCode}}</strong> <br></li>
-            
-              <!-- <li class="wordLi">{{trans('student::student.groups')}}:
-                @foreach($student->groups as $item)
+             
+              <li class="wordLi">{{"الكورسات المسجلة"}}:
+                @foreach($student->courses as $course)
                 <strong>
-                  <li>{{$item->title}}</li>
+                  <li>{{$course->title}}</li>
 
                 @endforeach
                 </strong>
-              </li> -->
+              </li>
+              <li class="wordLi">{{"المستويات "}}:
+                @foreach($student->levels as $level)
+                <strong>
+                  <li>{{$level->title}}</li>
+
+                @endforeach
+                </strong>
+              </li>
             </ul>
           </div>
           </div>

@@ -82,17 +82,23 @@ class StudentController extends Controller
              
             
         ]);
-        $studentData = $request->except('_token', 'photo','course');
+        $studentData = $request->except('_token', 'photo','course','suggestedLevel','suggestedDay',
+            'suggestedFromHour','suggestedToHour','suggestedDate','finallyLevel','finallyDay','finallyFromHour',
+            'finallyToHour','finallyDate'
+
+        );
         if($request->hasFile('photo')){
             $image = $request->file('photo');
             $imageName = $this->upload($image, 'student');
             $studentData['photo'] = $imageName;
         }   
+        // dd($request,$studentData);
         $course_id = $request->course;
-        $suggestedLevel = $request->suggestedLevel;
-        $finallyLevel = $request->finallyLevel;
+        $LevelData = $request->except('_token', 'photo','course','name','gender',
+                'NID','birthDate','age','phone','currentJob','mail','address','telephoneFix','barCode'
+            );
         
-        $student = $this->studentRepository->save($studentData,$course_id ,$suggestedLevel,$finallyLevel);
+        $student = $this->studentRepository->save($studentData,$course_id ,$LevelData);
 
         return redirect('/admin-panel/student')->with('success', 'success');
 
@@ -104,6 +110,14 @@ class StudentController extends Controller
         // dd($ar);
 
         $student = $this->studentRepository->getlevelsofcourse($ar);
+
+    }
+    public function addcourse($id)
+    {
+        $student = $this->studentRepository->addcourse($id);
+        $courses = $this->courseRepo->findAll();
+
+        return view('student::student.addcourse',compact('student','courses'));
 
     }
 
