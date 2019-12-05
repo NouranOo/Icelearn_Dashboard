@@ -10,8 +10,8 @@ class LevelRepository /*implements the interface*/
   # Show
   public function find($id)
   {
-    $level = Level::with('course')->where('id', $id)->first();
-
+    $level = Level::with(['course','students'])->where('id', $id)->first();
+//dd($level);
     return $level;
   }
 
@@ -19,7 +19,7 @@ class LevelRepository /*implements the interface*/
   public function findAll()
   {
     $levels = Level::with('course')->get();
-    
+
 
     return $levels;
   }

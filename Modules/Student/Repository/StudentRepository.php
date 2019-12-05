@@ -19,12 +19,12 @@ class StudentRepository /*implements the interface*/
     # Show
     public function find($id)
     {
-        // $student = Student::where('id', $id)->first();
-        $student = Student::where('id', $id)->with(['courses','levels'])->first();
+         $student = Student::where('id', $id)->first();
+//        $student = Student::where('id', $id)->with(['courses','levels'])->first();
         // dd($student);
         return $student;
     }
- 
+
     # Index
     public function findAll()
     {
@@ -37,12 +37,12 @@ class StudentRepository /*implements the interface*/
     # Insert
     public function save($data,$course_id,$LevelData)
     {
-         
+
         $data['created_by'] = auth()->user()->id;
         $student = Student::create($data);
         // dd($student);
-        
-        #Student_Level    
+
+        #Student_Level
         $LevelData['student_id'] = $student->id;
         $studentLevels = studentLevels::create($LevelData);
         // dd($studentLevels);
@@ -54,17 +54,15 @@ class StudentRepository /*implements the interface*/
         $studentCourse->course_id = $course_id;
         $studentCourse->save();
 
-       
-        
+
+
     }
-    public function addcourse(){
-        
-    }
+
     public function getlevelsofcourse($courses)
     {
-       
-       
-    
+
+
+
         foreach($courses as $course){
             $levels[] = Level::where('course_id',$course)->get();
         }
@@ -76,12 +74,13 @@ class StudentRepository /*implements the interface*/
     # Edit
     public function update($data,$id)
     {
+//        dd($data);
         $student = Student::findorfail($id);
-       
+        $courseStudent = CourseStudent::where('student_id',$student->id);
         $data['created_by'] = auth()->user()->id;
-        // $studentData['guardian_id'] = $guardian->id;
+
         $student->update($data );
-       
+
 
 
     }
@@ -103,4 +102,28 @@ class StudentRepository /*implements the interface*/
 //
 //
 //    }
+
+    public function addcourse($data)
+    {
+        $student = Student::where('id',$data['student_id'])->first();
+
+        //-----Student_Level
+        $studentLevels = studentLevels::create($data);
+
+        #Course_Student
+        // $studentCourse = CourseStudent::create( $course_id);
+        $studentCourse = new CourseStudent();
+        $studentCourse->student_id = $student->id;
+        $studentCourse->course_id = $data['course_id'];
+        $studentCourse->save();
+
+
+
+    }
+    public function searchBarCode($data)
+    {
+//        dd($data['barcodeSeacrh']);
+        $student = Student::where('barCode',$data['barcodeSeacrh'])->first();
+        return $student;
+    }
 }

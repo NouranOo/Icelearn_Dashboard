@@ -1,5 +1,6 @@
 @extends('commonmodule::layouts.master')
-@section('title') {{trans('student::student.pageTitle')}}
+@section('title')
+    إضافة كورس جديد
 @endsection
 
 @section('css')
@@ -7,13 +8,7 @@
 <link rel="stylesheet" href="{{asset('assets/admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
 @endsection
 
-@section('content-header')
-<section class="content-header">
-    <h1>
-        {{trans('student::student.pageTitle')}}
-    </h1>
-</section>
-@endsection
+
 
 @section('content')
 
@@ -21,7 +16,7 @@
     <!-- Horizontal Form -->
     <div class="box box-info">
         <div class="box-header with-border">
-            <h3 class="box-title">{{trans('student::student.newdata')}}</h3>
+            <h3 class="box-title">إضافة كورس جديد</h3>
         </div>
         @if ($errors->any())
         <div class="alert alert-danger">
@@ -33,10 +28,10 @@
         </div>
         @endif
         <!-- /.box-header -->
-        <form class="form-horizontal" id="createform" action="{{url('admin-panel/student/')}}" id="registration-form"
+        <form class="form-horizontal" id="createform" action="{{url('admin-panel/student/addcourse')}}" id="registration-form"
             method="POST" enctype="multipart/form-data">
             {{ csrf_field() }}
-
+                <input type="hidden" value="{{$student->id}}" name="student_id">
 
                 <div class="box-body">
                     <div class="box-header with-border">
@@ -47,13 +42,14 @@
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="title">اسم الكورس:</label>
                         <div class="col-sm-8">
-                            <select   name="course"class="form-control">
-                            <!-- @foreach($courses as $course)
-                                <option value="{{$course->id}}">{{$course->title}}</option>
-                            @endforeach -->
-                                
+                            <select   name="course_id"class="form-control">
+                                @foreach($courses as $course)
+                                    <option value="{{$course->id}}">{{$course->title}}</option>
+                                @endforeach
+
                             </select>
-                   
+                        </div>
+
                     </div>
                     <hr>
                     <div class="box-body">
@@ -68,14 +64,14 @@
                                 <label class="control-label col-sm-2" for="title">المستوى المقترح:</label>
                                 <div class="col-sm-8">
                                 <select name="suggestedLevel" class="form-control">
-                                <!-- @foreach($courses as $course)
+                                 @foreach($courses as $course)
                                     @foreach( $course->levels as $level )
                                         <option  value="{{$level->id}}">{{$course->title}}-{{$level->title}}</option>
                                     @endforeach
-                                @endforeach -->
-                                    
+                                @endforeach
+
                                 </select>
-                               
+
                             </div>
                                 <!-- <div class="col-sm-8">
                                     <input type="text" autocomplete="off" class="form-control"
@@ -120,17 +116,17 @@
                             </div>
 
                             <hr>
-                             
+
                             <div class="form-group">
                                 <label class="control-label col-sm-2" for="title">المستوى النهائي:</label>
                                 <div class="col-sm-8">
                                 <select name="finallyLevel" class="form-control">
-                                    <!-- @foreach($courses as $course)
+                                    @foreach($courses as $course)
                                         @foreach(  $course->levels as $level )
                                             <option value="{{$level->id}}">{{$course->title}}-{{$level->title}}</option>
                                         @endforeach
-                                    @endforeach -->
-                                    
+                                    @endforeach
+
                                 </select>
                                 </div>
                             </div>
@@ -170,11 +166,11 @@
                                 </div>
                             </div>
                         </div>
-                    
+
 
                     </div>
                 </div>
-              
+
                 <!-- /.box-body -->
                 <div class="box-footer">
                     <a href="{{url('/admin-panel/student')}}" type="button"
@@ -226,22 +222,22 @@ $(document).ready(function() {
 });
 </script>
 
-<!-- 
+<!--
 <script>
 $(document).ready(function() {
     var wrapper = $(".result");
     $('.courses').on('click', function(event) {
-        
-      
+
+
         var checkbox_value =[];
-       
+
         $(":checkbox").each(function () {
             var ischecked = $(this).is(":checked");
             if (ischecked) {
                 checkbox_value.push($(this).val()) ;
-               
+
             }
-        }); 
+        });
          $.ajax({
             url: "{{url('admin-panel/getlevelsofcourse')}}",
             method: "post",
@@ -249,9 +245,9 @@ $(document).ready(function() {
                 'courses': checkbox_value,
                 '_token':"{{ csrf_token() }}"
             },
-            
+
             beforeSend: function() {
-                
+
 
             },
             success: function(data) {
@@ -266,7 +262,7 @@ $(document).ready(function() {
 
             }
         })
-        
+
     });
 
 });
