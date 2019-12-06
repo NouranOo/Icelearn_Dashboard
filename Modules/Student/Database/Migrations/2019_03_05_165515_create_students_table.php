@@ -42,7 +42,7 @@ class CreateStudentsTable extends Migration
             $table->string('photo')->nullable();
 
             ######
-            $table->integer('NID')->nullable();
+            $table->string('NID')->nullable();
             $table->string('schoolName')->nullable();
             $table->string('schoolAdd')->nullable();
             $table->string('schoolType')->nullable();

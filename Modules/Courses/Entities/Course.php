@@ -9,6 +9,9 @@ use Modules\Instructors\Entities\Instructor;
 use Modules\Track\Entities\Track;
 use Modules\Courses\Entities\Level;
 
+
+use Modules\PaymentModule\Entities\Payment;
+
 class Course extends Model
 {
 
@@ -34,6 +37,10 @@ class Course extends Model
     }
     public function students(){
         return $this->belongsToMany(Student::class,'course__students','course_id','student_id');
+    }
+
+    public function payments(){
+        return $this->hasMany(Payment::class);
     }
 
 }

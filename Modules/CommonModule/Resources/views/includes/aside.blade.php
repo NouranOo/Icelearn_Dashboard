@@ -20,13 +20,13 @@
             <li class="header">{{__('commonmodule::sidebar.mainnav')}}</li>
 
             <!-- Common Module -->
-            <!-- <li>
+            <li>
                 <a href="{{url('/admin-panel')}}">
                     <i class="fa fa-home"></i> <span>{{__('commonmodule::sidebar.home')}} </span>
                     <span class="pull-right-container">
                 </span>
                 </a>
-            </li> -->
+            </li>
 
 
             <li>
@@ -37,7 +37,36 @@
                 </span>
                 </a>
             </li>
+        
 
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-money" aria-hidden="true"></i>
+                    <span>الايصالات</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="{{route('allpayment')}}">
+                            <i class="fa fa-money"></i> <span>كل الايصالات </span>
+                            <span class="pull-right-container">
+                        </span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{route('searchpayment')}}">
+                            <i class="fa fa-money"></i> <span>انشاء ايصال جديد </span>
+                            <span class="pull-right-container">
+                        </span>
+                        </a>
+                    </li>
+
+
+                </ul>
+            </li>
             <!-- <li>
                 <a href="{{url('admin-panel/reservation/')}}">
                     <i class="fa fa-user-circle"
