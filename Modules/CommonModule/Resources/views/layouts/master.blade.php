@@ -38,6 +38,7 @@
 <!-- ./wrapper -->
 
 @include('commonmodule::includes.js')
+@yield('scriptscreate')
 
 </body>
 </html>

@@ -1,7 +1,7 @@
 <?php
 
 namespace Modules\Courses\Entities;
-
+ 
 use Dimsav\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 use Modules\Courses\Entities\Category;
@@ -36,7 +36,7 @@ class Course extends Model
         return $this->belongsToMany(Instructor::class,'courses_instructors','course_id','instructor_id');
     }
     public function students(){
-        return $this->belongsToMany(Student::class,'course__students','course_id','student_id');
+        return $this->belongsToMany(Student::class,'course_students','course_id','student_id');
     }
 
     public function payments(){

@@ -30,39 +30,39 @@
                     <div class="box-body">
                         <table id="adminsTable" class="table table-bordered table-hover">
                             <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>{{ trans('adminmodule::admin.name') }}</th>
-                                <th>{{ trans('adminmodule::admin.email') }}</th>
-                                <th>{{ trans('adminmodule::admin.op') }}</th>
-                            </tr>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>{{ trans('adminmodule::admin.name') }}</th>
+                                    <th>{{ trans('adminmodule::admin.email') }}</th>
+                                    <th>{{ trans('adminmodule::admin.op') }}</th>
+                                </tr>
                             </thead>
                             <tbody>
-                            @foreach ($admins as $admin)
-                                <tr>
-                                    <td> {{$admin->id}} </td>
+                                @foreach ($admins as $admin)
+                                    <tr>
+                                        <td> {{$admin->id}} </td>
 
-                                    <td> {{$admin->name}} </td>
+                                        <td> {{$admin->name}} </td>
 
-                                    <td> {{$admin->email}} </td>
+                                        <td> {{$admin->email}} </td>
 
-                                    <td>
-                                        {{-- Edit --}}
-                                        <a title="Edit" href="{{url('admin-panel/admins/' . $admin->id . '/edit')}}" type="button" class="btn btn-primary">
-                                            <i class="fa fa-pencil" aria-hidden="true"></i>
-                                        </a>
-                                        {{-- Delete --}}
-                                        <form class="inline" action="{{url('admin-panel/admins/' . $admin->id)}}" method="POST">
-                                            {{ method_field('DELETE') }} {!! csrf_field() !!}
-                                            <button title="Delete" type="submit" onclick="return confirm('Are you sure, You want to delete Admin Data?')" type="button"
-                                                    class="btn btn-danger">
-                                                <i class="fa fa-trash" aria-hidden="true"></i>
-                                            </button>
-                                        </form>
-                                    </td>
+                                        <td>
+                                            {{-- Edit --}}
+                                            <a title="Edit" href="{{url('admin-panel/admins/' . $admin->id . '/edit')}}" type="button" class="btn btn-primary">
+                                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                                            </a>
+                                            {{-- Delete --}}
+                                            <form class="inline" action="{{url('admin-panel/admins/' . $admin->id)}}" method="POST">
+                                                {{ method_field('DELETE') }} {!! csrf_field() !!}
+                                                <button title="Delete" type="submit" onclick="return confirm('Are you sure, You want to delete Admin Data?')" type="button"
+                                                        class="btn btn-danger">
+                                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                                </button>
+                                            </form>
+                                        </td>
 
-                                </tr>
-                            @endforeach
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

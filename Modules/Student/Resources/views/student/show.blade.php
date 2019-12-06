@@ -46,7 +46,7 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body">
-      
+
           <div class="col-md-10" >
           <div class="row">
           <div class="col-md-5" >
@@ -63,15 +63,26 @@
               <li class="wordLi">{{"محل الإقامة"}}:&nbsp; <strong>{{$student->address}}</strong> <br></li>
               <li class="wordLi">{{"رقم الهاتف الإرضى"}}:&nbsp; <strong>{{$student->telephoneFix}}</strong> <br></li>
               <li class="wordLi">{{"الرمز الشريطي"}}:&nbsp; <strong>{{$student->barCode}}</strong> <br></li>
-            
-              <!-- <li class="wordLi">{{trans('student::student.groups')}}:
-                @foreach($student->groups as $item)
-                <strong>
-                  <li>{{$item->title}}</li>
 
-                @endforeach
+{{--              <li class="wordLi">{{"الكورسات المسجلة"}}:--}}
+{{--                @foreach($student->courses as $course)--}}
+{{--                <strong>--}}
+{{--                  <li>{{$course->title}}</li>--}}
+
+{{--                @endforeach--}}
+{{--                </strong>--}}
+{{--              </li>--}}
+              <li class="wordLi">{{"المستويات "}}:
+
+                  <strong>
+
+                    @foreach($levels as $level)
+
+                      <li>{{$level->first()->course->title}}-{{$level->first()->title}}</li>
+
+                    @endforeach
                 </strong>
-              </li> -->
+              </li>
             </ul>
           </div>
           </div>

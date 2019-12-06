@@ -18,8 +18,9 @@ class CourseRepository /*implements the interface*/
   # Index
   public function findAll()
   {
-    $courses = Course::all();
-
+    // $courses = Course::all();
+    $courses = Course::with('levels')->get();
+    // dd($courses);
     return $courses;
   }
 

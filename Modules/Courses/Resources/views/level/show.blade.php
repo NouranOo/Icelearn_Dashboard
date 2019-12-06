@@ -3,6 +3,9 @@
 @section('title')
     {{$level->title}}
 @endsection
+@section('css')
+    <link rel="stylesheet" href="{{ asset('assets/admin/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css') }}">
+@endsection
 
 @section('content-header')
     <section class="content-header">
@@ -57,10 +60,59 @@
                     </div>
                     <!-- /.box-body -->
                 </div>
+                <div class="box-body">
+                    <table id="adminsTable" class="table table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>الإسم</th>
+                            <th>الموبايل</th>
+                            <th>العنوان</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach ($level->students as $index=>$student)
+                            <tr>
+                                <td> {{$index+1}} </td>
+
+                                <td> {{$student->name}} </td>
+
+                                <td> {{$student->phone}} </td>
+
+
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.box-body -->
                 <!-- /.box -->
             </div>
             <!-- /.col -->
         </div>
         <!-- /.row -->
     </section>
+@endsection
+@section('javascript') {{-- sweet alert --}}
+
+@include('commonmodule::includes.swal')
+
+    <!-- DataTables -->
+    <script src="{{asset('assets/admin/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('assets/admin/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#adminsTable').DataTable({
+                'paging'      : true,
+                'lengthChange': true,
+                'searching'   : true,
+                'ordering'    : true,
+                'info'        : true,
+                'autoWidth'   : false
+            });
+        })
+
+    </script>
+
 @endsection

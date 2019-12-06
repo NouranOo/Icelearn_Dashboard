@@ -5,6 +5,7 @@
 @endsection
 
 @section('css')
+
     <link rel="stylesheet" href="{{ asset('assets/admin/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css') }}">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
                folder instead of downloading all of them to reduce the load. -->
@@ -33,6 +34,12 @@
             <div class="box box-info">
                 <div class="box-header with-border">
                     <h3 class="box-title">{{trans('student::student.hover')}}</h3>
+                    <form action="{{url('admin-panel/student/searchbarcode')}}" method="post">
+                        @csrf
+                        <input type="text" placeholder="بحث " name="barcodeSeacrh" value="">
+                        <button type="submit" class="btn btn-success ">بحث<i class="fa fa-search"></i></button>
+
+                    </form>
                     <a href="{{url('admin-panel/student/create')}}" type="button" class="btn btn-success pull-right"><i class="fa fa-plus" aria-hidden="true"></i> &nbsp; {{trans('student::student.createnew')}}</a>
                 </div>
                 <!-- /.box-header -->
@@ -56,33 +63,35 @@
                             @foreach ($students as $index=>$item)
                                 <tr>
                                     <td> {{$index+1}} </td>
-                                  
+
                                     <td> {{$item->name}} </td>
                                     <td> {{$item->gender}} </td>
                                     <!-- <td> {{$item->nationality}} </td> -->
                                     <!-- <td> {{$item->type}} </td> -->
                                     <td> {{$item->phone}} </td>
                                     <td> {{$item->birthDate}} </td>
-                                    <td> {{$item->age}} </td>  
+                                    <td> {{$item->age}} </td>
                                     <!-- <td>
 
-                                         
+
 
                                     </td> -->
 
                                     <td> {{-- view --}}
                                         <a title="View" href="{{url('/admin-panel/student/' . $item->id)}}" type="button" class="btn btn-success"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                       
+
                                         {{-- Edit --}}
                                         @role('admin|superadmin')
                                         <a title="Edit" href="{{url('/admin-panel/student/' . $item->id . '/edit')}}" type="button" class="btn btn-primary"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                        <a title="Addcourse" href="{{url('/admin-panel/student/addcourse/' . $item->id )}}" type="button" class="btn btn-primary"><i class="fa fa-pencil" aria-hidden="true">إضافة كورس </i></a>
+                                        <a title="لإيصالات" href="" type="button" class="btn btn-primary"><i class="fa fa-pencil" aria-hidden="true">الإيصالات</i></a>
                                         @endrole
 
                                         {{-- Delete --}}
                                         @role('superadmin')
                                         <form class="inline" action="{{url('/admin-panel/deletess/' . $item->id)}}" method="POST">
                                             {{ method_field('delete') }} {!! csrf_field() !!}
-                                            
+
                                             <button title="Delete" type="submit" onclick="return confirm('Are you sure, You want to delete student ?')" type="button" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
                                         </form>
                                         @endrole

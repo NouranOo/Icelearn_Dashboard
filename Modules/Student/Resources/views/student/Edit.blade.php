@@ -54,10 +54,10 @@
                         <select class="form-control" name="gender">
                             <option value="male" @if($student->gender ==  'male' ) selected="selected"  @endif >ذكر</option>
                             <option value="female" @if($student->gender ==  'female' ) selected="selected"  @endif ><pre>أنثى</pre></option>
-                            
-                               
-                
-                            
+
+
+
+
                         </select>
                     </div>
                 </div>
@@ -146,7 +146,7 @@
                         <input type="file" autocomplete="off" class="" name="photo">
                         @if ($student->photo)
                         <img src="{{asset('public/images/student/' . $student->photo)}}" style="margin-top: 5px;" height="70" width="100">
-                      
+
                         @else
                             <br>
                             <strong>"No Photo Uploaded"</strong>
@@ -154,9 +154,44 @@
                     </div>
                 </div>
 
+                {{-- Course Name --}}
+{{--                    <div class="form-group">--}}
+{{--                        <label class="control-label col-sm-2" for="title">اسم الكورس:</label>--}}
+{{--                        <div class="col-sm-8">--}}
+{{--                            <select   name="course"class="form-control">--}}
+{{--                                <option value="{{$level->course->id}}" >{{$level->course->title}}</option>--}}
 
-         
-                
+{{--                                @foreach($allcourses as $course2)--}}
+{{--                                    @if($course2->id !==$level->course->id )--}}
+
+{{--                                        <option value="{{$course2->id}}" >{{$course2->title}}</option>--}}
+{{--                                     @endif--}}
+{{--                                @endforeach--}}
+
+{{--                            </select>--}}
+
+{{--                        </div>--}}
+{{--                    </div>--}}
+                    {{-- Levels Result--}}
+
+{{--                            <div class="form-group">--}}
+{{--                                <label class="control-label col-sm-2" for="title">المستوى المقترح:</label>--}}
+{{--                                <div class="col-sm-8">--}}
+{{--                                    <select name="final Level" class="form-control">--}}
+{{--                                        <option  value="{{$level->id}}" >{{$level->course->title}}-{{$level->title}}</option>--}}
+{{--                                        @foreach($alllevels as $level1)--}}
+{{--                                                @if($level1->id !== $level->id )--}}
+
+{{--                                                    <option  value="{{$level1->id}}">{{$level1->course->title}}-{{$level1->title}}</option>--}}
+{{--                                                @endif--}}
+{{--                                        @endforeach--}}
+
+{{--                                    </select>--}}
+
+{{--                                </div>--}}
+{{--                            </div>--}}
+
+
 
             <!-- /.box-body -->
             <div class="box-footer">
