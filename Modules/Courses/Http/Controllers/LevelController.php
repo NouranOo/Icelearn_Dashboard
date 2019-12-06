@@ -103,4 +103,12 @@ class LevelController extends Controller
 
       return redirect('admin-panel/levels')->with('deleted', 'deleted');
     }
+    //////anas///
+
+    public function levelpayments($id){
+      $level = $this->levelRepo->find($id);
+      return view('courses::level.levelpayments',compact('level'));
+
+
+  }
 }

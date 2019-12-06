@@ -129,4 +129,9 @@ Route::group(['prefix' => 'admin-panel', 'middleware' => ['auth:admin']], functi
 
     Route::get('/ajax', 'CategoriesController@ajaxDataSrc');
 
+    ///////anas/////
+    Route::get('/coursepayments/{id}','CoursesController@coursepayments')->name('coursepayments');
+    Route::get('/levelpayments/{id}','LevelController@levelpayments')->name('levelpayments');
+
+
 });

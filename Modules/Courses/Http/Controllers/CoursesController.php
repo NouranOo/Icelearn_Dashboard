@@ -138,11 +138,19 @@ class CoursesController extends Controller
         return redirect('admin-panel/courses')->with('deleted', 'deleted');
     }
 
-
+//////anas/////
     public function viewlevels($id)
     {
         $course = $this->courseRepo->find($id);
         return view('courses::course.course_levels',compact('course'));
+
+    }
+
+
+    public function coursepayments($id){
+        $course = $this->courseRepo->find($id);
+        return view('courses::course.coursepayments',compact('course'));
+
 
     }
 }

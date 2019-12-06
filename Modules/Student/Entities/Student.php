@@ -32,6 +32,8 @@ class Student extends Model
 
     public function payments(){
         return $this->hasMany(Payment::class);
+
+    }
     public function levels(){
         return $this->belongsToMany(Level::class,'student_levels','student_id','finallyLevel');
     }

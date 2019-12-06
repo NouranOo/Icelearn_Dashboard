@@ -56,8 +56,10 @@
                             </tr>
                             </thead>
                             <tbody>
+
+                           
                         
-                            @foreach ($payments as $index=>$payment)
+                            @foreach ($level->payments as $index=>$payment)
                                 <tr>
                                
                                     <td> {{$index+1}} </td>

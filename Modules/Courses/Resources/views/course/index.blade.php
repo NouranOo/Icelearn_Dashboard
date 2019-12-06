@@ -76,6 +76,8 @@
                                         </form>
                                         @endrole
                                         <a href="{{route('viewlevels',$item->id)}}"><button class="btn btn-primary">المستويات</button></a>
+                                        <a href="{{route('coursepayments',$item->id)}}"><button class="btn btn-warning">الايصالات</button></a>
+
                                     </td>
                                 </tr>
                             @endforeach

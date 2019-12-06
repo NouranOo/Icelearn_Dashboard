@@ -9,6 +9,8 @@ use Illuminate\Routing\Controller;
 use Modules\Courses\Entities\Course;
 use Modules\Student\Entities\Student;
 use Modules\PaymentModule\Entities\Payment;
+use Illuminate\Support\Facades\DB;
+
 
 class PaymentModuleController extends Controller
 {
@@ -35,6 +37,7 @@ class PaymentModuleController extends Controller
 
 
     public function dosearchpayment(Request $request){
+        $courses =Course::all();
         $search = $request->input('search');
         
     
@@ -50,7 +53,7 @@ class PaymentModuleController extends Controller
            
         ])->get();
  
-        return view('paymentmodule::payment.create',compact('students'));
+        return view('paymentmodule::payment.create',compact('students','courses'));
     }
    
     public function store(Request $request)
@@ -75,19 +78,33 @@ class PaymentModuleController extends Controller
     }
 
 
-    public function show($id)
-    {
-        return view('paymentmodule::show');
+   
+
+    
+    public function viewpayment($id){
+       $payment = Payment::find($id);
+       $course =DB::table('courses')->where('id',$payment->course_id)->get();
+       $level =DB::table('levels')->where('id',$payment->level_id)->get();
+
+     
+
+       return view('paymentmodule::payment.viewpayment',compact('payment','course','level'));
+
+
+
+
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     * @param int $id
-     * @return Response
-     */
-    public function edit($id)
+
+    public function deletepayment($id)
     {
-        return view('paymentmodule::edit');
+
+        DB::table('payments')->where('id',$id)->delete();
+
+        
+      
+        return redirect()->route('allpayment');
+
     }
 
     /**
