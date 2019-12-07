@@ -153,4 +153,13 @@ class CoursesController extends Controller
 
 
     }
+    public function viewstudents($id)
+    {
+        $course = $this->courseRepo->find($id);
+
+//dd($course);
+        return view('courses::course.course_students',compact('course'));
+
+
+    }
 }

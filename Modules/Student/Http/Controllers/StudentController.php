@@ -224,7 +224,15 @@ class StudentController extends Controller
     {
         $student = $this->studentRepository->searchBarCode($request->all());
 //        return view('student::student.index');
-        return $student;    
+        return $student;
+    }
+
+    public function getstudentpayments($id)
+    {
+        $student = $this->studentRepository->find($id);
+        return view('student::student.studentpayments',compact('student'));
+
+
     }
 
 

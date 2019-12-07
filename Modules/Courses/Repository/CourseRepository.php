@@ -10,7 +10,7 @@ class CourseRepository /*implements the interface*/
   # Show
   public function find($id)
   {
-    $course = Course::where('id', $id)->first();
+    $course = Course::where('id', $id)->with('students')->first();
 
     return $course;
   }

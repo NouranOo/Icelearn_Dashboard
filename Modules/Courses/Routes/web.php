@@ -132,6 +132,10 @@ Route::group(['prefix' => 'admin-panel', 'middleware' => ['auth:admin']], functi
     ///////anas/////
     Route::get('/coursepayments/{id}','CoursesController@coursepayments')->name('coursepayments');
     Route::get('/levelpayments/{id}','LevelController@levelpayments')->name('levelpayments');
+    Route::get('/viewstudents/{id}','CoursesController@viewstudents')->name('viewstudents');
+    Route::get('/viewstudentslevels/{id}','LevelController@viewstudentslevels')->name('viewstudentslevels');
+
+
 
 
 });

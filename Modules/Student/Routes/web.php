@@ -13,7 +13,7 @@
 
 Route::group(['prefix' => 'admin-panel', 'middleware' => ['auth:admin']], function() {
 //    Route::get('/', 'StudentController@index');
-
+    Route::get('getstudentpayments/{id}','StudentController@getstudentpayments');
     Route::group(['middleware' => ['role:superadmin|admin|writer']], function () {
         Route::resource('/student', 'StudentController')->only(['create', 'store', 'index', 'show']);
         Route::post('getlevelsofcourse','StudentController@getlevelsofcoursess');

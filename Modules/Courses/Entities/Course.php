@@ -1,13 +1,14 @@
 <?php
 
 namespace Modules\Courses\Entities;
- 
+
 use Dimsav\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 use Modules\Courses\Entities\Category;
 use Modules\Instructors\Entities\Instructor;
 use Modules\Track\Entities\Track;
 use Modules\Courses\Entities\Level;
+use Modules\Student\Entities\Student;
 
 
 use Modules\PaymentModule\Entities\Payment;

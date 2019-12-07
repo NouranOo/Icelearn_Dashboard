@@ -28,7 +28,7 @@ class LevelController extends Controller
     public function index()
     {
       $levels = $this->levelRepo->findAll();
-    
+
         return view('courses::level.index')->with('levels',$levels);
     }
 
@@ -52,7 +52,7 @@ class LevelController extends Controller
     public function store(Request $request)
     {
       $levelData = $request->except('_token','_wysihtml5_mode');
-     
+
 
 
       $level = $this->levelRepo->save($levelData);
@@ -110,5 +110,11 @@ class LevelController extends Controller
       return view('courses::level.levelpayments',compact('level'));
 
 
-  }
+    }
+    public  function viewstudentslevels($id)
+    {
+        $level = $this->levelRepo->find($id);
+        return view('courses::level.level_students',compact('level'));
+
+    }
 }

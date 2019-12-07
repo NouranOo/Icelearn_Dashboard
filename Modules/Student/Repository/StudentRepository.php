@@ -19,7 +19,7 @@ class StudentRepository /*implements the interface*/
     # Show
     public function find($id)
     {
-         $student = Student::where('id', $id)->first();
+         $student = Student::where('id', $id)->with('payments')->first();
 //        $student = Student::where('id', $id)->with(['courses','levels'])->first();
         // dd($student);
         return $student;

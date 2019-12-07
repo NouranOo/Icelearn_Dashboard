@@ -27,55 +27,45 @@
 
 
 @section('content')
-<!-- Main content -->
-<section class="content">
-    <div class="row">
-        <div class="col-xs-12">
-            <div class="box box-info">
-                <div class="box-header with-border">
-                    <h3 class="box-title">{{trans('student::student.hover')}}</h3>
-                    <form action="{{url('admin-panel/student/searchbarcode')}}" method="post">
-                        @csrf
-                        <input type="text" placeholder="بحث " name="barcodeSeacrh" value="">
-                        <button type="submit" class="btn btn-success ">بحث<i class="fa fa-search"></i></button>
-
-                    </form>
-                    <a href="{{url('admin-panel/student/create')}}" type="button" class="btn btn-success pull-right"><i class="fa fa-plus" aria-hidden="true"></i> &nbsp; {{trans('student::student.createnew')}}</a>
-                </div>
-                <!-- /.box-header -->
-                <div class="box-body">
-                    <table id="example2" class="table table-bordered table-hover">
-                        <thead>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box box-info">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">{{trans('student::student.hover')}}</h3>
+                        <a href="{{url('admin-panel/student/create')}}" type="button"
+                           class="btn btn-success pull-right"><i class="fa fa-plus" aria-hidden="true"></i>
+                            &nbsp; {{trans('student::student.createnew')}}</a>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <table id="example2" class="table table-bordered table-hover">
+                            <thead>
                             <tr>
                                 <th>{{trans('student::student.id')}}</th>
                                 <th>{{trans('student::student.name')}}</th>
                                 <th>{{trans('student::student.gender')}}</th>
-                                <!-- <th>{{trans('student::student.nationality')}}</th> -->
-                                <!-- <th>{{trans('student::student.type')}}</th> -->
                                 <th>{{trans('student::student.phone')}}</th>
                                 <th>{{trans('student::student.birth_date')}}</th>
                                 <th>{{trans('student::student.age')}}</th>
-                                <!-- <th>{{trans('student::student.parent')}}</th> -->
+                                <th>لباركود</th>
                                 <th>{{trans('student::student.op')}}</th>
                             </tr>
-                        </thead>
-                        <tbody>
+                            </thead>
+                            <tbody>
                             @foreach ($students as $index=>$item)
                                 <tr>
                                     <td> {{$index+1}} </td>
 
                                     <td> {{$item->name}} </td>
                                     <td> {{$item->gender}} </td>
-                                    <!-- <td> {{$item->nationality}} </td> -->
-                                    <!-- <td> {{$item->type}} </td> -->
+
                                     <td> {{$item->phone}} </td>
                                     <td> {{$item->birthDate}} </td>
                                     <td> {{$item->age}} </td>
-                                    <!-- <td>
+                                    <td> {{$item->barCode}} </td>
 
-
-
-                                    </td> -->
 
                                     <td> {{-- view --}}
                                         <a title="View" href="{{url('/admin-panel/student/' . $item->id)}}" type="button" class="btn btn-success"><i class="fa fa-eye" aria-hidden="true"></i></a>
@@ -83,8 +73,8 @@
                                         {{-- Edit --}}
                                         @role('admin|superadmin')
                                         <a title="Edit" href="{{url('/admin-panel/student/' . $item->id . '/edit')}}" type="button" class="btn btn-primary"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                                        <a title="Addcourse" href="{{url('/admin-panel/student/addcourse/' . $item->id )}}" type="button" class="btn btn-primary"><i class="fa fa-pencil" aria-hidden="true">إضافة كورس </i></a>
-                                        <a title="لإيصالات" href="" type="button" class="btn btn-primary"><i class="fa fa-pencil" aria-hidden="true">الإيصالات</i></a>
+                                        <a title="Addcourse" href="{{url('/admin-panel/student/addcourse/' . $item->id )}}" type="button" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true">إضافة كورس </i></a>
+                                        <a title="لإيصالات" href="{{url('/admin-panel/getstudentpayments/'. $item->id )}}" type="button" class="btn btn-warning">الإيصالات</a>
                                         @endrole
 
                                         {{-- Delete --}}
@@ -98,41 +88,60 @@
                                     </td>
                                 </tr>
                             @endforeach
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
                 </div>
-                <!-- /.box-body -->
+                <!-- /.box -->
             </div>
-            <!-- /.box -->
+            <!-- /.col -->
         </div>
-        <!-- /.col -->
-    </div>
-    <!-- /.row -->
-</section>
+        <!-- /.row -->
+    </section>
 @endsection
 
 
 @section('javascript')
 
-{{-- Sweet Alert --}}
-@include('commonmodule::includes.swal')
+    {{-- sweet alert --}}
+    <script src="{{asset('assets/admin/plugins/sweetalert/sweetalert.min.js')}}"></script>
 
-<!-- page script -->
-<!-- DataTables -->
-<script src="{{asset('assets/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
-<script src="{{asset('assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
+    @if (session('success'))
+        <script>
+            swal("{{__('commonmodule::swal.good')}}", "{{__('commonmodule::swal.saved')}}", "success", {button: "{{__('commonmodule::swal.btn')}}",});
+        </script>
+    @endif
 
-<script>
-    $(function () {
-      $('#example2').DataTable({
-      'paging'      : true,
-      'lengthChange': false,
-      'searching'   : true,
-      'ordering'    : true,
-      'info'        : true,
-      'autoWidth'   : false
-    })
-  })
-</script>
+    @if (session('updated'))
+        <script>
+            swal("{{trans('courses::course.good')}}", "{{trans('courses::course.updated')}}", "success", {button: "{{trans('courses::course.btn')}}",});
+        </script>
+    @endif
+
+    @if (session('deleted'))
+        <script>
+            swal("{{trans('courses::course.good')}}", "{{trans('courses::course.deleted')}}", "success", {button: "{{trans('courses::course.btn')}}",});
+        </script>
+    @endif
+
+    <!-- page script -->
+    <!-- DataTables -->
+    <script src="{{asset('assets/admin/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('assets/admin/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
+
+    <script>
+        $(function () {
+            $('#example2').DataTable({
+                'paging': true,
+                'lengthChange': false,
+                'searching': true,
+                'ordering': true,
+                'info': true,
+                'autoWidth': false
+            })
+        })
+
+    </script>
 
 @endsection

@@ -68,14 +68,14 @@
                             onkeyup="myFunction()">
                     </div>
                 </div>
-                {{-- Birth --}}
-                <div class="form-group">
-                    <label class="control-label col-sm-2" for="title">{{trans('student::student.birth_date')}}:</label>
-                    <div class="col-sm-8">
-                        <input type="date" autocomplete="off" class="form-control" value="{{old('birthDate')}}"
-                            placeholder="{{trans('student::student.birth_date')}}" name="birthDate">
-                    </div>
-                </div>
+{{--                --}}{{-- Birth --}}
+{{--                <div class="form-group">--}}
+{{--                    <label class="control-label col-sm-2" for="title">{{trans('student::student.birth_date')}}:</label>--}}
+{{--                    <div class="col-sm-8">--}}
+{{--                        <input type="date" autocomplete="off" class="form-control" value="{{old('birthDate')}}"--}}
+{{--                            placeholder="{{trans('student::student.birth_date')}}" name="birthDate">--}}
+{{--                    </div>--}}
+{{--                </div>--}}
 
                 {{-- current age  --}}
                 <div class="form-group">
@@ -133,7 +133,7 @@
                 {{-- Barcode--}}
                 <div class="form-group">
 
-                    <label class="control-label col-sm-2" for="title">الرمز الشريطي:</label>
+                    <label class="control-label col-sm-2" for="title">الباركود:</label>
                     <div class="col-sm-8">
                         <input type="text" autocomplete="off" class="form-control" name="barCode"
                             value="{{old('barCode')}}" placeholder="barcode" id="barcode">
@@ -178,9 +178,9 @@
                             @foreach($courses as $course)
                                 <option value="{{$course->id}}">{{$course->title}}</option>
                             @endforeach
-                                
+
                             </select>
-                   
+
                     </div>
                     <hr>
                     <div class="box-body">
@@ -200,9 +200,9 @@
                                         <option  value="{{$level->id}}">{{$course->title}}-{{$level->title}}</option>
                                     @endforeach
                                 @endforeach
-                                    
+
                                 </select>
-                               
+
                             </div>
                                 <!-- <div class="col-sm-8">
                                     <input type="text" autocomplete="off" class="form-control"
@@ -247,7 +247,7 @@
                             </div>
 
                             <hr>
-                             
+
                             <div class="form-group">
                                 <label class="control-label col-sm-2" for="title">المستوى النهائي:</label>
                                 <div class="col-sm-8">
@@ -257,7 +257,7 @@
                                             <option value="{{$level->id}}">{{$course->title}}-{{$level->title}}</option>
                                         @endforeach
                                     @endforeach
-                                    
+
                                 </select>
                                 </div>
                             </div>
@@ -383,10 +383,10 @@
                 <label class="control-label col-sm-2" for="title">{{trans('student::student.courseGroup')}}:</label>
                 <div class="col-sm-8">
                     <select class="select2 form-control" id="group_id" name="group_id" >
-                      
+
 
                             <option value=""> <pre> </pre>  </option>
-                     
+
                     </select>
                 </div>
             </div> -->
@@ -454,22 +454,22 @@ function myFunction() {
     y.value = x.value;
 }
 </script>
-<!-- 
+<!--
 <script>
 $(document).ready(function() {
     var wrapper = $(".result");
     $('.courses').on('click', function(event) {
-        
-      
+
+
         var checkbox_value =[];
-       
+
         $(":checkbox").each(function () {
             var ischecked = $(this).is(":checked");
             if (ischecked) {
                 checkbox_value.push($(this).val()) ;
-               
+
             }
-        }); 
+        });
          $.ajax({
             url: "{{url('admin-panel/getlevelsofcourse')}}",
             method: "post",
@@ -477,9 +477,9 @@ $(document).ready(function() {
                 'courses': checkbox_value,
                 '_token':"{{ csrf_token() }}"
             },
-            
+
             beforeSend: function() {
-                
+
 
             },
             success: function(data) {
@@ -494,7 +494,7 @@ $(document).ready(function() {
 
             }
         })
-        
+
     });
 
 });

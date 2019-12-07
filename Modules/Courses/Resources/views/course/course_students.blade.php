@@ -27,57 +27,40 @@
             <div class="col-xs-12">
                 <div class="box box-info">
                     <div class="box-header with-border">
-                        <h3 class="box-title">المستويات</h3>
-                        <a href="{{url('admin-panel/levels/create')}}" type="button" class="btn btn-success pull-right"><i
-                                    class="fa fa-plus" aria-hidden="true"></i>
-                            &nbsp; {{trans('courses::level.createnew')}}</a>
+                        <h3 class="box-title">الطلاب</h3>
+{{--                        <a href="{{url('admin-panel/levels/create')}}" type="button" class="btn btn-success pull-right"><i--}}
+{{--                                class="fa fa-plus" aria-hidden="true"></i>--}}
+{{--                            &nbsp; {{trans('courses::level.createnew')}}</a>--}}
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
                         <table id="example2" class="table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th>{{trans('courses::level.id')}}</th>
-                                <th>{{trans('courses::level.title')}}</th>
-                                <th>الكورس</th>
-
-                                <th>{{trans('courses::level.op')}}</th>
+                                <th>{{trans('student::student.id')}}</th>
+                                <th>{{trans('student::student.name')}}</th>
+                                <th>{{trans('student::student.gender')}}</th>
+                                <th>{{trans('student::student.phone')}}</th>
+                                <th>{{trans('student::student.birth_date')}}</th>
+                                <th>{{trans('student::student.age')}}</th>
+                                <th>الباركود</th>
                             </tr>
                             </thead>
                             <tbody>
 
-                            @foreach ($levels as $index=>$item)
+                            @foreach ($course->students as $index=>$item)
                                 <tr>
 
                                     <td> {{$index+1}} </td>
-                                    <td> {{$item->title}} </td>
-                                    <td> {{$item->course->title}} </td>
-                                    <td> {{-- view --}}
-                                        <a title="View" href="{{url('/admin-panel/levels/' . $item->id)}}" type="button"
-                                           class="btn btn-success"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                        {{-- Edit --}}
-                                        @role('superadmin|admin')
-                                        <a title="Edit" href="{{url('/admin-panel/levels/' . $item->id . '/edit')}}"
-                                           type="button" class="btn btn-primary"><i class="fa fa-pencil"
-                                                                                    aria-hidden="true"></i></a>
-                                        @endrole
-                                        {{-- Delete --}}
-                                        @role('superadmin')
-                                        <form class="inline" action="{{url('admin-panel/levels/delete/' . $item->id)}}"
-                                              method="POST">
-                                            {{ method_field('DELETE') }} {!! csrf_field() !!}
-                                            <button title="Delete" type="submit"
-                                                    onclick="return confirm('Are you sure, You want to delete Category?')"
-                                                    type="button" class="btn btn-danger"><i class="fa fa-trash"
-                                                                                            aria-hidden="true"></i>
-                                            </button>
-                                        </form>
-                                        @endrole
 
-                                        <a href="{{route('levelpayments',$item->id)}}"><button class="btn btn-warning">الايصالات</button></a>
-                                        <a href="{{route('viewstudentslevels',$item->id)}}"><button class="btn btn-primary">الطلاب</button></a>
+                                    <td> {{$item->name}} </td>
+                                    <td> {{$item->gender}} </td>
 
-                                    </td>
+                                    <td> {{$item->phone}} </td>
+                                    <td> {{$item->birthDate}} </td>
+                                    <td> {{$item->age}} </td>
+                                    <td> {{$item->barCode}} </td>
+
                                 </tr>
                             @endforeach
                             </tbody>

@@ -1,7 +1,7 @@
 @extends('commonmodule::layouts.master')
 
 @section('title')
-   المستويات
+   الايصالات
 @endsection
 
 @section('css')
@@ -13,7 +13,7 @@
 @section('content-header')
     <section class="content-header">
         <h1>
-           المستويات
+           الايصالات
         </h1>
 
     </section>
@@ -27,57 +27,71 @@
             <div class="col-xs-12">
                 <div class="box box-info">
                     <div class="box-header with-border">
-                        <h3 class="box-title">المستويات</h3>
-                        <a href="{{url('admin-panel/levels/create')}}" type="button" class="btn btn-success pull-right"><i
+                        <h3 class="box-title">الايصالات</h3>
+                        <a href="{{route('searchpayment')}}" type="button" class="btn btn-success pull-right"><i
                                     class="fa fa-plus" aria-hidden="true"></i>
-                            &nbsp; {{trans('courses::level.createnew')}}</a>
+                            &nbsp; انشاء ايصال جديد</a>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
                         <table id="example2" class="table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th>{{trans('courses::level.id')}}</th>
-                                <th>{{trans('courses::level.title')}}</th>
-                                <th>الكورس</th>
+                                <th>#</th>
+                                <th>الاسم</th>
+                                <th>الكود</th>
+                                <!-- <th>الكورس</th> -->
+                                <!-- <th>المستوي</th> -->
+                                <th>المبلغ</th>
+                                <th>النوع</th>
+                                <th>التاريخ</th>
+                                <th>العمليات</th>
 
-                                <th>{{trans('courses::level.op')}}</th>
+                                <!-- <th>خصم</th> -->
+                                <!-- <th>مسول الخصم</th> -->
+                                <!-- <th>المستلم</th> -->
+                                <!-- <th>امين الخزينه</th> -->
+
+
                             </tr>
                             </thead>
                             <tbody>
 
-                            @foreach ($levels as $index=>$item)
+
+
+                            @foreach ($student->payments as $index=>$payment)
                                 <tr>
 
                                     <td> {{$index+1}} </td>
-                                    <td> {{$item->title}} </td>
-                                    <td> {{$item->course->title}} </td>
+                                    <td> {{$payment->name}} </td>
+                                    <td> {{$payment->code}} </td>
+                                    <!-- <td> {{$payment->cours}} </td> -->
+                                    <!-- <td> {{$payment->level}} </td> -->
+                                    <td> {{$payment->money}} </td>
+                                    <td> {{$payment->type_payment}} </td>
+                                    <td> {{$payment->date}} </td>
                                     <td> {{-- view --}}
-                                        <a title="View" href="{{url('/admin-panel/levels/' . $item->id)}}" type="button"
-                                           class="btn btn-success"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                        {{-- Edit --}}
-                                        @role('superadmin|admin')
-                                        <a title="Edit" href="{{url('/admin-panel/levels/' . $item->id . '/edit')}}"
-                                           type="button" class="btn btn-primary"><i class="fa fa-pencil"
-                                                                                    aria-hidden="true"></i></a>
-                                        @endrole
-                                        {{-- Delete --}}
-                                        @role('superadmin')
-                                        <form class="inline" action="{{url('admin-panel/levels/delete/' . $item->id)}}"
-                                              method="POST">
-                                            {{ method_field('DELETE') }} {!! csrf_field() !!}
-                                            <button title="Delete" type="submit"
-                                                    onclick="return confirm('Are you sure, You want to delete Category?')"
-                                                    type="button" class="btn btn-danger"><i class="fa fa-trash"
-                                                                                            aria-hidden="true"></i>
-                                            </button>
-                                        </form>
-                                        @endrole
+                                        <a title="View" href="{{route('viewpayment' , $payment->id)}}" type="button" class="btn btn-success"><i class="fa fa-eye" aria-hidden="true"></i></a>
 
-                                        <a href="{{route('levelpayments',$item->id)}}"><button class="btn btn-warning">الايصالات</button></a>
-                                        <a href="{{route('viewstudentslevels',$item->id)}}"><button class="btn btn-primary">الطلاب</button></a>
+
+
+
+                                        {{-- Delete --}}
+
+                                        <form class="inline" action="{{route('deletepayment',$payment->id)}}" method="POST">
+                                            {{ method_field('delete') }} {!! csrf_field() !!}
+
+                                            <button title="Delete" type="submit" onclick="return confirm('Are you sure, You want to delete this payment ?')" type="button" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                        </form>
 
                                     </td>
+                                    <!-- <td> {{$payment->discount}} </td> -->
+
+                                    <!-- <td> {{$payment->discount_owner}} </td> -->
+
+                                    <!-- <td> {{$payment->recipient}} </td> -->
+                                    <!-- <td> {{$payment->secretary}} </td> -->
+
                                 </tr>
                             @endforeach
                             </tbody>

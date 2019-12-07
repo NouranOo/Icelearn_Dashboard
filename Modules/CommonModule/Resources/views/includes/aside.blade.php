@@ -37,7 +37,7 @@
                 </span>
                 </a>
             </li>
-        
+
 
             <li class="treeview">
                 <a href="#">
@@ -84,30 +84,30 @@
                 </a>
             </li>
 
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-folder" aria-hidden="true"></i>
-                    <span>{{__('commonmodule::sidebar.course')}}</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu">
+{{--            <li class="treeview">--}}
+{{--                <a href="#">--}}
+{{--                    <i class="fa fa-folder" aria-hidden="true"></i>--}}
+{{--                    <span>{{__('commonmodule::sidebar.course')}}</span>--}}
+{{--                    <span class="pull-right-container">--}}
+{{--                        <i class="fa fa-angle-left pull-right"></i>--}}
+{{--                    </span>--}}
+{{--                </a>--}}
+{{--                <ul class="treeview-menu">--}}
                     <li>
-                        <a href="{{url('admin-panel/courses')}}"><i class="fa fa-circle-o"></i>
+                        <a href="{{url('admin-panel/courses')}}"><i class="fa fa-graduation-cap"></i>
                             {{__('commonmodule::sidebar.course')}}
                         </a>
                     </li>
 
-                    <li>
-                        <a href="{{url('admin-panel/groups')}}"><i class="fa fa-circle-o"></i>
-                            {{__('commonmodule::sidebar.group')}}
-                        </a>
-                    </li>
+{{--                    <li>--}}
+{{--                        <a href="{{url('admin-panel/groups')}}"><i class="fa fa-circle-o"></i>--}}
+{{--                            {{__('commonmodule::sidebar.group')}}--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
 
 
-                </ul>
-            </li>
+{{--                </ul>--}}
+{{--            </li>--}}
 
             <!-- <li class="treeview">
                 <a href="#">
@@ -156,7 +156,40 @@
                 </a>
             </li> -->
             @endrole
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-money" aria-hidden="true"></i>
+                    <span>الجروبات</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="{{url('groupmodule')}}">
+                            <i class="fa fa-user-circle"
+                               aria-hidden="true"></i><span>جروب </span>
+                            <span class="pull-right-container">
+                </span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{url('groupmodule/creategroup')}}">
+                            <i class="fa fa-money"></i> <span>انشاء جروب جديد </span>
+                            <span class="pull-right-container">
+                        </span>
+                        </a>
+                    </li>
+
+
+                </ul>
+            </li>
+
         </ul>
+
+
     </section>
     <!-- /.sidebar -->
 </aside>
