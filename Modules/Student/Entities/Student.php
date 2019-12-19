@@ -8,6 +8,8 @@ use Modules\Courses\Entities\Group;
 use Modules\Courses\Entities\Course;
 
 use Modules\PaymentModule\Entities\Payment;
+use Modules\ClassModule\Entities\Classe;
+
 
 use Modules\Courses\Entities\Level;
 class Student extends Model
@@ -36,5 +38,9 @@ class Student extends Model
     }
     public function levels(){
         return $this->belongsToMany(Level::class,'student_levels','student_id','finallyLevel');
+    }
+
+    public function classes(){
+        return $this->belongsToMany(Classe::class,'classe_students','student_id','classe_id')->withPivot('id');
     }
 }

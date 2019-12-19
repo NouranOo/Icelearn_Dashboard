@@ -101,7 +101,7 @@ class LevelController extends Controller
     {
       $this->levelRepo->delete($id);
 
-      return redirect('admin-panel/levels')->with('deleted', 'deleted');
+      return redirect('admin-panel/levels')->with('deleted', 'deleted')->with('deleted', 'deleted');
     }
     //////anas///
 

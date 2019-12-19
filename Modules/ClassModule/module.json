@@ -1,0 +1,14 @@
+{
+    "name": "ClassModule",
+    "alias": "classmodule",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 0,
+    "providers": [
+        "Modules\\ClassModule\\Providers\\ClassModuleServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

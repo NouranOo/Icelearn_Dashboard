@@ -43,7 +43,7 @@
                         <table id="example2" class="table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th>{{trans('student::student.id')}}</th>
+                                <!-- <th>{{trans('student::student.id')}}</th> -->
                                 <th>{{trans('student::student.name')}}</th>
                                 <th>{{trans('student::student.gender')}}</th>
                                 <th>{{trans('student::student.phone')}}</th>
@@ -56,7 +56,7 @@
                             <tbody>
                             @foreach ($students as $index=>$item)
                                 <tr>
-                                    <td> {{$index+1}} </td>
+                                    <!-- <td> {{$index+1}} </td> -->
 
                                     <td> {{$item->name}} </td>
                                     <td> {{$item->gender}} </td>
@@ -75,6 +75,8 @@
                                         <a title="Edit" href="{{url('/admin-panel/student/' . $item->id . '/edit')}}" type="button" class="btn btn-primary"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                                         <a title="Addcourse" href="{{url('/admin-panel/student/addcourse/' . $item->id )}}" type="button" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true">إضافة كورس </i></a>
                                         <a title="لإيصالات" href="{{url('/admin-panel/getstudentpayments/'. $item->id )}}" type="button" class="btn btn-warning">الإيصالات</a>
+                        
+                                        <a title="اضافته لكلاس" href="{{route('addclasses', $item->id )}}" type="button" class="btn btn-info">اضافه لكلاس</a>
                                         @endrole
 
                                         {{-- Delete --}}

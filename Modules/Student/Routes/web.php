@@ -1,15 +1,6 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+
 
 Route::group(['prefix' => 'admin-panel', 'middleware' => ['auth:admin']], function() {
 //    Route::get('/', 'StudentController@index');
@@ -45,4 +36,15 @@ Route::group(['prefix' => 'admin-panel', 'middleware' => ['auth:admin']], functi
     Route::group(['middleware' => ['role:superadmin']], function () {
         Route::delete('/delete/{id}', 'ParentController@destroy');
     });
+
+
+//////anas////
+Route::group(['middleware' => ['role:superadmin|admin|writer']], function () {
+    
+    
+    Route::get('/addclasses/{id}','StudentController@addclasses')->name('addclasses');
+    Route::post('/addclasses','StudentController@storeaddclasses')->name('storeaddclasses');
+
+    
+});
 });

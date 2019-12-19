@@ -71,7 +71,7 @@
                     <div class="col-sm-8">
 
                     <select class="form-control" name="course_id">
-                              @foreach($courses as $course)
+                              @foreach($students->first()->courses as $course)
                                <option value="{{ $course->id}}"> {{$course->title}}  </option>
                               @endforeach
                         

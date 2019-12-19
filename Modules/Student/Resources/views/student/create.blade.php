@@ -204,47 +204,11 @@
                                 </select>
 
                             </div>
-                                <!-- <div class="col-sm-8">
-                                    <input type="text" autocomplete="off" class="form-control"
-                                        placeholder="المستوى المقترح" name="suggestedLevel"
-                                        value="{{old('suggestedLevel')}}">
-                                </div> -->
+                             
+                            
                             </div>
-                            <!-- <div class="form-group">
-                                <label class="control-label col-sm-2" for="title"> المدرب:</label>
-                                <div class="col-sm-8">
-                                    <input  type="text" autocomplete="off" class="form-control" placeholder="المدرب"
-                                        name="suggestedCoach" required>
-                                </div>
-                            </div> -->
-                            <div class="form-group">
-                                <label class="control-label col-sm-2" for="title"> أيام:</label>
-                                <div class="col-sm-8">
-                                    <input type="text" autocomplete="off" class="form-control" placeholder="أيام"
-                                        name="suggestedDay" value="{{old('suggestedDay')}}">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-sm-2" for="title"> من ساعة:</label>
-                                <div class="col-sm-8">
-                                    <input type="text" autocomplete="off" class="form-control" placeholder="من ساعة"
-                                        name="suggestedFromHour" value="{{old('suggestedFromHour')}}">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-sm-2" for="title"> إلى ساعة:</label>
-                                <div class="col-sm-8">
-                                    <input type="text" autocomplete="off" class="form-control" placeholder="إلى ساعة"
-                                        name="suggestedToHour" value="{{old('suggestedToHour')}}">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-sm-2" for="title"> التاريخ:</label>
-                                <div class="col-sm-8">
-                                    <input type="text" autocomplete="off" class="form-control" placeholder="التاريخ"
-                                        name="suggestedDate" value="{{old('suggestedDate')}}">
-                                </div>
-                            </div>
+                          
+                          
 
                             <hr>
 
@@ -261,135 +225,16 @@
                                 </select>
                                 </div>
                             </div>
-                            <!-- <div class="form-group">
-                                <label class="control-label col-sm-2" for="title"> المدرب:</label>
-                                <div class="col-sm-8">
-                                    <input  type="text" autocomplete="off" class="form-control" placeholder="المدرب"
-                                        name="finallyCoach" >
-                                </div>
-                            </div> -->
-                            <div class="form-group">
-                                <label class="control-label col-sm-2" for="title"> أيام:</label>
-                                <div class="col-sm-8">
-                                    <input type="text" autocomplete="off" class="form-control" placeholder="أيام"
-                                        name="finallyDay" value="{{old('finallyDay')}}">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-sm-2" for="title"> من ساعة:</label>
-                                <div class="col-sm-8">
-                                    <input type="text" autocomplete="off" class="form-control" placeholder="من ساعة"
-                                        name="finallyFromHour" value="{{old('finallyFromHour')}}">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-sm-2" for="title"> إلى ساعة:</label>
-                                <div class="col-sm-8">
-                                    <input type="text" autocomplete="off" class="form-control" placeholder="إلى ساعة"
-                                        name="finallyToHour" value="{{old('finallyToHour')}}">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-sm-2" for="title"> التاريخ:</label>
-                                <div class="col-sm-8">
-                                    <input type="text" autocomplete="off" class="form-control" placeholder="التاريخ"
-                                        name="finallyDate" value="{{old('finallyDate')}}">
-                                </div>
-                            </div>
+                            
+                         
+                          
                         </div>
-                        <!-- {{-- school Address--}}
-                <div class="form-group">
-                    <label class="control-label col-sm-2" for="title">{{trans('student::student.schoolAdd')}}:</label>
-                    <div class="col-sm-8">
-                        <input  type="text" autocomplete="off" class="form-control" placeholder="{{trans('student::student.schoolAdd')}}"
-                                name="schoolAdd" required>
-                    </div>
-                </div> -->
-
-                        <!-- {{-- School Type --}}
-                <div class="form-group">
-                    <label class="control-label col-sm-2" for="title">{{trans('student::student.schoolType')}}:</label>
-                    <div class="col-sm-8">
-                        <select class="form-control type" name="schoolType">
-                            <option value="public"><pre>{{trans('student::student.public')}}</pre></option>
-                            <option value="private">{{trans('student::student.private')}}</option>
-                        </select>
-                    </div>
-                </div> -->
-
-                        <!-- {{-- Grade --}}
-                <div class="form-group" >
-                    <label class="control-label col-sm-2" for="title">{{trans('student::student.grade')}}:</label>
-                    <div class="col-sm-8">
-                        <input type="text" autocomplete="off" data-validation="number" class="form-control" placeholder="{{trans('student::student.grade')}}"
-                               name="grade" required>
-                    </div>
-                </div> -->
+           
 
 
                     </div>
                 </div>
-                <!-- <hr> -->
-                <!-- <div class="box-body" id="lol">
-
-
-                {{-- Guardian Name --}}
-                <div class="form-group">
-                    <label class="control-label col-sm-2" for="title">{{trans('student::student.guardianName')}}:</label>
-                    <div class="col-sm-8">
-                        <input id="parentName" type="text" autocomplete="off" class="form-control" name="guardianName"  placeholder="{{trans('student::student.guardianName')}}">
-                    </div>
-                </div>
-
-                {{-- Guardian Address --}}
-                <div class="form-group">
-                    <label class="control-label col-sm-2" for="title">{{trans('student::parent.address')}}:</label>
-                    <div class="col-sm-8">
-                        <input type="text" autocomplete="off" class="form-control"  name="guardianAddress"  placeholder="{{trans('student::parent.address')}}">
-                    </div>
-                </div>
-
-                {{-- Guardian Degree --}}
-                <div class="form-group">
-
-                    <label class="control-label col-sm-2" for="title">{{trans('student::parent.degree')}}:</label>
-                    <div class="col-sm-8">
-                        <input type="text" autocomplete="off" class="form-control" name="degree"  placeholder="{{trans('student::parent.degree')}}">
-                    </div>
-                </div>
-
-
-
-                <div class="form-group">
-                    <label class="control-label col-sm-2" for="title">{{trans('student::parent.phone')}}:</label>
-                    <div class="col-sm-8">
-                        <input type="text" autocomplete="off" data-validation="number" class="form-control" placeholder="{{trans('student::parent.phone')}}" name="guardianPhone" >
-                    </div>
-                </div>
-
-
-
-            </div> -->
-                <!-- <hr> -->
-                <!-- <div class="form-group">
-                <label class="control-label col-sm-2" for="title">{{trans('student::parent.downPayment')}}:</label>
-                <div class="col-sm-8">
-                    <input type="text" autocomplete="off" data-validation="number" class="form-control" placeholder="{{trans('student::parent.downPayment')}}" name="downPayment" required>
-                </div>
-            </div> -->
-                <!-- <hr> -->
-                <!-- <div class="form-group">
-                {{-- course --}}
-                <label class="control-label col-sm-2" for="title">{{trans('student::student.courseGroup')}}:</label>
-                <div class="col-sm-8">
-                    <select class="select2 form-control" id="group_id" name="group_id" >
-
-
-                            <option value=""> <pre> </pre>  </option>
-
-                    </select>
-                </div>
-            </div> -->
+          
 
                 <!-- /.box-body -->
                 <div class="box-footer">

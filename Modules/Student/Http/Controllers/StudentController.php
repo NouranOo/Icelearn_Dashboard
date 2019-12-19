@@ -13,6 +13,9 @@ use Modules\Student\Http\Requests\StudentRequest;
 use Modules\Student\Repository\ParentRepository;
 use Modules\Student\Repository\StudentRepository;
 use Modules\Courses\Entities\Level;
+use Modules\ClassModule\Entities\Classe;
+use Modules\ClassModule\Entities\ClasseStudent;
+
 
 class StudentController extends Controller
 {
@@ -233,6 +236,31 @@ class StudentController extends Controller
         return view('student::student.studentpayments',compact('student'));
 
 
+    }
+
+
+
+    /////anas////
+    ////////addclasses/////
+
+    public function addclasses($id){
+
+        $student = $this->studentRepository->find($id);
+
+        $classes = Classe::all();
+        return view('student::student.addclasses',compact('classes','student'));
+
+    }
+
+    ////////storeaddclasses/////
+
+    public function storeaddclasses(Request $request){
+
+      
+        ClasseStudent::create( $request->all());
+      
+
+       return redirect()->route('student.index')->with('success','تم الاضافه بنجاح!');
     }
 
 

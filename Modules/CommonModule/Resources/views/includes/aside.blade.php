@@ -187,6 +187,38 @@
                 </ul>
             </li>
 
+
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-users" aria-hidden="true"></i>
+                    <span>الكلاسات</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="{{route('classindex')}}">
+                            <i class="fa fa-user-circle"
+                               aria-hidden="true"></i><span>كل الكلاسات </span>
+                            <span class="pull-right-container">
+                </span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{route('createclass')}}">
+                            <i class="fa fa-plus-circle"></i> <span>انشاء كلاس جديد </span>
+                            <span class="pull-right-container">
+                        </span>
+                        </a>
+                    </li>
+
+
+                </ul>
+            </li>
+
         </ul>
 
 

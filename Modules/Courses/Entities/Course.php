@@ -9,6 +9,8 @@ use Modules\Instructors\Entities\Instructor;
 use Modules\Track\Entities\Track;
 use Modules\Courses\Entities\Level;
 use Modules\Student\Entities\Student;
+use Modules\ClassModule\Entities\Classe;
+
 
 
 use Modules\PaymentModule\Entities\Payment;
@@ -20,18 +22,18 @@ class Course extends Model
     protected $guarded = [];
 
 
-    // public function track()
-    // {
-    //     return $this->belongsTo(Track::class, 'track_id', 'id');
-    // }
+   
     public function levels()
     {
         return $this->hasMany(Level::class);
     }
 
-    // public function categories(){
-    //     return $this->belongsToMany(CourseCategory::class,'course_category','course_id','category_id');
-    // }
+    public function classes()
+    {
+        return $this->hasMany(Classe::class);
+    }
+
+    
 
     public function instructors(){
         return $this->belongsToMany(Instructor::class,'courses_instructors','course_id','instructor_id');
