@@ -1,7 +1,7 @@
 @extends('commonmodule::layouts.master')
 
 @section('title')
-    حصص الكلاس
+    المصروفات
 @endsection
 
 @section('css')
@@ -13,7 +13,7 @@
 @section('content-header')
     <section class="content-header">
         <h1>
-            حصص الكلاس
+            المصروفات
         </h1>
 
     </section>
@@ -27,55 +27,55 @@
             <div class="col-xs-12">
                 <div class="box box-info">
                     <div class="box-header with-border">
-                        <h3 class="box-title">الحصص</h3>
-                        <a href="{{route('createsubclass',$classe->id)}}" type="button"
+                        <h3 class="box-title">المصروفات</h3>
+                        <a href="{{route('outgoing.create')}}" type="button"
                            class="btn btn-success pull-right"><i class="fa fa-plus" aria-hidden="true"></i>
-                            &nbsp; اضافه حصه جديد</a>
+                            &nbsp; اضافه مصروف جديد</a>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
                         <table id="example2" class="table table-bordered table-hover">
                             <thead>
                             <tr>
-                                
-                                <th>رقم الحصه</th>
-                                <th>اليوم </th>
-                                <th> التاريخ</th>
-                                <th>من </th>
-                                <th>الي </th>
-                                <th>العمليات </th>
-            
+                                <th>#</th>
+                                <th>اليوم</th>
+                                <th>التاريخ </th>
+                                <th> المبلغ</th>
+                                <th> السبب</th>
+                                <th> العمليات</th>
+                              
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach ($classe->subclasses as  $item)
+                            @foreach ($outgoings as $index=> $item)
                                 <tr>
-                                    
-                                    <td> {{$item->number}} </td>
+                                    <td> {{$index+1}} </td>
                                     <td> {{$item->day}} </td>
                                     <td> {{$item->date}} </td>
-                                    <td> {{$item->from}}  </td>
-                                    <td> {{$item->to}}  </td>
-                                    <td> 
-                                    <form class="inline" action="{{route('deletesubclass',$item->id)}}"
+                                    <td> {{$item->money}} </td>
+                                    <td> {{$item->reason}} </td>
+                                    <td>
+                                        {{-- Edit --}}
+                                       
+                                        <a title="Edit" href="{{route('outgoing.edit',$item->id)}}"
+                                           type="button" class="btn btn-primary"><i class="fa fa-pencil"
+                                                                                    aria-hidden="true"></i></a>
+                                      
+                                        {{-- Delete --}}
+                                       
+                                        <form class="inline" action="{{url('admin-panel/outgoing/delete/' . $item->id)}}"
                                               method="POST">
                                             {{ method_field('DELETE') }} {!! csrf_field() !!}
                                             <button title="Delete" type="submit"
-                                                    onclick="return confirm('هل انت متاكد من حذف هذا الحصه!?')"
+                                                    onclick="return confirm('هل انت متاكد من حذف هذا المصروف')"
                                                     type="button" class="btn btn-danger"><i class="fa fa-trash"
                                                                                             aria-hidden="true"></i>
                                             </button>
-                                    </form>
-                                        <a href="{{route('degreeindex',$item->id)}}"><button class="btn btn-success"> درجات</button></a>
-                                        <!-- <a href="{{route('degreeshow',$item->id)}}"><button class="btn btn-primary">عرض درجات</button></a> -->
-
-                                        <a href="{{route('viewlevels',$item->id)}}"><button class="btn btn-info">الغياب</button></a>
+                                        </form>
                                         
-                                        </td>
+                                       
 
-
-
-                                  
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -99,19 +99,19 @@
 
     @if (session('success'))
         <script>
-            swal("{{trans('courses::course.good')}}", "تم اضافه الحصه بنجاح", "success", {button: "{{trans('courses::course.btn')}}",});
+            swal("{{trans('courses::course.good')}}", "تم اضافه المصروف بنجاح", "success", {button: "{{trans('courses::course.btn')}}",});
         </script>
     @endif
 
     @if (session('updated'))
         <script>
-            swal("{{trans('courses::course.good')}}", "{{trans('courses::course.updated')}}", "success", {button: "{{trans('courses::course.btn')}}",});
+            swal("{{trans('courses::course.good')}}", "تم تحديث المصروف بنجاح", "success", {button: "{{trans('courses::course.btn')}}",});
         </script>
     @endif
 
     @if (session('deleted'))
         <script>
-            swal("{{trans('courses::course.good')}}", "تم حذف الحصه بنجاح", "success", {button: "{{trans('courses::course.btn')}}",});
+            swal("{{trans('courses::course.good')}}", "تم حذف المصروف بنجاح", "success", {button: "{{trans('courses::course.btn')}}",});
         </script>
     @endif
 

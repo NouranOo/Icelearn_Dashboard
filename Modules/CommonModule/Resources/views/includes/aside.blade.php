@@ -27,7 +27,31 @@
                 </span>
                 </a>
             </li>
+             <!-- instructors Module -->
+            <li>
+                <a href="{{url('instructors/instructors')}}">
+                    <i class="fa fa-user-secret"
+                       aria-hidden="true"></i><span>{{trans('commonmodule::sidebar.instructors')}} </span>
+                    <span class="pull-right-container">
+                </span>
+                </a>
+            </li>
+             <!-- course Module -->
+            
+            <li>
+                        <a href="{{url('admin-panel/courses')}}"><i class="fa fa-graduation-cap"></i>
+                            {{__('commonmodule::sidebar.course')}}
+                        </a>
+            </li>
 
+             <!-- level Module -->
+         
+               <li><a href="{{url('admin-panel/levels/')}}">
+                            <i class="fa fa-circle-o"></i><span>{{__('sidebar.level')}} </span>
+                            <span class="pull-right-container"></span>
+                        </a>
+                    </li>
+             <!-- student Module -->
 
             <li>
                 <a href="{{url('admin-panel/student/')}}">
@@ -38,6 +62,38 @@
                 </a>
             </li>
 
+             <!-- classindex Module -->
+             <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-users" aria-hidden="true"></i>
+                    <span>الكلاسات</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="{{route('classindex')}}">
+                            <i class="fa fa-user-circle"
+                               aria-hidden="true"></i><span>كل الكلاسات </span>
+                            <span class="pull-right-container">
+                </span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{route('createclass')}}">
+                            <i class="fa fa-plus-circle"></i> <span>انشاء كلاس جديد </span>
+                            <span class="pull-right-container">
+                        </span>
+                        </a>
+                    </li>
+
+
+                </ul>
+            </li>
+
+             <!-- الايصالات Module -->
 
             <li class="treeview">
                 <a href="#">
@@ -67,75 +123,54 @@
 
                 </ul>
             </li>
-            <!-- <li>
-                <a href="{{url('admin-panel/reservation/')}}">
-                    <i class="fa fa-user-circle"
-                       aria-hidden="true"></i><span>{{trans('commonmodule::sidebar.reservation')}} </span>
-                    <span class="pull-right-container"></span>
+
+
+             <!-- المصروفات Module -->
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-outdent" aria-hidden="true"></i>
+                    <span>المصروفات</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
                 </a>
-            </li> -->
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="{{route('outgoing.index')}}">
+                            <i class="fa fa-server"
+                               aria-hidden="true"></i><span>كل المصروفات </span>
+                            <span class="pull-right-container">
+                </span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{route('outgoing.create')}}">
+                            <i class="fa fa-plus-circle"></i> <span>انشاء مصروف جديد </span>
+                            <span class="pull-right-container">
+                        </span>
+                        </a>
+                    </li>
+
+
+                </ul>
+            </li>
+          
+             <!-- الاحصاءيات Module -->
 
             <li>
-                <a href="{{url('instructors/instructors')}}">
-                    <i class="fa fa-user-secret"
-                       aria-hidden="true"></i><span>{{trans('commonmodule::sidebar.instructors')}} </span>
+                <a href="{{route('storestatistical')}}">
+                    <i class="fa fa-user-circle"
+                       aria-hidden="true"></i><span>الاحصاءيات </span>
                     <span class="pull-right-container">
                 </span>
                 </a>
             </li>
 
-{{--            <li class="treeview">--}}
-{{--                <a href="#">--}}
-{{--                    <i class="fa fa-folder" aria-hidden="true"></i>--}}
-{{--                    <span>{{__('commonmodule::sidebar.course')}}</span>--}}
-{{--                    <span class="pull-right-container">--}}
-{{--                        <i class="fa fa-angle-left pull-right"></i>--}}
-{{--                    </span>--}}
-{{--                </a>--}}
-{{--                <ul class="treeview-menu">--}}
-                    <li>
-                        <a href="{{url('admin-panel/courses')}}"><i class="fa fa-graduation-cap"></i>
-                            {{__('commonmodule::sidebar.course')}}
-                        </a>
-                    </li>
-
-{{--                    <li>--}}
-{{--                        <a href="{{url('admin-panel/groups')}}"><i class="fa fa-circle-o"></i>--}}
-{{--                            {{__('commonmodule::sidebar.group')}}--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
 
 
-{{--                </ul>--}}
-{{--            </li>--}}
-
-            <!-- <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-folder" aria-hidden="true"></i>
-                    <span>{{__('commonmodule::sidebar.setting')}}</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu"> -->
-                    <!-- <li>
-                        <a href="{{url('admin-panel/tracks/')}}">
-                            <i class="fa fa-circle-o"></i><span>{{__('sidebar.track')}} </span>
-                            <span class="pull-right-container"></span>
-                        </a>
-                    </li> -->
-                    <li><a href="{{url('admin-panel/levels/')}}">
-                            <i class="fa fa-circle-o"></i><span>{{__('sidebar.level')}} </span>
-                            <span class="pull-right-container"></span>
-                        </a>
-                    </li>
-                    <!-- <li>
-                        <a href="{{url('admin-panel/categories')}}">
-                            <i class="fa fa-circle-o"></i> {{__('commonmodule::sidebar.coursecateg')}}
-                        </a>
-                    </li> -->
-                <!-- </ul> -->
-            <!-- </li> -->
+                 
+           
 
             @role('superadmin')
             <li>
@@ -147,16 +182,8 @@
             </li>
             @endrole
 
-            @role('superadmin')
-            <!-- <li>
-                <a href="{{ url('/admin-panel/commonmodule/activate-lang') }}">
-                    <i class="fa fa-language" aria-hidden="true"></i><span>{{__('commonmodule::sidebar.langs')}} </span>
-                    <span class="pull-right-container">
-                </span>
-                </a>
-            </li> -->
-            @endrole
-
+        
+<!-- 
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-money" aria-hidden="true"></i>
@@ -185,39 +212,13 @@
 
 
                 </ul>
-            </li>
+            </li> -->
 
 
 
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-users" aria-hidden="true"></i>
-                    <span>الكلاسات</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li>
-                        <a href="{{route('classindex')}}">
-                            <i class="fa fa-user-circle"
-                               aria-hidden="true"></i><span>كل الكلاسات </span>
-                            <span class="pull-right-container">
-                </span>
-                        </a>
-                    </li>
+          
 
-                    <li>
-                        <a href="{{route('createclass')}}">
-                            <i class="fa fa-plus-circle"></i> <span>انشاء كلاس جديد </span>
-                            <span class="pull-right-container">
-                        </span>
-                        </a>
-                    </li>
-
-
-                </ul>
-            </li>
+            
 
         </ul>
 

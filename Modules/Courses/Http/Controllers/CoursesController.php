@@ -47,10 +47,7 @@ class CoursesController extends Controller
         return view('courses::course.index')->with('courses',$courses);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     * @return Response
-     */
+    
     public function create()
     {
         $tracks = $this->trackRepo->findAll();

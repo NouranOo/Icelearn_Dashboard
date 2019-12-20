@@ -8,10 +8,8 @@ use Illuminate\Routing\Controller;
 use Modules\Courses\Entities\Course;
 use Modules\Courses\Entities\Level;
 use Modules\Instructors\Entities\Instructor;
-
 use Modules\ClassModule\Entities\Classe;
 use Modules\ClassModule\Entities\SubClasse;
-
 use Modules\ClassModule\Entities\ClasseStudent;
 
 
@@ -24,27 +22,24 @@ class ClassModuleController extends Controller
   
     public function index()
     {
-
         $classes = Classe::all();
-
         return view('classmodule::layouts.index',compact('classes'));
     }
 
    
     public function create()
     {
+
         $courses = Course::all();
         $levels = Level::all();
         $instructores = Instructor::all();
-        
-
         return view('classmodule::layouts.create',compact('courses','levels','instructores'));
     }
 
    
     public function store(Request $request)
     {
-     Classe::create($request->all());
+        Classe::create($request->all());
         return redirect()->route('classindex')->with('success','تم الاضافه بنجاح');
     
     }
