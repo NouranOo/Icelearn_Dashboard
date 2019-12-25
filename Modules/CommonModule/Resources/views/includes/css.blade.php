@@ -25,6 +25,10 @@
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="{{ asset('assets/admin/dist/css/skins/skin-blue-light.min.css')}}">
     <link rel="stylesheet" href="{{ asset('assets/admin/dist/css/custom.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/admin/dist/css/toastr.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/admin/dist/css/toastr.min.css')}}">
+
+
 
 @endif
 

@@ -9,6 +9,9 @@ use Modules\Instructors\Entities\Instructor;
 use Modules\Student\Entities\Student;
 use Modules\ClassModule\Entities\SubClasse;
 
+use Modules\AttendanceModule\Entities\Attendance;
+
+
 
 
 
@@ -39,6 +42,11 @@ class Classe extends Model
     public function subclasses()
     {
         return $this->hasMany(SubClasse::class);
+    }
+
+    public function attendances()
+    {
+        return $this->hasMany(Attendance::class);
     }
     
 }

@@ -14,11 +14,10 @@ class CreateAttendancesTable extends Migration
     public function up()
     {
         Schema::create('attendances', function (Blueprint $table) {
-
             $table->increments('id');
 
-            $table->integer('session_id')->unsigned()->nullable();
-            $table->foreign('session_id')->references('id')->on('sessions')
+            $table->integer('classe_id')->unsigned()->nullable();
+            $table->foreign('classe_id')->references('id')->on('classes')
                 ->onDelete('set null')
                 ->onUpdate('set null');
 
@@ -29,16 +28,14 @@ class CreateAttendancesTable extends Migration
                 ->onUpdate('set null');
 
 
-            $table->integer('group_id')->unsigned()->nullable();
-            $table->foreign('group_id')->references('id')->on('groups')
+            $table->integer('sub_classe_id')->unsigned()->nullable();
+            $table->foreign('sub_classe_id')->references('id')->on('sub_classes')
                 ->onDelete('set null')
                 ->onUpdate('set null');
 
 
 
-            $table->boolean('attendance')->nullable();
-
-
+            $table->string('attendance')->nullable();
             $table->timestamps();
         });
     }

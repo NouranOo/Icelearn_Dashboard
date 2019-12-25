@@ -5,6 +5,8 @@ namespace Modules\ClassModule\Entities;
 use Illuminate\Database\Eloquent\Model;
 use Modules\ClassModule\Entities\Classe;
 use Modules\DegreeModule\Entities\Degree;
+use Modules\AttendanceModule\Entities\Attendance;
+
 
 
 
@@ -22,5 +24,9 @@ class SubClasse extends Model
 
         return $this->belongsTo(Degree::class);
 
+    }
+    public function attendances()
+    {
+        return $this->hasMany(Attendance::class);
     }
 }

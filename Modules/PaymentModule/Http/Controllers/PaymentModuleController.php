@@ -41,13 +41,6 @@ class PaymentModuleController extends Controller
         $search = $request->input('search');
         
     
-        //now get all user and services in one go without looping using eager loading
-        //In your foreach() loop, if you have 1000 users you will make 1000 queries
-    
-        // $students = Student::with(['courses' => function ($query)use ($search) {
-        //      $query->where('barCode', 'LIKE', '%' . $search . '%');
-        // }])->get();
-
         $students = Student::where([ 
             ['barCode', 'LIKE', '%' . $search . '%'],
            

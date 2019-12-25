@@ -10,8 +10,10 @@ use Modules\Courses\Entities\Course;
 use Modules\PaymentModule\Entities\Payment;
 use Modules\ClassModule\Entities\Classe;
 
-
 use Modules\Courses\Entities\Level;
+
+use Modules\AttendanceModule\Entities\Attendance;
+
 class Student extends Model
 {
 
@@ -42,5 +44,10 @@ class Student extends Model
 
     public function classes(){
         return $this->belongsToMany(Classe::class,'classe_students','student_id','classe_id')->withPivot('id');
+    }
+
+    public function attendances(){
+        return $this->hasMany(Attendance::class);
+
     }
 }
