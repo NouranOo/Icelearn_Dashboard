@@ -86,7 +86,7 @@
                                         name="suggestedCoach" required>
                                 </div>
                             </div> -->
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label class="control-label col-sm-2" for="title"> أيام:</label>
                                 <div class="col-sm-8">
                                     <input type="text" autocomplete="off" class="form-control" placeholder="أيام"
@@ -113,7 +113,7 @@
                                     <input type="text" autocomplete="off" class="form-control" placeholder="التاريخ"
                                         name="suggestedDate" value="{{old('suggestedDate')}}">
                                 </div>
-                            </div>
+                            </div> -->
 
                             <hr>
 
@@ -137,7 +137,7 @@
                                         name="finallyCoach" >
                                 </div>
                             </div> -->
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label class="control-label col-sm-2" for="title"> أيام:</label>
                                 <div class="col-sm-8">
                                     <input type="text" autocomplete="off" class="form-control" placeholder="أيام"
@@ -165,7 +165,7 @@
                                         name="finallyDate" value="{{old('finallyDate')}}">
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
 
                     </div>

@@ -43,7 +43,7 @@
                     <label class="control-label col-sm-2" for="title">{{trans('student::student.name')}}:</label>
                     <div class="col-sm-8">
                         <input value="{{$student->name}}"  type="text" autocomplete="off" class="form-control" placeholder="{{trans('student::student.newtitle')}}"
-                                name="name" >
+                                name="name" required>
                     </div>
                 </div>
 
@@ -51,7 +51,7 @@
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="title">{{trans('student::student.gender')}}:</label>
                     <div class="col-sm-8">
-                        <select class="form-control" name="gender">
+                        <select class="form-control" name="gender" required>
                             <option value="male" @if($student->gender ==  'male' ) selected="selected"  @endif >ذكر</option>
                             <option value="female" @if($student->gender ==  'female' ) selected="selected"  @endif ><pre>أنثى</pre></option>
 
@@ -67,7 +67,7 @@
                     <label class="control-label col-sm-2" for="title">الرقم القومى :</label>
                     <div class="col-sm-8">
                         <input value="{{$student->NID}}" type="text" autocomplete="off" data-validation="number" class="form-control" placeholder="{{trans('student::student.NID')}}"
-                               name="NID" id="nid" value="{{old('NID')}}"  onkeyup="myFunction()">
+                               name="NID" id="nid" value="{{old('NID')}}"  onkeyup="myFunction()" required>
                     </div>
                 </div>
 
@@ -95,7 +95,7 @@
                     <label class="control-label col-sm-2" for="title">{{trans('student::student.phone')}}:</label>
                     <div class="col-sm-8">
                         <input value="{{$student->phone}}" type="text" autocomplete="off" data-validation="number" class="form-control" placeholder="{{trans('student::student.phone')}}"
-                               name="phone" >
+                               name="phone" required>
                     </div>
                 </div>
 
@@ -136,7 +136,7 @@
                     <label class="control-label col-sm-2" for="title">الرمز الشريطي:</label>
                     <div class="col-sm-8">
                         <input value="{{$student->barCode}}"  type="text" autocomplete="off" class="form-control" placeholder="{{trans('student::student.barCode')}}"
-                                name="barCode" id="barcode">
+                                name="barCode" id="barcode" required>
                     </div>
                 </div>
                 <div class="form-group">

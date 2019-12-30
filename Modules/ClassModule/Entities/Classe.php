@@ -8,6 +8,8 @@ use Modules\Courses\Entities\Level;
 use Modules\Instructors\Entities\Instructor;
 use Modules\Student\Entities\Student;
 use Modules\ClassModule\Entities\SubClasse;
+use Modules\DegreeModule\Entities\Month;
+
 
 use Modules\AttendanceModule\Entities\Attendance;
 
@@ -47,6 +49,11 @@ class Classe extends Model
     public function attendances()
     {
         return $this->hasMany(Attendance::class);
+    }
+
+    public function monthes()
+    {
+        return $this->hasMany(Month::class);
     }
     
 }

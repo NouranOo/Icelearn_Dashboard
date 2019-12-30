@@ -39,14 +39,15 @@ class PaymentModuleController extends Controller
     public function dosearchpayment(Request $request){
         $courses =Course::all();
         $search = $request->input('search');
-        
-    
-        $students = Student::where([ 
-            ['barCode', 'LIKE', '%' . $search . '%'],
-           
-        ])->get();
- 
+        $students = Student::where('barCode',$search)->get();
+       if($students->first() ==null){
+
+        return redirect()->route('searchpayment')->with('deleted', 'success');
+       }else{
+
         return view('paymentmodule::payment.create',compact('students','courses'));
+
+       }
     }
    
     public function store(Request $request)
@@ -67,7 +68,7 @@ class PaymentModuleController extends Controller
 
         $payment =Payment::create($request->all());
     
-       return redirect()->route('allpayment');
+       return redirect()->route('allpayment')->with('success','success');
     }
 
 

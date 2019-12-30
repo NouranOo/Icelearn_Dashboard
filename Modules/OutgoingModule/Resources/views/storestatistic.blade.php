@@ -54,7 +54,7 @@
                    
                     <label class="control-label col-sm-2" for="title">من </label>
                     <div class="col-sm-8">
-                      <input type="date" name="from" class="form-control">
+                      <input type="date" name="from" class="form-control" required>
                        
                     </div>
                 </div>
@@ -63,7 +63,7 @@
                    
                    <label class="control-label col-sm-2" for="title">الي </label>
                    <div class="col-sm-8">
-                     <input type="date" name="to" class="form-control">
+                     <input type="date" name="to" class="form-control" required>
                       
                    </div>
                </div>

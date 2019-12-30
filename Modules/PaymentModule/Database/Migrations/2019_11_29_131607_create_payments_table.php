@@ -17,12 +17,12 @@ class CreatePaymentsTable extends Migration
             $table->increments('id');
             $table->integer('student_id')->unsigned()->nullable();
             $table->string('name');
-            $table->integer('code');
+            $table->string('code')->nullable();
             $table->string('course')->nullable();
             $table->string('level')->nullable();
             $table->integer('course_id')->unsigned()->nullable();
             $table->integer('level_id')->unsigned()->nullable();
-            $table->integer('money');
+            $table->double('money')->nullable();
             $table->string('type_payment');
             $table->string('date');
             $table->string('discount')->nullable();

@@ -45,38 +45,30 @@
                             <tr>
                                 <!-- <th>{{trans('student::student.id')}}</th> -->
                                 <th>{{trans('student::student.name')}}</th>
-                                <th>{{trans('student::student.gender')}}</th>
                                 <th>{{trans('student::student.phone')}}</th>
-                                <th>{{trans('student::student.birth_date')}}</th>
                                 <th>{{trans('student::student.age')}}</th>
-                                <th>لباركود</th>
+                                <th>الباركود</th>
                                 <th>{{trans('student::student.op')}}</th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach ($students as $index=>$item)
                                 <tr>
-                                    <!-- <td> {{$index+1}} </td> -->
+                                   
 
                                     <td> {{$item->name}} </td>
-                                    <td> {{$item->gender}} </td>
-
                                     <td> {{$item->phone}} </td>
-                                    <td> {{$item->birthDate}} </td>
                                     <td> {{$item->age}} </td>
                                     <td> {{$item->barCode}} </td>
-
-
-                                    <td> {{-- view --}}
+                                    <td>
+                                     {{-- view --}}
                                         <a title="View" href="{{url('/admin-panel/student/' . $item->id)}}" type="button" class="btn btn-success"><i class="fa fa-eye" aria-hidden="true"></i></a>
-
-                                        {{-- Edit --}}
-                                        @role('admin|superadmin')
+                                    {{-- Edit --}}
+                                    @role('admin|superadmin')
                                         <a title="Edit" href="{{url('/admin-panel/student/' . $item->id . '/edit')}}" type="button" class="btn btn-primary"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                                        <a title="Addcourse" href="{{url('/admin-panel/student/addcourse/' . $item->id )}}" type="button" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true">إضافة كورس </i></a>
+                                        <a title="Addcourse" href="{{url('/admin-panel/student/addcourse/' . $item->id )}}" type="button" class="btn btn-primary"><i aria-hidden="true">اضافته لكورس </i></a>
                                         <a title="لإيصالات" href="{{url('/admin-panel/getstudentpayments/'. $item->id )}}" type="button" class="btn btn-warning">الإيصالات</a>
-                        
-                                        <a title="اضافته لكلاس" href="{{route('addclasses', $item->id )}}" type="button" class="btn btn-info">اضافه لكلاس</a>
+                                        <a title="اضافته لكلاس" href="{{route('addclasses', $item->id )}}" type="button" class="btn btn-info">اضافته لكلاس</a>
                                         @endrole
 
                                         {{-- Delete --}}
@@ -84,7 +76,7 @@
                                         <form class="inline" action="{{url('/admin-panel/deletess/' . $item->id)}}" method="POST">
                                             {{ method_field('delete') }} {!! csrf_field() !!}
 
-                                            <button title="Delete" type="submit" onclick="return confirm('Are you sure, You want to delete student ?')" type="button" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                            <button title="Delete" type="submit" onclick="return confirm('هل انت متاكد من حذف هذا الطالب!')" type="button" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
                                         </form>
                                         @endrole
                                     </td>

@@ -19,6 +19,7 @@ class AttendanceModuleController extends Controller
     {
         $subclasse =SubClasse::find($id);
         $flag = 0;
+        $arr =[];
 
         $attendance =  DB::table('attendances')->where('sub_classe_id',$id)->get();
 
@@ -94,14 +95,37 @@ class AttendanceModuleController extends Controller
         return redirect()->route('attendance.index',$request->subclasse_id)->with('success','تم الاضافه بنجاح');
     }
 
-    /**
-     * Show the specified resource.
-     * @param int $id
-     * @return Response
-     */
-    public function show($id)
+   
+    public function updateAttendance(Request $request)
     {
-        return view('attendancemodule::show');
+        $getattendance =Attendance::where([
+            ['sub_classe_id', '=', $request->subclasse_id],
+            ['student_id', '=', $request->student_id],])->first();
+
+            if($getattendance == null){
+
+                $attendance = new Attendance();
+
+                $attendance->classe_id = $request->classe_id;
+                $attendance->sub_classe_id =$request->subclasse_id;
+                $attendance->student_id = $request->student_id;
+                $attendance->attendance = $request->attendance;
+    
+    
+                $attendance->save();
+            }else{
+              $getattendance->update([
+                  'attendance'=>$request->attendance
+              ]);
+            }
+
+       
+        // $attendance = Attendance::where('student_id',$request->student_id)->first();
+        
+
+      
+
+        return response()->json(['success'=>'تم التحديث بنجاح!']);
     }
 
     /**

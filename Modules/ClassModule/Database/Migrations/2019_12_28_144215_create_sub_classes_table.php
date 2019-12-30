@@ -21,8 +21,12 @@ class CreateSubClassesTable extends Migration
             $table->string('from')->nullable();
             $table->string('to')->nullable();
             $table->integer('classe_id')->nullable()->unsigned();
+            $table->integer('month_id')->nullable()->unsigned();
+
 
             $table->foreign('classe_id')->references('id')->on('classes')->onDelete('cascade');
+            $table->foreign('month_id')->references('id')->on('months')->onDelete('cascade');
+
 
 
 

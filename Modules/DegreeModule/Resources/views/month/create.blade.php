@@ -1,6 +1,6 @@
 @extends('commonmodule::layouts.master')
 @section('title')
-انشاء حصه جديد
+انشاء شهر جديد
 @endsection
 
 @section('css')
@@ -13,7 +13,7 @@
 @section('content-header')
 <section class="content-header">
     <h1>
-       انشاء حصه جديد
+       انشاء شهر جديد
     </h1>
 </section>
 @endsection
@@ -24,13 +24,13 @@
     <!-- Horizontal Form -->
     <div class="box box-info">
         <div class="box-header with-border">
-            <h3 class="box-title">بيانات الحصه الجديد</h3>
+            <h3 class="box-title">بيانات الشهر الجديد</h3>
         </div>
         @if(count($errors) > 0) @foreach($errors->all() as $error)
         <p class="alert alert-danger">{{$error}}</p>
         @endforeach @endif
         <!-- /.box-header -->
-        <form class="form-horizontal" action="{{route('storesubclass')}}" method="POST">
+        <form class="form-horizontal" action="{{route('storemonth')}}" method="POST">
             {{ csrf_field() }}
 
 
@@ -38,36 +38,39 @@
 
                 <div class="form-group">
                     {{-- number --}}
-                    <label class="control-label col-sm-2" for="title">رقم الحصه </label>
+                    <label class="control-label col-sm-2" for="title">رقم الشهر </label>
                     <div class="col-sm-8">
-                        <input type="text" autocomplete="off" class="form-control" placeholder="اكتب رقم للحصه" name="number"
-                               required data-validation="alphanumeric" data-validation-allowing='UTF-8' data-validation-length="3-50"
-                               data-validation-error-msg="{{__('FormValidate.title')}}">
+                        <input type="text" autocomplete="off" class="form-control" placeholder="اكتب رقم الشهر" name="number"
+                                data-validation="alphanumeric" data-validation-allowing='UTF-8' data-validation-length="3-50"
+                               data-validation-error-msg="{{__('FormValidate.title')}}" required>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    {{-- day --}}
-                    <label class="control-label col-sm-2" for="title">اليوم:</label>
+                    {{-- name --}}
+                    <label class="control-label col-sm-2" for="title">اسم الشهر:</label>
                     <div class="col-sm-8">
-                        <select class="form-control" id="day" name="day" required>
+                        <select class="form-control" id="day" name="name" required>
                            
-                            <option value="السبت">السبت</option>
-                            <option value="الاحد">الاحد</option>
-                            <option value="الاتنين">الاتنين</option>
-                            <option value="الثلاثاء">الثلاثاء</option>
-                            <option value="الاربعاء">الاربعاء</option>
-                            <option value="الخميس">الخميس</option>
-                            <option value="الجمعه">الجمعه</option>
+                            <option value="يناير">يناير</option>
+                            <option value="فبراير">فبراير</option>
+                            <option value="مارس">مارس</option>
+                            <option value="ابريل">ابريل</option>
+                            <option value="مايو">مايو</option>
+                            <option value="يونيو">يونيو</option>
+                            <option value="يوليو">يوليو</option>
+                            <option value="أغسطس">أغسطس</option>
+                            <option value="سبتمبر">سبتمبر</option>
+                            <option value="أكتوبر">أكتوبر</option>
+                            <option value="نوفمبر">نوفمبر</option>
+                            <option value="ديسمبر">ديسمبر</option>
 
 
                            
                         </select>
                     </div>
                 </div>
-                <input type="hidden" autocomplete="off" class="form-control" placeholder="" name="classe_id" value="{{$classe->id}}" >
-                <input type="hidden" autocomplete="off" class="form-control" placeholder="" name="month_id" value="{{$month->id}}" >
-
+                <input type="hidden" autocomplete="off" class="form-control" placeholder="" name="classe_id" value="{{$classe->id}}" required>
            
 
                 <div class="form-group">
@@ -79,22 +82,10 @@
                 </div>
 
                
+                <input type="hidden" value="{{$classe->id}}"  name="classe_id">
 
                          
-                            <div class="form-group">
-                                <label class="control-label col-sm-2" for="title"> من ساعة:</label>
-                                <div class="col-sm-8">
-                                    <input type="text" autocomplete="off" class="form-control" placeholder="من ساعة"
-                                        name="from" value="{{old('from')}}" required>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-sm-2" for="title"> إلى ساعة:</label>
-                                <div class="col-sm-8">
-                                    <input type="text" autocomplete="off" class="form-control" placeholder="إلى ساعة"
-                                        name="to" value="{{old('to')}}" required>
-                                </div>
-                            </div>
+                            
 
 
             </div>

@@ -63,8 +63,7 @@
                                     <td> {{$index+1}} </td>
                                     <td> {{$payment->name}} </td>
                                     <td> {{$payment->code}} </td>
-                                    <!-- <td> {{$payment->cours}} </td> -->
-                                    <!-- <td> {{$payment->level}} </td> -->
+                                   
                                     <td> {{$payment->money}} </td>
                                     <td> {{$payment->type_payment}} </td>
                                     <td> {{$payment->date}} </td>
@@ -79,16 +78,11 @@
                                         <form class="inline" action="{{route('deletepayment',$payment->id)}}" method="POST">
                                             {{ method_field('delete') }} {!! csrf_field() !!}
 
-                                            <button title="Delete" type="submit" onclick="return confirm('Are you sure, You want to delete this payment ?')" type="button" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                            <button title="Delete" type="submit" onclick="return confirm('هل انت متاكد من حذف هذا الايصال!')" type="button" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
                                         </form>
                                         
                                     </td>
-                                    <!-- <td> {{$payment->discount}} </td> -->
-                                    
-                                    <!-- <td> {{$payment->discount_owner}} </td> -->
-                                    
-                                    <!-- <td> {{$payment->recipient}} </td> -->
-                                    <!-- <td> {{$payment->secretary}} </td> -->
+                                  
                                   
                                 </tr>
                             @endforeach

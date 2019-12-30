@@ -10,6 +10,8 @@ use Modules\ClassModule\Entities\SubClasse;
 use Modules\ClassModule\Entities\ClasseStudent;
 use Modules\DegreeModule\Entities\Degree;
 use Modules\DegreeModule\Entities\DegreeDetail;
+use Modules\DegreeModule\Entities\Month;
+
 use Illuminate\Support\Facades\DB;
 
 
@@ -21,14 +23,14 @@ class DegreeModuleController extends Controller
     public function index($id)
     {
         $subclasse =SubClasse::find($id);
-        $degree =  DB::table('degrees')->where('subclasse_id',$id)->get();
+        $degree =  DB::table('degree_details')->where('subclasse_id',$id)->get();
         if($degree->first() == null){
             return view('degreemodule::degree.index',compact('subclasse'));
         }
        
      
         
-        $degreedetail =  DB::table('degree_details')->where('degree_id',$degree->first()->id)->get();
+        $degreedetail =  DB::table('degree_details')->where('subclasse_id',$id)->get();
         
 
        return view('degreemodule::degree.show',compact('subclasse','degree','degreedetail'));
@@ -44,15 +46,18 @@ class DegreeModuleController extends Controller
     public function store(Request $request)
     {
         $subclasse =SubClasse::find($request->subclasse_id);
-        $degree = Degree::create([
-            'subclasse_id' => $request->subclasse_id,
-            'class_id' =>$request->class_id,
-        ]);
+        // $degree = Degree::create([
+        //     'subclasse_id' => $request->subclasse_id,
+        //     'class_id' =>$request->class_id,
+        // ]);
  
        foreach($request->item as $item){
 
             $degreedetail = new DegreeDetail();
-            $degreedetail->degree_id = $degree->id;
+
+            $degreedetail->subclasse_id = $request->subclasse_id;
+            $degreedetail->class_id = $request->class_id;
+
             $degreedetail->student_id = $item['student_id'];
             $degreedetail->attendance = $item['attendance'];
             $degreedetail->homework = $item['homework'];
@@ -86,34 +91,53 @@ class DegreeModuleController extends Controller
 
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     * @param int $id
-     * @return Response
-     */
-    public function edit($id)
+    
+  
+
+  
+
+      //////month///
+      public function month($id)
+      {
+          $classe = Classe::find($id);
+    
+          return view('degreemodule::month.index',compact('classe'));
+      }
+
+     
+
+
+      public function createmonth($id)
     {
-        return view('degreemodule::edit');
+        $classe = Classe::find($id);
+
+        return view('degreemodule::month.create',compact('classe'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     * @param Request $request
-     * @param int $id
-     * @return Response
-     */
-    public function update(Request $request, $id)
+    public function storemonth(Request $request)
     {
-        //
+       
+         Month::create($request->all());
+        return redirect()->route('month',$request->classe_id)->with('success','تم الاضافه بنجاح');
+    
     }
 
-    /**
-     * Remove the specified resource from storage.
-     * @param int $id
-     * @return Response
-     */
-    public function destroy($id)
+
+    public function addMonthDegree($id , $monthid)
     {
-        //
+        $subclasse =SubClasse::find($id);
+        $month =Month::find($monthid);
+
+        // $degree =  DB::table('degree_details')->where('subclasse_id',$id)->get();
+        // if($degree->first() == null){
+        //     return view('degreemodule::degree.index',compact('subclasse'));
+        // }
+       
+     
+        
+        $degreedetail =  DB::table('degree_details')->where('subclasse_id',$id)->get();
+        
+
+       return view('degreemodule::month.addMonthDegree',compact('subclasse','month'));
     }
 }

@@ -71,13 +71,14 @@
                                               method="POST">
                                             {{ method_field('DELETE') }} {!! csrf_field() !!}
                                             <button title="Delete" type="submit"
-                                                    onclick="return confirm('Are you sure, You want to delete Class?')"
+                                                    onclick="return confirm('هل انت متاكد من حذف هذا الكلاس  ؟ لاحظ حذف هذا الكلاس سيؤدي الي حذف كل معلوماته من حصصه وغيابه ودرجات هذا الكلاس !!!!')"
                                                     type="button" class="btn btn-danger"><i class="fa fa-trash"
                                                                                             aria-hidden="true"></i>
                                             </button>
                                         </form>
                                         <a href="{{route('studentclass',$item->id)}}"><button class="btn btn-primary">الطلاب</button></a>
-                                        <a href="{{route('subclass',$item->id)}}"><button class="btn btn-warning">الحصص</button></a>
+                                        <a href="{{route('month',$item->id)}}"><button class="btn btn-warning">الشهور</button></a>
+
                                         
                                         </td>
 

@@ -1,7 +1,7 @@
 @extends('commonmodule::layouts.master')
 
 @section('title')
-    طلاب الكلاس
+    شهور الكلاس
 @endsection
 
 @section('css')
@@ -13,7 +13,7 @@
 @section('content-header')
     <section class="content-header">
         <h1>
-            طلاب الكلاس
+        شهور الكلاس
         </h1>
 
     </section>
@@ -27,58 +27,52 @@
             <div class="col-xs-12">
                 <div class="box box-info">
                     <div class="box-header with-border">
-                        <h3 class="box-title">الطلاب</h3>
-                        <!-- <a href="{{route('createclass')}}" type="button"
+                        <h3 class="box-title">شهور</h3>
+                        <a href="{{route('createmonth',$classe->id)}}" type="button"
                            class="btn btn-success pull-right"><i class="fa fa-plus" aria-hidden="true"></i>
-                            &nbsp; اضافه طالب جديد</a> -->
+                            &nbsp; اضافه شهر جديد</a>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
                         <table id="example2" class="table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th>#</th>
-                                <th>الاسم</th>
-                                <th>النوع </th>
-                                <th> التلفون</th>
-                                <th>الباركود </th>
+                                
+                                <th> اسم الكورس</th>
+                                <th>رقم الشهر</th>
+                                <th>اسم الشهر</th>
+                                <th> التاريخ</th>
                                 <th>العمليات </th>
-                                <!-- <th> الايام</th>
-                                <th>من </th>
-                                <th>الي </th> -->
-
-                                <!-- <th>طلاب الكلاس </th> -->
-
-                                
-
-                                
-                                
+            
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach ($classe->students as $index=> $item)
+                           
+                            @foreach ($classe->monthes as  $item)
+                            
                                 <tr>
-                                    <td> {{$index+1}} </td>
+                                    <td> {{$item->classe->name}} </td> 
+                                    <td> {{$item->number}} </td>
                                     <td> {{$item->name}} </td>
-                                    <td> {{$item->gender}} </td>
-                                    <td> {{$item->phone}} </td>
-                                
-                                    <td> {{$item->barCode}}  </td>
-                                    <!-- <td> {{$item->day}} </td>
-                                    <td> {{$item->from}} </td>
-                                    <td> {{$item->to}} </td> -->
-                                    <td>     <form class="inline" action="{{route('deletestudentclass',$item->pivot->id)}}"
+                                    <td> {{$item->date}} </td>
+                                    <td> 
+                                    <form class="inline" action="{{route('deletesubclass',$item->id)}}"
                                               method="POST">
                                             {{ method_field('DELETE') }} {!! csrf_field() !!}
                                             <button title="Delete" type="submit"
-                                                    onclick="return confirm('هل انت متاكد من حذف هذا الطالب من هذا الكلاس !?')"
+                                                    onclick="return confirm('هل انت متاكد من حذف هذا الشهر!?')"
                                                     type="button" class="btn btn-danger"><i class="fa fa-trash"
                                                                                             aria-hidden="true"></i>
                                             </button>
-                                        </form>
-                                        <!-- <a href="{{route('viewlevels',$item->id)}}"><button class="btn btn-success">الدرجات</button></a>
-                                        <a href="{{route('viewlevels',$item->id)}}"><button class="btn btn-info">الغياب</button></a>
-                                         -->
+                                    </form>
+           
+                                       <a href="{{route('subclass',['id' => $item->classe->id, 'monthid' => $item->id])}}"><button class="btn btn-success">الحصص</button></a>
+                                       <a href="{{route('addmonthdegree',['id' => $item->classe->id, 'monthid' => $item->id])}}"><button class="btn btn-warning">درجه المشروع </button></a>
+                                        <!-- <a href="{{route('degreeindex',$item->id)}}"><button class="btn btn-success"> درجات</button></a> -->
+                                        <!-- <a href="{{route('degreeshow',$item->id)}}"><button class="btn btn-primary">عرض درجات</button></a> -->
+
+                                        <!-- <a href="{{route('attendance.index',$item->id)}}"><button class="btn btn-info">الغياب</button></a> -->
+                                        
                                         </td>
 
 
@@ -91,9 +85,9 @@
                     </div>
                     <!-- /.box-body -->
                     <div class="box-footer">
-                <a href="{{url('/admin-panel/classes')}}" type="button" class="btn btn-default">رجوع &nbsp; <i class="fa fa-remove" aria-hidden="true"></i> </a>
-                <!-- <button type="submit" class="btn btn-primary pull-right">{{__('formIndex.submit')}} &nbsp; <i class="fa fa-save"></i></button> -->
-            </div>
+                        <a href="{{url('/admin-panel/classes')}}" type="button" class="btn btn-default">رجوع &nbsp; <i class="fa fa-remove" aria-hidden="true"></i> </a>
+                        <!-- <button type="submit" class="btn btn-primary pull-right">{{__('formIndex.submit')}} &nbsp; <i class="fa fa-save"></i></button> -->
+                    </div>
                 </div>
                 <!-- /.box -->
             </div>
@@ -111,7 +105,7 @@
 
     @if (session('success'))
         <script>
-            swal("{{trans('courses::course.good')}}", "تم اضافه الطالب بنجاح", "success", {button: "{{trans('courses::course.btn')}}",});
+            swal("{{trans('courses::course.good')}}", "تم اضافه الحصه بنجاح", "success", {button: "{{trans('courses::course.btn')}}",});
         </script>
     @endif
 
@@ -123,7 +117,7 @@
 
     @if (session('deleted'))
         <script>
-            swal("{{trans('courses::course.good')}}", "تم حذف الطالب بنجاح", "success", {button: "{{trans('courses::course.btn')}}",});
+            swal("{{trans('courses::course.good')}}", "تم حذف الحصه بنجاح", "success", {button: "{{trans('courses::course.btn')}}",});
         </script>
     @endif
 

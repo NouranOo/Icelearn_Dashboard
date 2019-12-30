@@ -5,7 +5,10 @@
 @section('css')
 <!-- bootstrap wysihtml5 - text editor -->
 <link rel="stylesheet" href="{{asset('assets/admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
+<link rel="stylesheet"
+          href="{{ asset('assets/admin/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css') }}">
 @endsection
+
 
 @section('content-header')
 <section class="content-header">
@@ -81,4 +84,29 @@
             });
         });
 </script>
+
+
+    {{-- sweet alert --}}
+    <script src="{{asset('assets/admin/plugins/sweetalert/sweetalert.min.js')}}"></script>
+
+    @if (session('success'))
+        <script>
+            swal("{{__('commonmodule::swal.good')}}", "{{__('commonmodule::swal.saved')}}", "success", {button: "{{__('commonmodule::swal.btn')}}",});
+        </script>
+    @endif
+
+    @if (session('updated'))
+        <script>
+            swal("{{trans('courses::course.good')}}", "{{trans('courses::course.updated')}}", "success", {button: "{{trans('courses::course.btn')}}",});
+        </script>
+    @endif
+
+    @if (session('deleted'))
+        <script>
+            swal("عفوا", "عفوا لا يوجد طالب بهذا الباركود", "error", {button: "{{trans('courses::course.btn')}}",});
+        </script>
+    @endif
+
+   
+
 @endsection

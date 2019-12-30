@@ -27,8 +27,8 @@
             <div class="col-xs-12">
                 <div class="box box-info">
                     <div class="box-header with-border">
-                        <h3 class="box-title">الحصص</h3>
-                        <a href="{{route('createsubclass',$classe->id)}}" type="button"
+                        <h3 class="box-title">حصص شهر ({{$month->name}})</h3>
+                        <a href="{{route('createsubclass',['id' => $classe->id, 'monthid' => $month->id])}}" type="button"
                            class="btn btn-success pull-right"><i class="fa fa-plus" aria-hidden="true"></i>
                             &nbsp; اضافه حصه جديد</a>
                     </div>
@@ -48,7 +48,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach ($classe->subclasses as  $item)
+                            @foreach ($month->subclasses as  $item)
                                 <tr>
                                     
                                     <td> {{$item->number}} </td>
@@ -82,6 +82,10 @@
                         </table>
                     </div>
                     <!-- /.box-body -->
+                    <div class="box-footer">
+                        <a href="{{url('/admin-panel/classes')}}" type="button" class="btn btn-default">رجوع &nbsp; <i class="fa fa-remove" aria-hidden="true"></i> </a>
+                        <!-- <button type="submit" class="btn btn-primary pull-right">{{__('formIndex.submit')}} &nbsp; <i class="fa fa-save"></i></button> -->
+                    </div>
                 </div>
                 <!-- /.box -->
             </div>

@@ -18,20 +18,20 @@ class CreateAttendancesTable extends Migration
 
             $table->integer('classe_id')->unsigned()->nullable();
             $table->foreign('classe_id')->references('id')->on('classes')
-                ->onDelete('set null')
-                ->onUpdate('set null');
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
 
 
             $table->integer('student_id')->unsigned()->nullable();
             $table->foreign('student_id')->references('id')->on('students')
-                ->onDelete('set null')
-                ->onUpdate('set null');
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
 
 
             $table->integer('sub_classe_id')->unsigned()->nullable();
             $table->foreign('sub_classe_id')->references('id')->on('sub_classes')
-                ->onDelete('set null')
-                ->onUpdate('set null');
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
 
 
 

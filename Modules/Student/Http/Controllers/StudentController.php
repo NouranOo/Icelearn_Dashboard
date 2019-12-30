@@ -86,6 +86,8 @@ class StudentController extends Controller
             'photo' => 'mimes:jpeg,jpg,png | max:1000',
 
 
+        ],[
+            'digits'=>'  لابد رقم التلفون يتكون من 11 رقم  ... ولا بد الرقم القومي يتكون من 14 رقم  '
         ]);
         $studentData = $request->except('_token', 'photo', 'course', 'suggestedLevel', 'suggestedDay',
             'suggestedFromHour', 'suggestedToHour', 'suggestedDate', 'finallyLevel', 'finallyDay', 'finallyFromHour',

@@ -11,6 +11,8 @@ use Modules\Instructors\Entities\Instructor;
 use Modules\ClassModule\Entities\Classe;
 use Modules\ClassModule\Entities\SubClasse;
 use Modules\ClassModule\Entities\ClasseStudent;
+use Modules\DegreeModule\Entities\Month;
+
 
 
 
@@ -64,11 +66,7 @@ class ClassModuleController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     * @param int $id
-     * @return Response
-     */
+    
     public function destroy($id)
     {
         $classe = Classe::find($id);
@@ -88,30 +86,36 @@ class ClassModuleController extends Controller
 
 
     //////subclass///
-    public function subclass($id)
+    public function subclass($id,$monthid)
     {
 
-       
-
         $classe = Classe::find($id);
+        $month = Month::find($monthid);
 
-        return view('classmodule::subClass.index',compact('classe'));
+
+        return view('classmodule::subClass.index',compact('classe','month'));
     }
 
-
+    
 
    
-    public function createsubclass($id)
+    public function createsubclass($id,$monthid)
     {
         $classe = Classe::find($id);
+        $month = Month::find($monthid);
 
-        return view('classmodule::subclass.create',compact('classe'));
+
+        return view('classmodule::subclass.create',compact('classe','month'));
     }
 
     public function storesubclass(Request $request)
     {
-     SubClasse::create($request->all());
-        return redirect()->route('classindex')->with('success','تم الاضافه بنجاح');
+        
+      SubClasse::create($request->all());
+
+   
+
+return redirect()->route('subclass',['id'=>$request->classe_id,'monthid'=>$request->month_id])->with('success','تم الاضافه بنجاح');
     
     }
     
@@ -123,5 +127,9 @@ class ClassModuleController extends Controller
         return back()->with('deleted','تم الحذف بنجاح');
         
     }
+
+
+
+  
 
 }

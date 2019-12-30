@@ -1,7 +1,7 @@
 @extends('commonmodule::layouts.master')
 
 @section('title')
-    عرض غياب الحصه 
+    عرض درجات الحصه 
 @endsection
 
 @section('css')
@@ -13,7 +13,7 @@
 @section('content-header')
     <section class="content-header">
         <h1>
-            عرض غياب الحصه ({{$subclasse->day}})
+            عرض درجات الحصه ({{$subclasse->day}})
         </h1>
 
     </section>
@@ -92,22 +92,22 @@
                 <div class="box box-info">
                     <div class="box-header with-border">
                         <h3 class="box-title">الطلاب</h3>
-                       
+                        <!-- <a href="" type="button"
+                           class="btn btn-warning pull-right"><i class="fa fa-angle-left" aria-hidden="true"></i>
+                            &nbsp;   رجوع</a> -->
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
-
                         <table id="tableid" class="table table-bordered table-hover">
                             <thead>
                             <tr>
 
                                 <th> #</th>    
                                 <th> الطالب</th>
-                                <th>الكود </th>
-                                <th> الغياب</th>
-                                <th> تعديل</th>
-
-                                
+                                <th>الغياب </th>
+                                <th> الواجبات</th>
+                                <th>التفاعل </th>
+                                <th>المجموع </th>
             
                             </tr>
                             </thead>
@@ -116,49 +116,18 @@
                                 <tr>
                                     <td> {{$index+1}} </td>
                                     <td> {{$item->name}} </td>
-                                    <td> {{$item->barCode}} </td>
-                             
-                                @foreach($arr as $ar)
-                                   @if($ar == $item->id)
-                                 
-                                      {{$flag = 1}}
-                                      @break
-                                    @else
-                                    {{$flag = 0}}
-
-                                   @endif
-                                   
-                                @endforeach
            
-                                   @if($flag == 1)
-                                    <td class="contact_name"> 
-                                      <button id='btn' class="btn btn-success"> <i class="fa fa-check"></i></button> 
-                                      <input type="hidden" class="attendance" name="attendance[]" value="null">
-                                      <input type="hidden" class="student_id" name="id[]" value="{{$item->id}}">
-                                      <input type="hidden" class="subclasse_id" name="subclasse_id[]" value="{{$subclasse->id}}">
-                                      <input type="hidden" class="classe_id" name="classe_id[]" value="{{$subclasse->classe->id}}">
+                                    <input type="hidden" value="{{$item->id}}" name="item[{{ $index }}][student_id]">
+                                    <td class="combat"> {{$degreedetail[$index]->attendance}}  </td>
+                                    <td class="combat">  {{$degreedetail[$index]->homework}}   </td>
+                                    <td class="combat"> {{$degreedetail[$index]->action}}     </td>
+                                    <td  class="total-combat">   {{$degreedetail[$index]->total}} </td>
+                                      
+
+                                   
 
 
-                                    </td>
-                                    
-                                    <td><button class=" updatedata btn btn-warning">تحديث</button>  </td>
-
-                                   @else
-                                   <td class="contact_name">
-                                    <button id="btn" class="btn btn-danger"> <i class="fa fa-times"></i></button>
-                                      <input type="hidden" class="attendance" name="attendance[]" value="true">
-                                      <input type="hidden" class="student_id" name="id[]" value="{{$item->id}}">
-                                      <input type="hidden" class="subclasse_id" name="subclasse_id[]" value="{{$subclasse->id}}">
-                                      <input type="hidden" class="classe_id" name="classe_id[]" value="{{$subclasse->classe->id}}">
-
-
-                                     </td>
                                   
-
-                                   <td><button class=" updatedata btn btn-warning">تحديث</button>  </td>
-
-                                   @endif
-
                                 </tr>
                             @endforeach
                             </tbody>
@@ -166,7 +135,7 @@
                     </div>
                  <!-- /.box-body -->
             <div class="box-footer">
-                <a href="{{route('subclass',$subclasse->classe->id)}}" type="button" class="btn btn-danger">رجوع &nbsp; <i class="fa fa-remove" aria-hidden="true"></i> </a>
+                <a href="{{url('/admin-panel/classes')}}" type="button" class="btn btn-danger">رجوع &nbsp; <i class="fa fa-remove" aria-hidden="true"></i> </a>
                 <!-- <button type="submit" class="btn btn-primary pull-right">{{__('formIndex.submit')}} &nbsp; <i class="fa fa-save"></i></button> -->
             </div>
             <!-- /.box-footer -->
@@ -187,7 +156,7 @@
 
     @if (session('success'))
         <script>
-            swal("{{trans('courses::course.good')}}", "تم اضافه الغياب بنجاح", "success", {button: "{{trans('courses::course.btn')}}",});
+            swal("{{trans('courses::course.good')}}", "تم اضافه الحصه بنجاح", "success", {button: "{{trans('courses::course.btn')}}",});
         </script>
     @endif
 
@@ -199,7 +168,7 @@
 
     @if (session('deleted'))
         <script>
-            swal("{{trans('courses::course.good')}}", "تم حذف الغياب بنجاح", "success", {button: "{{trans('courses::course.btn')}}",});
+            swal("{{trans('courses::course.good')}}", "تم حذف الحصه بنجاح", "success", {button: "{{trans('courses::course.btn')}}",});
         </script>
     @endif
 
@@ -208,68 +177,34 @@
     <script src="{{asset('assets/admin/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('assets/admin/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
 
-     <script>
+    <!-- <script>
        
    
 
 
 
 
-   $(".updatedata").click(updateCart);
+    $("table tr").on('blur input', function () {
+ 
+    // $('tr').each(function () {
+       
+        var sum = 0
+        //find the combat elements in the current row and sum it 
+        $(this).find('.combat').each(function () {
+            var combat = $(this).find("input").val();
+           
+            if (!isNaN(combat) && combat.length !== 0) {
+                sum += parseFloat(combat);
+            }
+            $(this).parent('tr').find('.total-combat').html(sum);
+            $(this).parent('tr').find('.total-anas').val(sum);
 
-function updateCart(){
-  
-    var attendance = $(this).closest('tr').find('.contact_name').find('.attendance').val();
-    var student_id = $(this).closest('tr').find('.contact_name').find('.student_id').val();
-    var subclasse_id = $(this).closest('tr').find('.contact_name').find('.subclasse_id').val();
-    var classe_id = $(this).closest('tr').find('.contact_name').find('.classe_id').val();
-    var btn = $(this).closest('tr').find('.contact_name').find('#btn');
-    var fa = btn.find('.fa');
-
-
-    // if(btn.hasClass( "btn-danger" )){
-    //         btn.removeClass("btn-danger").addClass('btn-success');
-    //         fa.removeClass("fa-times").addClass('fa-check');
-    //     }else{
-    //         btn.removeClass("btn-success").addClass('btn-danger');
-    //         fa.removeClass("fa-check").addClass('fa-times');
-
-    //     }
-
-    $.ajax({
-    url:"{{route('attendance.updateAttendance')}}",  
-    method:"POST",  
-    data:{
-        'attendance' : attendance,
-        'student_id' : student_id,
-        'subclasse_id' : subclasse_id,
-        'classe_id' : classe_id,
-
-
-        '_token':"{{csrf_token() }}"
-    },                              
-    success: function( data ) {
-        //toastr.success("تم التحديث بنجاح!");
-        alert(data.success);
-        jQuery('.alert').show();
-        jQuery('.alert').html(data.success);
-
-        if(btn.hasClass( "btn-danger" )){
-            btn.removeClass("btn-danger").addClass('btn-success');
-            fa.removeClass("fa-times").addClass('fa-check');
-        }else{
-            btn.removeClass("btn-success").addClass('btn-danger');
-            fa.removeClass("fa-check").addClass('fa-times');
-
-        }
-
-
-     
-    }
+            
+        
+    });
 });
-}
 
 
-    </script> 
+    </script> -->
 
 @endsection

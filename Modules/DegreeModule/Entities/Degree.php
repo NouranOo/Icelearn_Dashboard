@@ -3,17 +3,11 @@
 namespace Modules\DegreeModule\Entities;
 
 use Illuminate\Database\Eloquent\Model;
-use Modules\ClassModule\Entities\SubClasse;
+
 
 
 class Degree extends Model
 {
-    protected $fillable = ['subclasse_id','class_id'];
+    protected $fillable = [];
 
-    
-    public function subclasse(){
-
-        return $this->hasOne(SubClasse::class);
-
-    }
 }

@@ -15,13 +15,15 @@ Route::group(['prefix' => 'admin-panel', 'middleware' => ['auth:admin']], functi
 
             ////subclass//
 
-            Route::get('/subclass/{id}', 'ClassModuleController@subclass')->name('subclass');
-            Route::get('/createsubclass/{id}', 'ClassModuleController@createsubclass')->name('createsubclass');
+            Route::get('/subclass/{id}/{monthid}', 'ClassModuleController@subclass')->name('subclass');
+            Route::get('/createsubclass/{id}/{monthid}', 'ClassModuleController@createsubclass')->name('createsubclass');
             Route::post('/storesubclass', 'ClassModuleController@storesubclass')->name('storesubclass');
 
             Route::delete('/deletesubclass/{id}', 'ClassModuleController@deletesubclass')->name('deletesubclass');
 
 
+
+            
 
 
 

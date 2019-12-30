@@ -38,7 +38,7 @@
                     <label class="control-label col-sm-2" for="title">{{__('formIndex.title')}}
                     </label>
                     <div class="col-sm-8">
-                        <input type="text"  class="form-control"  name="name" value="{{$students->first()->name}}">
+                        <input type="text"  class="form-control"  name="name" value="{{$students->first()->name}}" required>
                         <input type="hidden"  class="form-control"  name="student_id" value="{{$students->first()->id}}">
 
                     </div>
@@ -60,17 +60,10 @@
                   
                     <label class="control-label col-sm-2" for="title">الكورس:
                     </label>
-                    <!-- <div class="col-sm-8">
-                     
-                        <input type="text" autocomplete="off" class="form-control"  name="course" value="{{$students->first()->courses->last()->title}}">
-                    </div>
-                    <div class="col-sm-8">
-                     
-                        <input type="hidden" autocomplete="off" class="form-control"  name="course_id" value="{{$students->first()->courses->last()->id}}">
-                    </div> -->
+                  
                     <div class="col-sm-8">
 
-                    <select class="form-control" name="course_id">
+                    <select class="form-control" name="course_id" required>
                               @foreach($students->first()->courses as $course)
                                <option value="{{ $course->id}}"> {{$course->title}}  </option>
                               @endforeach
@@ -87,7 +80,7 @@
                     </label>
                    
                     <div class="col-sm-8">
-                    <select class="form-control" name="level_id">
+                    <select class="form-control" name="level_id" required>
                               @foreach($students->first()->levels as $studentlevel)
                                <option value="{{ $studentlevel->id}}"> {{$studentlevel->title}}-{{$studentlevel->course->title}}  </option>
                               @endforeach
@@ -104,7 +97,7 @@
                     <label class="control-label col-sm-1" style="float:right;padding-left:0;" for="title">مبلغ وقدره:
                     </label>
                     <div class="col-sm-9" style="width:80%">
-                        <input type="text" autocomplete="off" class="form-control"  name="money">
+                        <input type="number" min='0' step='any' autocomplete="off" class="form-control"  name="money" required>
                                
                     </div>  </div></div>
                 </div>
@@ -125,7 +118,7 @@
                 <div class="form-group col-sm-6">
                     <label class="control-label col-sm-2" for="title">التاريخ:</label>
                     <div class="col-sm-8">
-                        <input type="date" autocomplete="off" class="form-control" value="{{old('date')}}"  name="date" >
+                        <input type="date" autocomplete="off" class="form-control" value="{{old('date')}}"  name="date" required>
                     </div>
                 </div>
               

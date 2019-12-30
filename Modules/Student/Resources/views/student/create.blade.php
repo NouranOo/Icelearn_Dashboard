@@ -44,14 +44,14 @@
                     <label class="control-label col-sm-2" for="title">{{trans('student::student.name')}}:</label>
                     <div class="col-sm-8">
                         <input type="text" autocomplete="off" class="form-control" placeholder="اسم الطالب" name="name"
-                            value="{{old('name')}}">
+                            value="{{old('name')}}" required>
                     </div>
                 </div>
                 {{-- Gender --}}
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="title">{{trans('student::student.gender')}}:</label>
                     <div class="col-sm-8">
-                        <select class="form-control" name="gender" value="{{old('gender')}}">
+                        <select class="form-control" name="gender" value="{{old('gender')}}" required>
                             <option value="male">ذكر</option>
                             <option value="female">
                                 <pre>أنثى</pre>
@@ -65,7 +65,7 @@
                     <div class="col-sm-8">
                         <input type="text" autocomplete="off" data-validation="number" class="form-control"
                             placeholder="{{trans('student::student.NID')}}" name="NID" id="nid" value="{{old('NID')}}"
-                            onkeyup="myFunction()">
+                            onkeyup="myFunction()" required>
                     </div>
                 </div>
 {{--                --}}{{-- Birth --}}
@@ -90,7 +90,7 @@
                     <label class="control-label col-sm-2" for="title">رقم المحمول(طالب):</label>
                     <div class="col-sm-8">
                         <input type="text" autocomplete="off" data-validation="number" class="form-control"
-                            placeholder="{{trans('student::student.phone')}}" name="phone" value="{{old('phone')}}">
+                            placeholder="{{trans('student::student.phone')}}" name="phone" value="{{old('phone')}}" required>
                     </div>
                 </div>
                 {{-- current job --}}
@@ -127,7 +127,7 @@
                     <label class="control-label col-sm-2" for="title">رقم الهاتف الإرضى:</label>
                     <div class="col-sm-8">
                         <input type="text" autocomplete="off" class="form-control" name="telephoneFix"
-                            value="{{old('telephoneFix')}}" placeholder="الهاتف الارضى">
+                            value="{{old('telephoneFix')}}" placeholder="الهاتف الارضى" >
                     </div>
                 </div>
                 {{-- Barcode--}}
@@ -136,7 +136,7 @@
                     <label class="control-label col-sm-2" for="title">الباركود:</label>
                     <div class="col-sm-8">
                         <input type="text" autocomplete="off" class="form-control" name="barCode"
-                            value="{{old('barCode')}}" placeholder="barcode" id="barcode">
+                            value="{{old('barCode')}}" placeholder="barcode" id="barcode" required>
                     </div>
                 </div>
                 {{-- Upload photo --}}

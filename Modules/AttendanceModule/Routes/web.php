@@ -20,5 +20,7 @@ Route::prefix('admin-panel')->name('attendance.')->group(function(){
     Route::post('/attendancestore', 'AttendanceModuleController@store')->name('store');
 
 
+   Route::POST('updateAttendance', 'AttendanceModuleController@updateAttendance')->name('updateAttendance');
+
     
         });
