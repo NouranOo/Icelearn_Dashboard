@@ -110,7 +110,7 @@
                                 <th>التفاعل </th>
                                 <th>المجموع </th>
                                
-            
+                                <input type="hidden" value="{{$monthid}}" name="month_id"> 
                             </tr>
                             </thead>
                             <tbody>
@@ -126,6 +126,7 @@
                                     <td  class="total-combat">   </td>
                                      <input type="hidden" value="0" class="total-anas" name="item[{{ $index }}][total]">  
 
+                                     
                                    
 
 

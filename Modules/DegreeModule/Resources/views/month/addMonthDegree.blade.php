@@ -33,29 +33,29 @@
                     <div class="">
             <form class="" action="{{route('storedegree')}}" method="POST">
             {{ csrf_field() }}    
-                        <label class="control-label col-sm-3" for="title">  الكلاس:   {{$subclasse->classe->name}}</label>
-                        <input type="hidden" value="{{$subclasse->classe->id}}" name="class_id">
+                        <label class="control-label col-sm-3" for="title">  الكلاس:   {{$classe->name}}</label>
+                        <input type="hidden" value="{{$classe->id}}" name="class_id">
                         
                         
                     </div>
                     <div class="">
                         
-                        <label class="control-label col-sm-3" for="title">  الكورس:   {{$subclasse->classe->course->title}}</label>
-                        <input type="hidden" value="{{$subclasse->classe->course->id}}" name="course_id">
+                        <label class="control-label col-sm-3" for="title">  الكورس:   {{$classe->course->title}}</label>
+                        <input type="hidden" value="{{$classe->course->id}}" name="course_id">
 
                         
                       
                     </div>
                     <div class="">
                       
-                        <label class="control-label col-sm-3" for="title">  المستوي: {{$subclasse->classe->level->title}}</label>
+                        <label class="control-label col-sm-3" for="title">  المستوي: {{$classe->level->title}}</label>
 
                         
                     </div>
                     {{-- Classe Name --}}
                     <div class="">
                         <label class="control-label col-sm-2" for="title">  رقم الشهر :{{$month->number}}</label>
-                        <input type="hidden" value="{{$subclasse->id}}" name="subclasse_id">
+                        <input type="hidden" value="{{$month->id}}" name="month_id">
 
                         
                        
@@ -64,11 +64,10 @@
                     <br>
                     <br>
                     <br>
-                    {{-- Classe Name --}}
-                    <!-- <div class="">
-                        <label class="control-label col-sm-3" for="title">  رقم الحصه :{{$subclasse->number}}</label>
+                   
+                   
                        
-                    </div> -->
+                   
                     <div class="">
                         
                         <label class="control-label col-sm-3" for="title">  اسم الشهر:  {{$month->name}}</label>
@@ -114,14 +113,14 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach ( $subclasse->classe->students as $index=> $item)
+                            @foreach ( $classe->students as $index=> $item)
                                 <tr>
                                     <td> {{$index+1}} </td>
                                     <td> {{$item->name}} </td>
            
                                     <input type="hidden" value="{{$item->id}}" name="item[{{ $index }}][student_id]">
 
-                                    <td class="combat">25  </td>
+                                    <td class="combat">{{$totaldegree[$index]->total}} </td>
                                     <td class="combat"><input type="number" value="0" min="0" step="any" class="form-control" name="item[{{ $index }}][projectdegree]">   </td>
                                     <td class="combat"> </td>
                                      <input type="hidden" value="0" class="total-anas" name="item[{{ $index }}][total]">  

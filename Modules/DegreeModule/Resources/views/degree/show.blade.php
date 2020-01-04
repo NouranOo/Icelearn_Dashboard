@@ -31,6 +31,8 @@
                     <br>
                     {{-- Classe Name --}}
                     <div class="">
+
+                    
                 
                         <label class="control-label col-sm-3" for="title">  الكلاس:   {{$subclasse->classe->name}}</label>
                         <input type="hidden" value="{{$subclasse->classe->id}}" name="class_id">
@@ -108,26 +110,99 @@
                                 <th> الواجبات</th>
                                 <th>التفاعل </th>
                                 <th>المجموع </th>
+                                <th>تعديل </th>
+
             
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach ( $subclasse->classe->students as $index=> $item)
+                         
+
+                            <!-- @foreach ( $degree as $index=> $item)
                                 <tr>
                                     <td> {{$index+1}} </td>
-                                    <td> {{$item->name}} </td>
+                                    <td> {{$item->student->name}} </td>
            
                                     <input type="hidden" value="{{$item->id}}" name="item[{{ $index }}][student_id]">
-                                    <td class="combat"> {{$degreedetail[$index]->attendance}}  </td>
-                                    <td class="combat">  {{$degreedetail[$index]->homework}}   </td>
-                                    <td class="combat"> {{$degreedetail[$index]->action}}     </td>
-                                    <td  class="total-combat">   {{$degreedetail[$index]->total}} </td>
+                                    <td class="combat"> {{$item->attendance}}  </td>
+                                    <td class="combat">  {{$item->homework}}   </td>
+                                    <td class="combat"> {{$item->action}}     </td>
+                                    <td  class="total-combat">   {{$item->total}} </td>
                                       
 
                                    
 
 
                                   
+                                </tr>
+                            @endforeach -->
+
+
+                            @foreach ( $subclasse->classe->students as $index=> $item)
+                                <tr>
+                                    <td> {{$index+1}} </td>
+                                    <td> {{$item->name}} </td>
+                                 
+                                 
+                             
+                                @foreach($arr as $ar)
+                                   @if($ar == $item->id)
+                                 
+                                      {{$flag = 1}}
+                                      @break
+                                    @else
+                                    {{$flag = 0}}
+
+                                   @endif
+                                   
+                                @endforeach
+           
+                                   @if($flag == 1)
+                                 
+                                    
+
+                                    <input type="hidden" value="{{$item->id}}" name="item[{{ $index }}][student_id]">
+                                    <td class="combat attendance"><input type="number"  min="0" step="any" class="form-control attendance1" name="item[{{ $index }}][attendance]" value="{{$degreedetail[$index]->attendance}}"> </td>
+                                    <td class="combat homework"><input type="number"  min="0" step="any" class="form-control  homework1" name="item[{{ $index }}][homework]" value="{{$degreedetail[$index]->homework}}">   </td>
+                                    <td class="combat action itm"> 
+                                     <input type="number"  min="0" step="any" class="form-control  action1" name="item[{{ $index }}][action]" value="{{$degreedetail[$index]->action}}">
+                                      <input type="hidden" class="student_id" name="id[]" value="{{$item->id}}">
+                                      <input type="hidden" class="subclasse_id" name="subclasse_id[]" value="{{$subclasse->id}}">
+                                      <input type="hidden" class="classe_id" name="classe_id[]" value="{{$subclasse->classe->id}}">
+                                      <input type="hidden" class="month_id" name="month_id[]" value="{{$monthid}}">
+
+                                       </td>
+                                    <td  class="total-combat "> {{$degreedetail[$index]->total}}
+                                    </td>
+                                    <td> 
+                                      <input type="hidden" class="total-anas" name="item[{{ $index }}][total]" value="{{$degreedetail[$index]->total}}">
+                                       <button class=" updatedata btn btn-warning">تحديث</button> 
+                                    </td>
+
+                                   @else
+
+                                   <input type="hidden" value="{{$item->id}}" name="item[{{ $index }}][student_id]">
+                                    <td class="combat attendance"><input type="number" value="0" min="0" step="any" class="form-control attendance1" name="item[{{ $index }}][attendance]">  </td>
+                                    <td class="combat homework"><input type="number" value="0" min="0" step="any" class="form-control homework1" name="item[{{ $index }}][homework]">   </td>
+                                    <td class="combat action itm">
+                                     <input type="number" value="0" min="0" step="any" class="form-control action1" name="item[{{ $index }}][action]">
+
+                                      <input type="hidden" class="student_id" name="id[]" value="{{$item->id}}">
+                                      <input type="hidden" class="subclasse_id" name="subclasse_id[]" value="{{$subclasse->id}}">
+                                      <input type="hidden" class="classe_id" name="classe_id[]" value="{{$subclasse->classe->id}}">
+                                      <input type="hidden" class="month_id" name="month_id[]" value="{{$monthid}}">
+
+                                        </td>
+                                    <td  class="total-combat "> 
+                                    </td>
+                                     <td> 
+                                     <input type="hidden" value="0" class="total-anas" name="item[{{ $index }}][total]">  
+                                       <button class=" updatedata btn btn-warning">تحديث</button>   
+                                      </td>
+                
+
+                                   @endif
+
                                 </tr>
                             @endforeach
                             </tbody>
@@ -177,13 +252,14 @@
     <script src="{{asset('assets/admin/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('assets/admin/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
 
-    <!-- <script>
+     <script>
        
    
 
 
 
 
+    
     $("table tr").on('blur input', function () {
  
     // $('tr').each(function () {
@@ -205,6 +281,69 @@
 });
 
 
-    </script> -->
+$(".updatedata").click(updateCart);
+
+function updateCart(){
+    
+    var total = $(this).parent('td').find('.total-anas').val();
+    var attendance = $(this).parent('td').parent('tr').find('.attendance').find('.attendance1').val();
+    var homework = $(this).parent('td').parent('tr').find('.homework').find('.homework1').val();
+    var action = $(this).parent('td').parent('tr').find('.action').find('.action1').val();
+
+  
+
+    var student_id =$(this).parent('td').parent('tr').find('.itm').find('.student_id').val();
+    var subclasse_id = $(this).parent('td').parent('tr').find('.itm').find('.subclasse_id').val();
+    var classe_id = $(this).parent('td').parent('tr').find('.itm').find('.classe_id').val();
+    var month_id = $(this).parent('td').parent('tr').find('.itm').find('.month_id').val();
+
+    
+   
+    console.log(total);
+    console.log(attendance);
+    console.log(homework);
+    console.log(action);
+
+    console.log(student_id);
+    console.log(subclasse_id);
+    console.log(classe_id);
+    console.log(month_id);
+    
+
+  
+
+    $.ajax({
+    url:"{{route('update.subdegree')}}",  
+    method:"POST",  
+    data:{
+        'total' : total,
+        'attendance' : attendance,
+        'homework' : homework,
+        'action' : action,
+        'student_id' : student_id,
+        'subclasse_id' : subclasse_id,
+        'classe_id' : classe_id,
+        'month_id' : month_id,
+       
+
+
+        '_token':"{{csrf_token() }}"
+    },                              
+    success: function( data ) {
+        //toastr.success("تم التحديث بنجاح!");
+        alert(data.success);
+        jQuery('.alert').show();
+        jQuery('.alert').html(data.success);
+
+   
+
+
+     
+    }
+  });
+}
+
+
+    </script>
 
 @endsection

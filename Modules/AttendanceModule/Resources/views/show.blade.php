@@ -166,7 +166,7 @@
                     </div>
                  <!-- /.box-body -->
             <div class="box-footer">
-                <a href="{{route('subclass',$subclasse->classe->id)}}" type="button" class="btn btn-danger">رجوع &nbsp; <i class="fa fa-remove" aria-hidden="true"></i> </a>
+               
                 <!-- <button type="submit" class="btn btn-primary pull-right">{{__('formIndex.submit')}} &nbsp; <i class="fa fa-save"></i></button> -->
             </div>
             <!-- /.box-footer -->
@@ -227,14 +227,7 @@ function updateCart(){
     var fa = btn.find('.fa');
 
 
-    // if(btn.hasClass( "btn-danger" )){
-    //         btn.removeClass("btn-danger").addClass('btn-success');
-    //         fa.removeClass("fa-times").addClass('fa-check');
-    //     }else{
-    //         btn.removeClass("btn-success").addClass('btn-danger');
-    //         fa.removeClass("fa-check").addClass('fa-times');
-
-    //     }
+  
 
     $.ajax({
     url:"{{route('attendance.updateAttendance')}}",  
@@ -266,7 +259,7 @@ function updateCart(){
 
      
     }
-});
+  });
 }
 
 

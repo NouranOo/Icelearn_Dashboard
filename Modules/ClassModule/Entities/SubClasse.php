@@ -22,11 +22,8 @@ class SubClasse extends Model
         return $this->belongsTo(Classe::class);
     }
 
-    public function degree(){
-
-        return $this->belongsTo(Degree::class);
-
-    }
+ 
+   
     public function attendances()
     {
         return $this->hasMany(Attendance::class);

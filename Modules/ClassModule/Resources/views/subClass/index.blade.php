@@ -66,7 +66,7 @@
                                                                                             aria-hidden="true"></i>
                                             </button>
                                     </form>
-                                        <a href="{{route('degreeindex',$item->id)}}"><button class="btn btn-success"> درجات</button></a>
+                                        <a href="{{route('degreeindex',['id' =>$item->id, 'monthid' => $month->id])}}"><button class="btn btn-success"> درجات</button></a>
                                         <!-- <a href="{{route('degreeshow',$item->id)}}"><button class="btn btn-primary">عرض درجات</button></a> -->
 
                                         <a href="{{route('attendance.index',$item->id)}}"><button class="btn btn-info">الغياب</button></a>

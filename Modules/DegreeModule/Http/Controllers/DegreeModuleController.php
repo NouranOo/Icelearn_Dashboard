@@ -8,7 +8,6 @@ use Illuminate\Routing\Controller;
 use Modules\ClassModule\Entities\Classe;
 use Modules\ClassModule\Entities\SubClasse;
 use Modules\ClassModule\Entities\ClasseStudent;
-use Modules\DegreeModule\Entities\Degree;
 use Modules\DegreeModule\Entities\DegreeDetail;
 use Modules\DegreeModule\Entities\Month;
 
@@ -20,12 +19,41 @@ use Illuminate\Support\Facades\DB;
 class DegreeModuleController extends Controller
 {
    
-    public function index($id)
-    {
+    // public function indexold($id,$monthid){
+       
+    //     $subclasse =SubClasse::find($id);
+       
+
+
+    //     $degree =  DegreeDetail::where('subclasse_id',$id)->get();
+        
+    //     if($degree->first() == null){
+    //         return view('degreemodule::degree.index',compact('subclasse','monthid'));
+    //     }
+       
+     
+        
+    //     $degreedetail =  DB::table('degree_details')->where('subclasse_id',$id)->get();
+        
+
+    //    return view('degreemodule::degree.show',compact('subclasse','degree','degreedetail','monthid'));
+    // }
+
+
+    public function index($id,$monthid){
+       
         $subclasse =SubClasse::find($id);
-        $degree =  DB::table('degree_details')->where('subclasse_id',$id)->get();
+        $flag = 0;
+        $arr =[];
+        $degree =  DegreeDetail::where('subclasse_id',$id)->get();
+
+        foreach ($degree as $degre){
+            if($degre->total != null){
+                $arr [] = $degre->student_id;
+            }
+    }
         if($degree->first() == null){
-            return view('degreemodule::degree.index',compact('subclasse'));
+            return view('degreemodule::degree.index',compact('subclasse','monthid'));
         }
        
      
@@ -33,7 +61,7 @@ class DegreeModuleController extends Controller
         $degreedetail =  DB::table('degree_details')->where('subclasse_id',$id)->get();
         
 
-       return view('degreemodule::degree.show',compact('subclasse','degree','degreedetail'));
+       return view('degreemodule::degree.show',compact('subclasse','degree','degreedetail','monthid','arr','flag'));
     }
 
     
@@ -45,11 +73,9 @@ class DegreeModuleController extends Controller
   
     public function store(Request $request)
     {
+     
         $subclasse =SubClasse::find($request->subclasse_id);
-        // $degree = Degree::create([
-        //     'subclasse_id' => $request->subclasse_id,
-        //     'class_id' =>$request->class_id,
-        // ]);
+       
  
        foreach($request->item as $item){
 
@@ -57,6 +83,8 @@ class DegreeModuleController extends Controller
 
             $degreedetail->subclasse_id = $request->subclasse_id;
             $degreedetail->class_id = $request->class_id;
+            $degreedetail->month_id = $request->month_id;
+
 
             $degreedetail->student_id = $item['student_id'];
             $degreedetail->attendance = $item['attendance'];
@@ -69,36 +97,69 @@ class DegreeModuleController extends Controller
       
        return redirect()->route('classindex')->with('success','تم الاضافه بنجاح');
 
-    //    return view('degreemodule::degree.show',compact('subclasse'));
+    
 
 
     }
 
   
-    public function show($id)
-    {
-        $subclasse =SubClasse::find($id);
-        $degree =  DB::table('degrees')->where('subclasse_id',$id)->get();
+    public function updateSubDegrees(Request $request){
+
+  $getdegree = DegreeDetail::where([
+    ['subclasse_id', '=', $request->subclasse_id],
+    ['student_id', '=', $request->student_id],])->first();
+
+    
+
+
+    if($getdegree == null){
+
         
+        
+
+        $degreedetail = new DegreeDetail();
+
+
+        $degreedetail->student_id = intval($request->student_id);
+        $degreedetail->subclasse_id = intval($request->subclasse_id);
+        $degreedetail->class_id = intval($request->classe_id);
+        $degreedetail->month_id = intval($request->month_id);
+        
+        $degreedetail->attendance = $request->attendance;
+        $degreedetail->homework = $request->homework;
+        $degreedetail->action = $request->action;
+        $degreedetail->total = $request->total;
+
+
+        $degreedetail->save();
+
+        
+      
+    }else{
        
-
-        $degreedetail =  DB::table('degree_details')->where('degree_id',$degree->first()->id)->get();
-        
-        dd($degreedetail);
-       return view('degreemodule::degree.show',compact('subclasse','degree','degreedetail'));
-
+      
         
 
+      $getdegree->update([
+          'attendance'=> $request->attendance,
+          'homework'=> $request->homework,
+          'action'=> $request->action,
+          'total'=> $request->total,
+      ]);
     }
+
+
+      return response()->json(['success'=>'تم التحديث بنجاح!']);
+
+ }
 
     
   
-
-  
-
       //////month///
-      public function month($id)
+      public function monthNew($id)
       {
+          
+          
           $classe = Classe::find($id);
     
           return view('degreemodule::month.index',compact('classe'));
@@ -118,26 +179,31 @@ class DegreeModuleController extends Controller
     {
        
          Month::create($request->all());
-        return redirect()->route('month',$request->classe_id)->with('success','تم الاضافه بنجاح');
+        return redirect()->route('month.all',$request->classe_id)->with('success','تم الاضافه بنجاح');
     
     }
-
+    public function deleteMonth($id)
+    {
+        $month = Month::find($id);
+        $month->delete();
+        return back()->with('deleted','تم الحذف بنجاح');
+        
+    }
 
     public function addMonthDegree($id , $monthid)
     {
-        $subclasse =SubClasse::find($id);
-        $month =Month::find($monthid);
+        $classe = Classe::find($id);
 
-        // $degree =  DB::table('degree_details')->where('subclasse_id',$id)->get();
-        // if($degree->first() == null){
-        //     return view('degreemodule::degree.index',compact('subclasse'));
-        // }
        
+        $month =Month::find($monthid);
+        $totaldegree = $month->degreedetails;
+        
+
      
         
         $degreedetail =  DB::table('degree_details')->where('subclasse_id',$id)->get();
         
 
-       return view('degreemodule::month.addMonthDegree',compact('subclasse','month'));
+       return view('degreemodule::month.addMonthDegree',compact('classe','month','totaldegree'));
     }
 }

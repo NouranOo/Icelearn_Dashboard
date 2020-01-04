@@ -56,7 +56,7 @@
                                     <td> {{$item->name}} </td>
                                     <td> {{$item->date}} </td>
                                     <td> 
-                                    <form class="inline" action="{{route('deletesubclass',$item->id)}}"
+                                    <form class="inline" action="{{route('deletemonth',$item->id)}}"
                                               method="POST">
                                             {{ method_field('DELETE') }} {!! csrf_field() !!}
                                             <button title="Delete" type="submit"
@@ -68,11 +68,7 @@
            
                                        <a href="{{route('subclass',['id' => $item->classe->id, 'monthid' => $item->id])}}"><button class="btn btn-success">الحصص</button></a>
                                        <a href="{{route('addmonthdegree',['id' => $item->classe->id, 'monthid' => $item->id])}}"><button class="btn btn-warning">درجه المشروع </button></a>
-                                        <!-- <a href="{{route('degreeindex',$item->id)}}"><button class="btn btn-success"> درجات</button></a> -->
-                                        <!-- <a href="{{route('degreeshow',$item->id)}}"><button class="btn btn-primary">عرض درجات</button></a> -->
-
-                                        <!-- <a href="{{route('attendance.index',$item->id)}}"><button class="btn btn-info">الغياب</button></a> -->
-                                        
+                                    
                                         </td>
 
 
@@ -86,7 +82,6 @@
                     <!-- /.box-body -->
                     <div class="box-footer">
                         <a href="{{url('/admin-panel/classes')}}" type="button" class="btn btn-default">رجوع &nbsp; <i class="fa fa-remove" aria-hidden="true"></i> </a>
-                        <!-- <button type="submit" class="btn btn-primary pull-right">{{__('formIndex.submit')}} &nbsp; <i class="fa fa-save"></i></button> -->
                     </div>
                 </div>
                 <!-- /.box -->
@@ -105,7 +100,7 @@
 
     @if (session('success'))
         <script>
-            swal("{{trans('courses::course.good')}}", "تم اضافه الحصه بنجاح", "success", {button: "{{trans('courses::course.btn')}}",});
+            swal("{{trans('courses::course.good')}}", "تم اضافه الشهر بنجاح", "success", {button: "{{trans('courses::course.btn')}}",});
         </script>
     @endif
 
@@ -117,7 +112,7 @@
 
     @if (session('deleted'))
         <script>
-            swal("{{trans('courses::course.good')}}", "تم حذف الحصه بنجاح", "success", {button: "{{trans('courses::course.btn')}}",});
+            swal("{{trans('courses::course.good')}}", "تم حذف الشهر بنجاح", "success", {button: "{{trans('courses::course.btn')}}",});
         </script>
     @endif
 

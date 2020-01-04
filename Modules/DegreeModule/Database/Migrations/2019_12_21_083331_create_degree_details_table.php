@@ -16,6 +16,7 @@ class CreateDegreeDetailsTable extends Migration
             $table->integer('student_id')->nullable()->unsigned();
             $table->integer('subclasse_id')->nullable()->unsigned();
             $table->integer('class_id')->nullable()->unsigned();
+            $table->integer('month_id')->nullable()->unsigned();
 
             $table->double('attendance');
             $table->double('homework');
@@ -24,9 +25,11 @@ class CreateDegreeDetailsTable extends Migration
 
           
 
-            $table->foreign('subclasse_id')->references('id')->on('sub_classes')->onDelete('cascade');
-            $table->foreign('class_id')->references('id')->on('classes')->onDelete('cascade');
-            $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
+            $table->foreign('subclasse_id')->references('id')->on('sub_classes')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('class_id')->references('id')->on('classes')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('month_id')->references('id')->on('months')->onDelete('cascade')->onUpdate('cascade');
+
             
 
             $table->timestamps();

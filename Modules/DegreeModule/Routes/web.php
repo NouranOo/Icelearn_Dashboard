@@ -5,21 +5,24 @@ Route::group(['prefix' => 'admin-panel', 'middleware' => ['auth:admin']], functi
 
     Route::prefix('degrees')->group(function() {
 
-         Route::get('/{id}', 'DegreeModuleController@index')->name('degreeindex');
+         Route::get('getdegree/{id}/{monthid}', 'DegreeModuleController@index')->name('degreeindex');
          Route::get('degreeshow/{id}', 'DegreeModuleController@show')->name('degreeshow');
          Route::post('/storedegree', 'DegreeModuleController@store')->name('storedegree');
+
+
+            Route::post('/updatedegree', 'DegreeModuleController@updateSubDegrees')->name('update.subdegree');
 
     
 
         
             //////monthes////
-            Route::get('/month/{id}', 'DegreeModuleController@month')->name('month');
+            Route::get('/monthessss/{id}', 'DegreeModuleController@monthNew')->name('month.all');
             Route::post('/storemonth', 'DegreeModuleController@storemonth')->name('storemonth');
             Route::get('createmonth/{id}', 'DegreeModuleController@createmonth')->name('createmonth');
 
             Route::get('/monthdegree/{id}/{monthid}', 'DegreeModuleController@addMonthDegree')->name('addmonthdegree');
 
-
+            Route::delete('/deletemonth/{id}', 'DegreeModuleController@deleteMonth')->name('deletemonth');
 
         
 
