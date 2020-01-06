@@ -113,14 +113,14 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach ( $classe->students as $index=> $item)
+                            @foreach ( $totSubDegs as $index=> $item)
                                 <tr>
                                     <td> {{$index+1}} </td>
-                                    <td> {{$item->name}} </td>
+                                    <td> {{$item->student->name}} </td>
            
                                     <input type="hidden" value="{{$item->id}}" name="item[{{ $index }}][student_id]">
 
-                                    <td class="combat">{{$totaldegree[$index]->total}} </td>
+                                    <td class="combat">{{$item->total_degree}} </td>
                                     <td class="combat"><input type="number" value="0" min="0" step="any" class="form-control" name="item[{{ $index }}][projectdegree]">   </td>
                                     <td class="combat"> </td>
                                      <input type="hidden" value="0" class="total-anas" name="item[{{ $index }}][total]">  
@@ -181,7 +181,17 @@
 
     <script>
        
-   
+       $(document).ready( function() {
+            var now = new Date();
+            var month = (now.getMonth() + 1);               
+            var day = now.getDate();
+            if (month < 10) 
+                month = "0" + month;
+            if (day < 10) 
+                day = "0" + day;
+            var today = now.getFullYear() + '-' + month + '-' + day;
+            $('#date').val(today);
+        });
 
 
 

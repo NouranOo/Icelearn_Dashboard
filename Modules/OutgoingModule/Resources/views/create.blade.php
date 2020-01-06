@@ -39,7 +39,7 @@
                     {{-- Date --}}
                     <label class="control-label col-sm-2" for="title">التاريخ </label>
                     <div class="col-sm-8">
-                        <input type="date" autocomplete="off" class="form-control"  name="date"
+                        <input type="date" autocomplete="off" class="form-control"  name="date" id="date"
                                required data-validation="alphanumeric" data-validation-allowing='UTF-8' data-validation-length="3-50"
                                data-validation-error-msg="{{__('FormValidate.title')}}" required>
                     </div>
@@ -136,6 +136,18 @@
 <script type="text/javascript">
     $('.date').datepicker({
             format: 'yyyy-mm-dd'
+        });
+
+        $(document).ready( function() {
+            var now = new Date();
+            var month = (now.getMonth() + 1);               
+            var day = now.getDate();
+            if (month < 10) 
+                month = "0" + month;
+            if (day < 10) 
+                day = "0" + day;
+            var today = now.getFullYear() + '-' + month + '-' + day;
+            $('#date').val(today);
         });
 
 </script>

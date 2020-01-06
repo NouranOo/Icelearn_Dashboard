@@ -9,6 +9,8 @@ use Modules\ClassModule\Entities\Classe;
 use Modules\ClassModule\Entities\SubClasse;
 use Modules\ClassModule\Entities\ClasseStudent;
 use Modules\DegreeModule\Entities\DegreeDetail;
+use Modules\DegreeModule\Entities\DegreeSubView;
+
 use Modules\DegreeModule\Entities\Month;
 
 use Illuminate\Support\Facades\DB;
@@ -196,14 +198,11 @@ class DegreeModuleController extends Controller
 
        
         $month =Month::find($monthid);
-        $totaldegree = $month->degreedetails;
+       $totSubDegs =  DegreeSubView::where('month_id',$monthid)->get();
+      
+      
         
 
-     
-        
-        $degreedetail =  DB::table('degree_details')->where('subclasse_id',$id)->get();
-        
-
-       return view('degreemodule::month.addMonthDegree',compact('classe','month','totaldegree'));
+       return view('degreemodule::month.addMonthDegree',compact('classe','month','totSubDegs'));
     }
 }

@@ -77,7 +77,7 @@
                     {{-- date  --}}
                     <label class="control-label col-sm-2" for="title">التاريخ:</label>
                     <div class="col-sm-8">
-                        <input type="date" autocomplete="off" class="form-control" placeholder="" name="date" required>
+                        <input type="date" id="date" autocomplete="off" class="form-control" placeholder="" name="date" required>
                     </div>
                 </div>
 
@@ -128,6 +128,18 @@
 
 <script>
     $('.select2').select2()
+
+    $(document).ready( function() {
+            var now = new Date();
+            var month = (now.getMonth() + 1);               
+            var day = now.getDate();
+            if (month < 10) 
+                month = "0" + month;
+            if (day < 10) 
+                day = "0" + day;
+            var today = now.getFullYear() + '-' + month + '-' + day;
+            $('#date').val(today);
+        });
 
 </script>
 

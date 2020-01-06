@@ -118,7 +118,7 @@
                 <div class="form-group col-sm-6">
                     <label class="control-label col-sm-2" for="title">التاريخ:</label>
                     <div class="col-sm-8">
-                        <input type="date" autocomplete="off" class="form-control" value="{{old('date')}}"  name="date" required>
+                        <input type="date" id="date" autocomplete="off" class="form-control" value="{{old('date')}}"  name="date" required>
                     </div>
                 </div>
               
@@ -198,5 +198,20 @@
                 }
             });
         });
+
+
+
+        $(document).ready( function() {
+            var now = new Date();
+            var month = (now.getMonth() + 1);               
+            var day = now.getDate();
+            if (month < 10) 
+                month = "0" + month;
+            if (day < 10) 
+                day = "0" + day;
+            var today = now.getFullYear() + '-' + month + '-' + day;
+            $('#date').val(today);
+        });
+
 </script>
 @endsection
