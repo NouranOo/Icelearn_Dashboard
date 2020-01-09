@@ -25,7 +25,7 @@ Route::group(['prefix' => 'admin-panel', 'middleware' => ['auth:admin']], functi
             Route::delete('/deletemonth/{id}', 'DegreeModuleController@deleteMonth')->name('deletemonth');
 
         
-
+            Route::post('/storemonthdegree', 'DegreeModuleController@storeMonthDegree')->name('storemonthdegree');
 
     });
 

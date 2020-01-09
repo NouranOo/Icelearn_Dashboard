@@ -34,6 +34,53 @@
 <!-- Main content -->
 <section class="content">
   <div class="row">
+
+                                       <div class="col-md-8 col-sm-12">
+                                            <p class="lead"> الطالب  <strong>{{$student->name}}&nbsp;:</strong></p>
+                                            <div class="table-responsive">
+                                                <table class="table" style="background-color:white;">
+                                                    <tbody>
+                                                    <tr>
+                                                        <td> الاسم</td>
+                                                        <td class="text-right" id="elmagmo3">{{$student->name}}</td>
+                                                        <td class="text-bold-800"> تاريخ الميلاد</td>
+                                                        <td class="text-right" id="elmagmo3">{{$student->birthDate}}</td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>النوع</td>
+                                                        <td class="text-right" id="elmagmo3">{{$student->gender}}</td>
+                                                        <td class="text-bold-800">الرقم القومي</td>
+                                                        <td class="text-right" id="elmagmo3">{{$student->NID}}</td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-bold-800"> العمر</td>
+                                                        <td class="text-right" id="elmagmo3">{{$student->age}}</td>
+                                                        <td class="text-bold-800"> الوظيفه</td>
+                                                        <td class="text-right" id="elmagmo3">{{$student->currentJob}}</td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-bold-800"> رقم التلفون</td>
+                                                        <td class="text-right" id="elmagmo3">{{$student->phone}}</td>
+                                                        <td class="text-bold-800"> العنوان</td>
+                                                        <td class="text-right" id="elmagmo3">{{$student->address}}</td>
+
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td class="text-bold-800"> رقم الهاتف الارضي</td>
+                                                        <td class="text-right" id="elmagmo3">{{$student->telephoneFix}}</td>
+                                                        <td class="text-bold-800"> الباركود</td>
+                                                        <td class="text-right" id="elmagmo3">{{$student->barCode}}</td>
+
+                                                    </tr>
+                                                 
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                      </div>
     <div class="col-xs-12">
       <div class="box">
         <div class="box-header">
@@ -51,7 +98,7 @@
           <div class="row">
           <div class="col-md-5" >
             <ul>
-              <li class="wordLi">{{trans('student::student.id')}}:&nbsp; <strong>{{$student->id}}</strong> <br></li>
+              <!-- <li class="wordLi">{{trans('student::student.id')}}:&nbsp; <strong>{{$student->id}}</strong> <br></li>
               <li class="wordLi">{{trans('student::student.name')}}:&nbsp; <strong>{{$student->name}}</strong> <br></li>
               <li class="wordLi">{{trans('student::student.gender')}}:&nbsp; <strong>{{$student->gender}}</strong> <br></li>
               <li class="wordLi">{{"الرقم القومى"}}:&nbsp; <strong>{{$student->NID}}</strong> <br></li>
@@ -62,7 +109,7 @@
               <li class="wordLi">{{"البريد الإلكترونى"}}:&nbsp; <strong>{{$student->mail}}</strong> <br></li>
               <li class="wordLi">{{"محل الإقامة"}}:&nbsp; <strong>{{$student->address}}</strong> <br></li>
               <li class="wordLi">{{"رقم الهاتف الإرضى"}}:&nbsp; <strong>{{$student->telephoneFix}}</strong> <br></li>
-              <li class="wordLi">{{"الرمز الشريطي"}}:&nbsp; <strong>{{$student->barCode}}</strong> <br></li>
+              <li class="wordLi">{{"الرمز الشريطي"}}:&nbsp; <strong>{{$student->barCode}}</strong> <br></li> -->
 
 {{--              <li class="wordLi">{{"الكورسات المسجلة"}}:--}}
 {{--                @foreach($student->courses as $course)--}}
@@ -72,7 +119,7 @@
 {{--                @endforeach--}}
 {{--                </strong>--}}
 {{--              </li>--}}
-              <li class="wordLi">{{"المستويات "}}:
+              <li class="wordLi">الكورس-المستوي:
 
                   <strong>
 
@@ -92,7 +139,7 @@
                 <img src="{{asset('public/images/student/' . $student->photo)}}" style="margin-top: 5px;width:100%;height:100%;" height="70" width="100">
                 @else
                     <br>
-                    <pre><strong>"No Photo Uploaded"</strong></pre>
+                    
                 @endif
 
               </li></div>

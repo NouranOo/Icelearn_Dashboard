@@ -11,6 +11,9 @@ use Modules\ClassModule\Entities\ClasseStudent;
 use Modules\DegreeModule\Entities\DegreeDetail;
 use Modules\DegreeModule\Entities\DegreeSubView;
 
+use Modules\DegreeModule\Entities\MonthDegree;
+
+
 use Modules\DegreeModule\Entities\Month;
 
 use Illuminate\Support\Facades\DB;
@@ -21,25 +24,7 @@ use Illuminate\Support\Facades\DB;
 class DegreeModuleController extends Controller
 {
    
-    // public function indexold($id,$monthid){
-       
-    //     $subclasse =SubClasse::find($id);
-       
-
-
-    //     $degree =  DegreeDetail::where('subclasse_id',$id)->get();
-        
-    //     if($degree->first() == null){
-    //         return view('degreemodule::degree.index',compact('subclasse','monthid'));
-    //     }
-       
-     
-        
-    //     $degreedetail =  DB::table('degree_details')->where('subclasse_id',$id)->get();
-        
-
-    //    return view('degreemodule::degree.show',compact('subclasse','degree','degreedetail','monthid'));
-    // }
+    
 
 
     public function index($id,$monthid){
@@ -204,5 +189,32 @@ class DegreeModuleController extends Controller
         
 
        return view('degreemodule::month.addMonthDegree',compact('classe','month','totSubDegs'));
+    }
+
+    public function storeMonthDegree(Request $request){
+        
+
+        
+         foreach($request->item as $item){
+
+            $monthDegree = new  MonthDegree();
+
+           
+            $monthDegree->class_id = $request->class_id;
+            $monthDegree->month_id = $request->month_id;
+
+            $monthDegree->student_id = $item['student_id'];
+            
+            $monthDegree->lasttoteldeg = $item['lasttoteldeg'];
+            $monthDegree->projectdegree = $item['projectdegree'];
+            $monthDegree->total = $item['total'];
+            $monthDegree->status = $item['status'];
+
+            $monthDegree->save();
+       }
+       
+      
+       return redirect()->route('classindex')->with('success','تم الاضافه بنجاح');
+
     }
 }

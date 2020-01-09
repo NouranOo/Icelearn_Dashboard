@@ -31,7 +31,7 @@
                     <br>
                     {{-- Classe Name --}}
                     <div class="">
-            <form class="" action="{{route('storedegree')}}" method="POST">
+            <form class="" action="{{route('storemonthdegree')}}" method="POST">
             {{ csrf_field() }}    
                         <label class="control-label col-sm-3" for="title">  الكلاس:   {{$classe->name}}</label>
                         <input type="hidden" value="{{$classe->id}}" name="class_id">
@@ -118,15 +118,35 @@
                                     <td> {{$index+1}} </td>
                                     <td> {{$item->student->name}} </td>
            
-                                    <input type="hidden" value="{{$item->id}}" name="item[{{ $index }}][student_id]">
+                                    <input type="hidden" value="{{$item->student->id}}" name="item[{{ $index }}][student_id]">
 
-                                    <td class="combat">{{$item->total_degree}} </td>
+                                    <td class="combat"> <input type="number" value="{{$item->total_degree}}" min="{{$item->total_degree}}" max="{{$item->total_degree}}" step="any" class="form-control" name="item[{{ $index }}][lasttoteldeg]"> </td>
                                     <td class="combat"><input type="number" value="0" min="0" step="any" class="form-control" name="item[{{ $index }}][projectdegree]">   </td>
-                                    <td class="combat"> </td>
-                                     <input type="hidden" value="0" class="total-anas" name="item[{{ $index }}][total]">  
-                                     <td class="combat"> </td>
+                                    <td class="total-combat">{{$item->total_degree}} </td>
+                                     <input type="hidden" value="{{$item->total_degree}}" class="total-anas" name="item[{{ $index }}][total]">  
+                                     @if($item->total_degree >=126)  <input type="hidden" value="+A" class="status-anas" name="item[{{ $index }}][status]">     
+                                       @elseif ( $item->total_degree > 100 && $item->total_degree <= 125) <input type="hidden" value="A" class="status-anas" name="item[{{ $index }}][status]"> 
+                                       @elseif ( $item->total_degree > 75 && $item->total_degree <=100) <input type="hidden" value="+B" class="status-anas" name="item[{{ $index }}][status]">
+                                       @elseif ($item->total_degree > 50 && $item->total_degree <=75)<input type="hidden" value="B" class="status-anas" name="item[{{ $index }}][status]">
+                                       @elseif ($item->total_degree > 25 && $item->total_degree <=50) <input type="hidden" value="+C" class="status-anas" name="item[{{ $index }}][status]">
+                                       @elseif ( $item->total_degree <=25) <input type="hidden" value="C" class="status-anas" name="item[{{ $index }}][status]">
+                                       @endif
+                                     
+                                     
+                                     
+                                     <td class="status-combat">
+                                       @if($item->total_degree >=126)    +A 
+                                       @elseif ( $item->total_degree > 100 && $item->total_degree <= 125) A 
+                                       @elseif ( $item->total_degree > 75 && $item->total_degree <=100) +B 
+                                       @elseif ($item->total_degree > 50 && $item->total_degree <=75) B 
+                                       @elseif ($item->total_degree > 25 && $item->total_degree <=50) +C
+                                       @elseif ( $item->total_degree <=25) C
+                                       @endif
+                                     </td>
 
                                    
+
+ 
 
 
                                   
@@ -197,7 +217,7 @@
 
 
     $("table tr").on('blur input', function () {
- 
+ console.log('sd');
     // $('tr').each(function () {
        
         var sum = 0
@@ -210,6 +230,41 @@
             }
             $(this).parent('tr').find('.total-combat').html(sum);
             $(this).parent('tr').find('.total-anas').val(sum);
+            if(sum>=126){
+                
+                $(this).parent('tr').find('.status-combat').html('+A');
+                $(this).parent('tr').find('.status-anas').val('+A');
+
+            }else if(100 < sum && sum < 126){
+                console.log(sum);
+                console.log(100 < sum);
+                
+                $(this).parent('tr').find('.status-combat').html('A');
+                $(this).parent('tr').find('.status-anas').val('A');
+
+            }else if(75 < sum && sum < 101){
+                
+                $(this).parent('tr').find('.status-combat').html('+B');
+                $(this).parent('tr').find('.status-anas').val('+B');
+
+         
+            }else if(50 < sum && sum < 76){
+              
+                $(this).parent('tr').find('.status-combat').html('B');
+                $(this).parent('tr').find('.status-anas').val('B');
+          
+            }else if(25 < sum && sum < 51){
+              
+              $(this).parent('tr').find('.status-combat').html('+C');
+              $(this).parent('tr').find('.status-anas').val('+C');
+
+          
+            }else if(0 < sum && sum < 26){
+              
+              $(this).parent('tr').find('.status-combat').html('C');
+              $(this).parent('tr').find('.status-anas').val('C');
+
+            }
 
             
         
