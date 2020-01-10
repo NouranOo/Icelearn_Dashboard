@@ -12,6 +12,8 @@ Route::group(['prefix' => 'admin-panel', 'middleware' => ['auth:admin']], functi
             Route::get('/studentclass/{id}', 'ClassModuleController@studentclass')->name('studentclass');
             Route::delete('/deletestudentclass/{id}', 'ClassModuleController@deletestudentclass')->name('deletestudentclass');
 
+            //classdeg
+            Route::get('/classdeg/{id}', 'ClassModuleController@DegreeClass')->name('class.deg');
 
             ////subclass//
 

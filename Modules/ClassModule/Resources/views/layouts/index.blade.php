@@ -78,7 +78,7 @@
                                         </form>
                                         <a href="{{route('studentclass',$item->id)}}"><button class="btn btn-primary">الطلاب</button></a>
                                         <a href="{{route('month.all',$item->id)}}"><button class="btn btn-warning">الشهور</button></a>
-                                        <a href="{{route('month.all',$item->id)}}"><button class="btn btn-success">النتيجه النهائيه</button></a>
+                                        <a href="{{route('class.deg',$item->id)}}"><button class="btn btn-success">النتيجه النهائيه</button></a>
 
                                         
                                         </td>
@@ -124,7 +124,11 @@
             swal("{{trans('courses::course.good')}}", "تم حذف الكلاس بنجاح", "success", {button: "{{trans('courses::course.btn')}}",});
         </script>
     @endif
-
+    @if (session('null'))
+        <script>
+            swal("{{trans('courses::course.good')}}", "   لا يوجد درجات ", "error", {button: "{{trans('courses::course.btn')}}",});
+        </script>
+    @endif
     <!-- page script -->
     <!-- DataTables -->
     <script src="{{asset('assets/admin/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>

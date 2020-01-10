@@ -12,6 +12,8 @@ use Modules\ClassModule\Entities\Classe;
 use Modules\ClassModule\Entities\SubClasse;
 use Modules\ClassModule\Entities\ClasseStudent;
 use Modules\DegreeModule\Entities\Month;
+use Modules\ClassModule\Entities\ClassDegree;
+
 
 
 
@@ -83,8 +85,17 @@ class ClassModuleController extends Controller
         
     }
 
+////DegreeClass////
+     public function DegreeClass($id){
+                  $degrees = ClassDegree::where('class_id',$id)->get();
+                 if($degrees->first() == null){
+                    return back()->with('null','  لا يوجد درجات');
 
+                 }
+               return view('classmodule::layouts.classdegree',compact('degrees'));
 
+      }
+   
     //////subclass///
     public function subclass($id,$monthid)
     {
