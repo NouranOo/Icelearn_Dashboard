@@ -78,6 +78,7 @@
                                         </form>
                                         <a href="{{route('studentclass',$item->id)}}"><button class="btn btn-primary">الطلاب</button></a>
                                         <a href="{{route('month.all',$item->id)}}"><button class="btn btn-warning">الشهور</button></a>
+                                        <a href="{{route('month.all',$item->id)}}"><button class="btn btn-success">النتيجه النهائيه</button></a>
 
                                         
                                         </td>

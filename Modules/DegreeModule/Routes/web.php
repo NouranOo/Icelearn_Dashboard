@@ -19,13 +19,12 @@ Route::group(['prefix' => 'admin-panel', 'middleware' => ['auth:admin']], functi
             Route::get('/monthessss/{id}', 'DegreeModuleController@monthNew')->name('month.all');
             Route::post('/storemonth', 'DegreeModuleController@storemonth')->name('storemonth');
             Route::get('createmonth/{id}', 'DegreeModuleController@createmonth')->name('createmonth');
-
             Route::get('/monthdegree/{id}/{monthid}', 'DegreeModuleController@addMonthDegree')->name('addmonthdegree');
-
             Route::delete('/deletemonth/{id}', 'DegreeModuleController@deleteMonth')->name('deletemonth');
-
-        
             Route::post('/storemonthdegree', 'DegreeModuleController@storeMonthDegree')->name('storemonthdegree');
+
+            Route::post('/updatemonthdegree', 'DegreeModuleController@updateMonthDegrees')->name('update.monthdegree');
+
 
     });
 

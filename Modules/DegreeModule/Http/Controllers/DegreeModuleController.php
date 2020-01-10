@@ -180,11 +180,16 @@ class DegreeModuleController extends Controller
     public function addMonthDegree($id , $monthid)
     {
         $classe = Classe::find($id);
-
-       
         $month =Month::find($monthid);
        $totSubDegs =  DegreeSubView::where('month_id',$monthid)->get();
       
+       $monthDegs = MonthDegree::where('month_id',$monthid)->get();
+       if($monthDegs->first() == null){
+
+        return view('degreemodule::month.addMonthDegree',compact('classe','month','totSubDegs'));
+       }else{
+        return view('degreemodule::month.showMonthDegree',compact('classe','month','monthDegs'));
+       }
       
         
 
@@ -217,4 +222,41 @@ class DegreeModuleController extends Controller
        return redirect()->route('classindex')->with('success','تم الاضافه بنجاح');
 
     }
+
+    
+
+      
+    public function updateMonthDegrees(Request $request){
+       
+        $getdegree = MonthDegree::where([
+          ['month_id', '=', $request->month_id],
+          ['student_id', '=', $request->student_id],])->first();
+      
+          
+      
+      
+          if($getdegree == null){
+
+            $monthDegree = new  MonthDegree();
+            $monthDegree->month_id = $request->month_id;
+            $monthDegree->student_id = $request->student_id;
+            $monthDegree->lasttoteldeg = $request->lasttoteldeg;
+            $monthDegree->projectdegree = $request->projectdegree;
+            $monthDegree->total = $request->total;
+            $monthDegree->status = $request->status;
+            $monthDegree->save();
+            
+          }else{
+            $getdegree->update([
+                'lasttoteldeg'=> $request->lasttoteldeg,
+                'projectdegree'=> $request->projectdegree,
+                'total'=> $request->total,
+                'status'=> $request->status,
+            ]);
+          }
+      
+      
+            return response()->json(['success'=>'تم التحديث بنجاح!']);
+      
+       }
 }
