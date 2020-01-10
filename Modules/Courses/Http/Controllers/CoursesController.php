@@ -114,11 +114,13 @@ class CoursesController extends Controller
      * @param  Request $request
      * @return Response
      */
-    public function update(CreateCourseRequest $request,$id)
+    public function update(Request $request,$id)
     {
+        
+        
         $courseData = $request->except('_token','_method','category_id','instructor_id');
         $course = $this->courseRepo->update($id,$courseData);
-        $course->categories()->sync($request['category_id']);
+        
         $course->instructors()->sync($request['instructor_id']);
 
         return redirect('admin-panel/courses')->with('updated', 'updated');

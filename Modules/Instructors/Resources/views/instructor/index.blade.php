@@ -73,13 +73,13 @@
                                             <a title="Edit" href="{{url('/instructors/instructors/' . $item->id . '/edit')}}" type="button" class="btn btn-primary"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                                         @endrole
 
-                                        {{-- Delete --}}
+                                        <!-- {{-- Delete --}}
                                         @role('superadmin')
                                         <form class="inline" action="{{url('/instructors/delete/' . $item->id)}}" method="POST">
                                             {{ method_field('DELETE') }} {!! csrf_field() !!}
                                             <button title="Delete" type="submit" onclick="return confirm('Are you sure, You want to delete Instructor ?')" type="button" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
                                         </form>
-                                        @endrole
+                                        @endrole -->
                                     </td>
                                 </tr>
                             @endforeach

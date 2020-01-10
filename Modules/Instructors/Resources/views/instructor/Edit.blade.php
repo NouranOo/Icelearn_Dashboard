@@ -57,7 +57,7 @@
               {{-- Description --}}
               <label class="control-label col-sm-2" for="title">{{trans('instructors::instructor.desc')}} </label>
               <div class="col-sm-8">
-                  <textarea class="textarea" name="description" placeholder="{{trans('instructors::instructor.desc')}}" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{$instructor->description}}</textarea>
+                  <textarea class="textarea" name="description" required style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{!! $instructor->description !!}</textarea>
               </div>
           </div>
 
@@ -65,7 +65,7 @@
               {{-- Description --}}
               <label class="control-label col-sm-2" for="title">{{trans('instructors::instructor.edu')}} </label>
               <div class="col-sm-8">
-                  <textarea class="textarea" name="education" placeholder="{{trans('instructors::instructor.edu')}}" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{$instructor->education}}</textarea>
+                  <textarea class="textarea" name="education" required  style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{!! $instructor->education !!}</textarea>
               </div>
           </div>
 
@@ -73,7 +73,7 @@
               {{-- Description --}}
               <label class="control-label col-sm-2" for="title">{{trans('instructors::instructor.exp')}} </label>
               <div class="col-sm-8">
-                  <textarea class="textarea" name="experience" placeholder="{{trans('instructors::instructor.exp')}}" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{$instructor->experience}}</textarea>
+                  <textarea class="textarea" name="experience" required placeholder="{{trans('instructors::instructor.exp')}}" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{!! $instructor->experience !!}</textarea>
               </div>
           </div>
 
@@ -81,7 +81,7 @@
               {{-- Description --}}
               <label class="control-label col-sm-2" for="title">{{trans('instructors::instructor.others')}} </label>
               <div class="col-sm-8">
-                  <textarea class="textarea" name="others" placeholder="{{trans('instructors::instructor.others')}}" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{$instructor->others}}</textarea>
+                  <textarea class="textarea" name="others" required placeholder="{{trans('instructors::instructor.others')}}" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{!! $instructor->others !!}</textarea>
               </div>
           </div>
 
@@ -89,14 +89,14 @@
         <div class="form-group">
           <label class="control-label col-sm-2" for="title">{{trans('instructors::instructor.phone')}}:</label>
           <div class="col-sm-8">
-            <input type="text" autocomplete="off" data-validation="number" class="form-control" placeholder="{{trans('instructors::instructor.phone')}}" name="phone" value="{{$instructor->phone}}">
+            <input type="text" autocomplete="off" required data-validation="number" class="form-control" placeholder="{{trans('instructors::instructor.phone')}}" name="phone" value="{{$instructor->phone}}">
           </div>
         </div>
 
         <div class="form-group">
           <label class="control-label col-sm-2" for="title">{{trans('instructors::instructor.email')}}:</label>
           <div class="col-sm-8">
-            <input type="text" autocomplete="off" data-validation="email" class="form-control" placeholder="{{trans('instructors::instructor.email')}}" name="email" value="{{$instructor->email}}" data-validation="email">
+            <input type="text" autocomplete="off" required data-validation="email" class="form-control" placeholder="{{trans('instructors::instructor.email')}}" name="email" value="{{$instructor->email}}" data-validation="email">
           </div>
         </div>
 

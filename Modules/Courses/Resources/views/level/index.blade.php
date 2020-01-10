@@ -61,7 +61,7 @@
                                            type="button" class="btn btn-primary"><i class="fa fa-pencil"
                                                                                     aria-hidden="true"></i></a>
                                         @endrole
-                                        {{-- Delete --}}
+                                        <!-- {{-- Delete --}}
                                         @role('superadmin')
                                         <form class="inline" action="{{url('admin-panel/levels/delete/' . $item->id)}}"
                                               method="POST">
@@ -72,7 +72,7 @@
                                                                                             aria-hidden="true"></i>
                                             </button>
                                         </form>
-                                        @endrole
+                                        @endrole -->
 
                                         <a href="{{route('levelpayments',$item->id)}}"><button class="btn btn-warning">الايصالات</button></a>
                                         <a href="{{route('viewstudentslevels',$item->id)}}"><button class="btn btn-primary">الطلاب</button></a>

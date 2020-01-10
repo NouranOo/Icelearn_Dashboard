@@ -96,14 +96,7 @@ class InstructorController extends Controller
      */
     public function update(Request $request,$id)
     {
-        $request->validate([
-            'ar.name'=>'required',
-            'en.name'=>'required|alpha',
-            'phone'=>'required|regex:/(01)[0-9]{9}/|unique:instructors,phone,'.$id,
-            'email'=>'required|email|unique:instructors,email,'.$id,
-            'cv'=>'mimes:pdf|max:4000',
-            'photo' => 'mimes:jpeg,jpg,png | max:1000',
-        ]);
+        
 
         $instructorData = $request->except('_token', '_wysihtml5_mode','photo','cv');
         if($request->hasFile('photo')){

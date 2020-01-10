@@ -41,115 +41,40 @@
                     <div class="col-sm-8">
                         <input type="text" autocomplete="off" class="form-control" placeholder="{{trans('courses::course.newtitle')}}" name="title"
                                required data-validation="alphanumeric" data-validation-allowing='UTF-8' data-validation-length="3-50"
-                               data-validation-error-msg="{{__('FormValidate.title')}}">
+                               data-validation-error-msg="{{__('FormValidate.title')}}" required>
                     </div>
                 </div>
-<!-- 
-                <div class="form-group">
-                    {{-- Track --}}
-                    <label class="control-label col-sm-2" for="title">{{trans('courses::course.track')}}:</label>
-                    <div class="col-sm-8">
-                        @if (!empty($tracks->toArray()))
-                        <select class="form-control" name="track_id">
-                                @foreach($tracks as $track)
-                                  <option value="{{ $track->id }}">{{ $track->title }}</option>
-                                @endforeach
-                            </select> @else
-                        <select class="form-control" name="track_id" disabled>
-                        </select>
-                        <br>
-                        <a href="{{url('/admin-panel/tracks/create')}}" type="button" class="btn btn-success"> <i class="fa fa-plus-circle" aria-hidden="true"></i> &nbsp;{{__('courses::course.create_track')}}</a>                        @endif
-                    </div>
-                </div>
+  
 
-                <div class="form-group">
-                    {{-- Level --}}
-                    <label class="control-label col-sm-2" for="title">{{trans('courses::course.level')}}:</label>
-                    <div class="col-sm-8">
-                        @if (!empty($levels->toArray()))
-                        <select class="form-control" name="level_id">
-                                @foreach($levels as $level)
-                                  <option value="{{ $level->id }}">{{ $level->title }}</option>
-                                @endforeach
-                            </select> @else
-                        <select class="form-control" name="track_id" disabled>
-                        </select>
-                        <br>
-                        <a href="{{url('/admin-panel/levels/create')}}" type="button" class="btn btn-success"> <i class="fa fa-plus-circle" aria-hidden="true"></i> &nbsp;{{__('courses::course.level_track')}}</a>                        @endif
-                    </div>
-                </div>
-                {{-- ---------------------------------------------------------------- --}}
-                <div class="form-group">
-                    <label class="control-label col-sm-2">{{ __('courses::course.category')}} : </label>
-                    <div class="col-sm-4">
-
-                        <ul data-role="treeview-metro">
-                            @foreach($categories as $cat)
-                            <li>
-                                <input type="checkbox" data-role="checkbox" value="{{ $cat->id  }}" name="category_id[]" data-caption="{{ $cat->title  }}"
-                                    title=""> @if(count($cat->child)>0)
-                                <ul>
-                                    @foreach($cat->child as $child)
-                                    <li>
-                                        <input type="checkbox" data-role="checkbox" value="{{ $child->id  }}" name="car_categ[]" data-caption="{{ $child->title  }}"
-                                            title="">
-                                    </li>
-                                    @endforeach
-                                </ul>
-                                @endif
-                            </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                </div>
-
-                {{-- ---------------------------------------------------------------- --}} -->
+               
 
                 <div class="form-group">
                     {{-- Instructor --}}
                     <label class="control-label col-sm-2" for="title">{{trans('courses::course.instructor')}}:</label>
                     <div class="col-sm-8">
-                        <select class="select2 form-control" id="instructor_id" name="instructor_id[]" multiple>
+                        <select class="select2 form-control" id="instructor_id" name="instructor_id[]" required multiple>
                             @foreach($instructors as $instructor)
                             <option value="{{ $instructor->id }}"> <pre>&nbsp;&nbsp;&nbsp;</pre>{{ $instructor->name }}</option>
                             @endforeach
                         </select>
                     </div>
                 </div>
-<!-- 
-                {{--<div class="form-group">--}}
-                    {{-- Type --}}
-                    {{--<label class="control-label col-sm-2" for="title">{{trans('courses::course.type')}}:</label>--}}
-                    {{--<div class="col-sm-8">--}}
-                        {{--<select class="form-control" name="type">--}}
-                            {{--<option value="general"> <pre>&nbsp;&nbsp;&nbsp;</pre>General</option>--}}
-                            {{--<option value="conversation"> <pre>&nbsp;&nbsp;&nbsp;</pre>Conversation</option>--}}
-                            {{--<option value="toefl"> <pre>&nbsp;&nbsp;&nbsp;</pre>Toefl</option>--}}
-                        {{--</select>--}}
-                    {{--</div>--}}
-                {{--</div>--}} -->
+
 
                 <div class="form-group">
                     {{-- Number of levels --}}
                     <label class="control-label col-sm-2" for="title">عدد المستويات:</label>
                     <div class="col-sm-8">
-                        <input type="text" autocomplete="off" class="form-control" placeholder="عدد المستويات" name="levels_number">
+                        <input type="text" autocomplete="off" class="form-control" placeholder="عدد المستويات" name="levels_number" required>
                     </div>
                 </div>
 
-                <!-- <div class="form-group">
-                    {{-- Number of classes --}}
-                    <label class="control-label col-sm-2" for="title">{{trans('courses::course.classnumbers')}}:</label>
-                    <div class="col-sm-8">
-                        <input type="text" autocomplete="off" class="form-control" placeholder="{{trans('courses::course.classnumbers')}}" name="classes_number">
-                    </div>
-                </div> -->
 
                 <div class="form-group">
                     {{-- book fees --}}
                     <label class="control-label col-sm-2" for="title">{{trans('courses::course.bookfees')}}:</label>
                     <div class="col-sm-8">
-                        <input type="text" autocomplete="off" class="form-control" placeholder="{{trans('courses::course.bookfees')}}" name="book_fees">
+                        <input type="text" autocomplete="off" class="form-control" placeholder="{{trans('courses::course.bookfees')}}" name="book_fees" required>
                     </div>
                 </div>
 
@@ -157,7 +82,7 @@
                     {{-- month fees --}}
                     <label class="control-label col-sm-2" for="title">{{trans('courses::course.monthfees')}}:</label>
                     <div class="col-sm-8">
-                        <input type="text" autocomplete="off" class="form-control" placeholder="{{trans('courses::course.monthfees')}}" name="month_fees">
+                        <input type="text" autocomplete="off" class="form-control" placeholder="{{trans('courses::course.monthfees')}}" name="month_fees" required>
                     </div>
                 </div>
 
