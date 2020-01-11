@@ -19,5 +19,6 @@ class CreateDegreeSubViewsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('degree_sub_views');
+        DB::statement('DROP VIEW IF EXISTS total_deg_sub');
     }
 }

@@ -15,6 +15,7 @@
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
         "nwidart/laravel-modules": "^4.0",
+        "spatie/laravel-backup": "^5.0.0",
         "spatie/laravel-permission": "^2.31",
         "yajra/laravel-datatables": "^1.0"
     },

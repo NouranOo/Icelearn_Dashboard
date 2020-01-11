@@ -172,7 +172,7 @@
                  
            
 
-            @role('superadmin')
+            <!-- @role('superadmin')
             <li>
                 <a href="{{ url('admin-panel/admins') }}">
                     <i class="fa fa-user" aria-hidden="true"></i><span>{{__('commonmodule::sidebar.admins')}} </span>
@@ -180,7 +180,7 @@
                 </span>
                 </a>
             </li>
-            @endrole
+            @endrole -->
 
         
 <!-- 

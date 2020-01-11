@@ -54,10 +54,10 @@
                                             {{-- Delete --}}
                                             <form class="inline" action="{{url('admin-panel/admins/' . $admin->id)}}" method="POST">
                                                 {{ method_field('DELETE') }} {!! csrf_field() !!}
-                                                <button title="Delete" type="submit" onclick="return confirm('Are you sure, You want to delete Admin Data?')" type="button"
+                                                <!-- <button title="Delete" type="submit" onclick="return confirm('Are you sure, You want to delete Admin Data?')" type="button"
                                                         class="btn btn-danger">
                                                     <i class="fa fa-trash" aria-hidden="true"></i>
-                                                </button>
+                                                </button> -->
                                             </form>
                                         </td>
 
