@@ -194,16 +194,16 @@
                             <div class="form-group">
                                 <label class="control-label col-sm-2" for="title">المستوى المقترح:</label>
                                 <div class="col-sm-8">
-                                <select name="suggestedLevel" class="form-control">
-                                @foreach($courses as $course)
-                                    @foreach( $course->levels as $level )
-                                        <option  value="{{$level->id}}">{{$course->title}}-{{$level->title}}</option>
-                                    @endforeach
-                                @endforeach
+                                    <select name="suggestedLevel" class="form-control">
+                                        @foreach($courses as $course)
+                                            @foreach( $course->levels as $level )
+                                                <option  value="{{$level->id}}">{{$course->title}}-{{$level->title}}</option>
+                                            @endforeach
+                                        @endforeach
 
-                                </select>
+                                    </select>
 
-                            </div>
+                                </div>
                              
                             
                             </div>
